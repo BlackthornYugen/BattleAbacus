@@ -5,7 +5,16 @@
     <title>Gear</title>
 </head>
 <body>
-    <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-    <h1>Gear</h1>
+    <div data-role="content">
+        <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
+        <h1>Gear</h1>
+        <label for="demo">Demo Text</label>
+        <input id="demo" type="text" value="Change me"/>
+        <p>
+            If domCash is enabled, changes to the textbox should persist even after
+            leaving and coming back.
+        </p>
+        <code>$.mobile.page.prototype.options.domCache = true;</code>
+    </div>
 </body>
 </html>

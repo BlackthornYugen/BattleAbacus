@@ -1,11 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <meta charset="utf-8">
     <title>Feats</title>
 </head>
 <body>
-    <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-    <h1>Feats</h1>
+<a href="index.html" data-prefetch data-transition="slide" data-direction="reverse" class="headingIcon"><img src="images/h-menu.svg"></a>
+<h1 class="headingText">Feats</h1>
+
+<div data-role="header" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="#" data-icon="plus" class="ui-btn-active ui-state-persist">All</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Achievement - General</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Grit/Panache - Mythic</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Performance - Teamwork</a></li>
+
+            <!--<li><a href="#" data-icon="plus" class="ui-btn-active ui-state-persist">All</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">General</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Achievement</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Combat</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Critical</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Faction</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Grit/Panache</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Hero Point</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Item Creation</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Meditation</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Metamagic</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Mythic</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Performance</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Racial</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Story</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Style</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Targeting</a></li>
+            <li><a href="#" data-icon="plus" data-transition="none">Teamwork</a></li>-->
+        </ul>
+    </div>
+</div>
+
+<!--<div data-role="controlgroup" data-type="horizontal">
+    <button data-icon="plus">All</button>
+    <button data-icon="plus">General</button>
+    <button data-icon="plus">Achievement</button>
+    <button data-icon="plus">Combat</button>
+    <button data-icon="plus">Critical</button>
+    <button data-icon="plus">Faction</button>
+    <button data-icon="plus">Grit/Panache</button>
+    <button data-icon="plus">Hero Point</button>
+    <button data-icon="plus">Item Creation</button>
+    <button data-icon="plus">Meditation</button>
+    <button data-icon="plus">Metamagic</button>
+    <button data-icon="plus">Mythic</button>
+    <button data-icon="plus">Performance</button>
+    <button data-icon="plus">Racial</button>
+    <button data-icon="plus">Story</button>
+    <button data-icon="plus">Style</button>
+    <button data-icon="plus">Targeting</button>
+    <button data-icon="plus">Teamwork</button>
+</div>-->
+
+
+<div data-role="controlgroup">
+    <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
+        <input type="radio" name="feats" id="rdbMyFeats" value="my" checked="checked" />
+        <label for="rdbMyFeats">My Feats</label>
+
+        <input type="radio" name="feats" id="rdbAllFeats" value="all"  />
+        <label for="rdbAllFeats">All Feats</label>
+    </fieldset>
+</div>
+
+
 </body>
 </html>

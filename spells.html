@@ -1,13 +1,82 @@
-<!DOCTYPE html> <!-- it's not here? -->
+<!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <meta charset="utf-8">
-    <title>Feats</title>
+    <title>Spells</title>
+
+    <script>
+        //I've placed this here as a placeholder for proper javascript, feel free to remove it whenever it's in the way
+        var spells = {
+            1: {name:"one", remaining:6, max:7},
+            2: {name:"two", remaining:4, max:4},
+            3: {name:"three", remaining:4, max:4}
+        };
+
+        var myDb = openDatabase("myDb","1","My Database", 1024 * 1024 * 50);
+
+        function cast(num){
+            console.log(1);
+            var spell = spells[num];
+            if(spell.remaining > 0){
+                spell.remaining--;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+
+        function uncast(num){
+            console.log(2);
+            var spell = spells[num];
+            if(spell.remaining < spell.max){
+                spell.remaining++;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+    </script>
 </head>
 <body>
-<div data-role="content">
-    <a href="index.html" data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-    <h1>Feats</h1>
+<div data-role="page">
+    <section data-role="content" data-dialog="true">
+        <form>
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <input type="button" value="Special Abilities" >
+                <input type="button" value="0" >
+                <input type="button" value="1" >
+                <input type="button" value="2" >
+                <input type="button" value="3" >
+                <input type="button" value="4" >
+                <input type="button" value="5" >
+                <input type="button" value="6" >
+                <input type="button" value="7" >
+                <input type="button" value="8" >
+                <input type="button" value="9" >
+                </fieldset>
+        </form>
+
+        <ul data-role="listview" data-split-icon="back" data-theme="a" data-split-theme="b" data-inset="true">
+            <li>
+                <a onclick="cast.call(this.parentNode,1)">One<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,1)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            <li>
+                <a onclick="cast.call(this.parentNode,2)">Two<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,2)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            </li>
+            <li>
+                <a onclick="cast.call(this.parentNode,3)">Three<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,3)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            </li>
+        </ul>
+
+        <div data-role="controlgroup" data-type="horizontal">
+            <a href="#" data-role="button">Yes</a>
+            <a href="#" data-role="button">No</a>
+            <a href="#" data-role="button">Maybe</a>
+        </div>
+
+    </section>
 </div>
 </body>
 </html>

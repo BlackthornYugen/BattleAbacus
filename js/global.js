@@ -1,44 +1,59 @@
 /**
  * Created by John on 2015-03-14.
  */
-$(function(){
+/*globals $ */
+var characters;
+
+$(function () {
+    "use strict";
     // Disable reloading of page content so that form
     // data will persist.
     $.mobile.page.prototype.options.domCache = true;
+
+    // bind function to displaypage event
+    $("body").on("pagebeforechange", function (event, object) {
+        var toPage = object.toPage;
+        if (typeof toPage === "string" && toPage.indexOf("index") > -1) {
+            console.log(object);
+        }
+    });
 
     // Setup menu //
     // Clear and add first char using their large image
     var $cList = $("#characterList")
         .html('')
-        .append($("<img>").attr('src', charactors[0].pictureLarge));
-    $(document).find('a:eq(0)')// TODO: Select an ID instead of the first anchor tag
-        .text(charactors[0].name.first + " " + charactors[0].name.last);
+        .append($("<img>").attr('src', characters[0].pictureLarge));
+    $(document).find('a:eq(0)') //TODO: Select an ID instead of the first anchor tag
+        .text(characters[0].name.first + " " + characters[0].name.last);
 
     // Add char images
-    for(var i = 1; i < charactors.length; i++){
+    var i;
+    var tapEvent = function (event) {
+        var name = $(this).data('char').name;
+        $(document).find('a:eq(0)') // TODO: Select an ID
+            .text(name.first + " " + name.last);
+        $(".charName").text(name.first + " " + name.last);
+    }
+    for (i = 1; i < characters.length; i++) {
         $cList.append(
             $("<img>")
-                .attr('src', charactors[i].pictureSmall)
-                .attr('title', "Select " + charactors[i].name.first)
-                .data('char', charactors[i])
-                .on('tap', function(event){
-                    var name = $(this).data('char').name;
-                    $(document).find('a:eq(0)')// TODO: Select an ID
-                        .text(name.first + " " + name.last);
-                })
+                .attr('src', characters[i].pictureSmall)
+                .attr('title', "Select " + characters[i].name.first)
+                .data('char', characters[i])
+                .on('tap', tapEvent)
         );
-        console.log("Loaded " + charactors[i].name.first);
+        console.log("Loaded " + characters[i].name.first);
     }
 });
 
 // Sample Data
-var charactors = [
+characters = [
     {
         "_id": "5505c483bcf5e88e7977c786",
         "index": 0,
         "guid": "11855b1f-7384-4ab7-8d5d-dc01598ff33b",
         "isActive": false,
-        "balance": "$2,573.48",
+        "balance": "2,573GP 4SP 8CP",
         "colour": "#FA2C2C",
         "pictureLarge": "http://placehold.it/128.png/FA2C2C/fff",
         "pictureSmall": "http://placehold.it/60.png/FA2C2C/fff",
@@ -49,8 +64,8 @@ var charactors = [
             "last": "Garner"
         },
         "about": "Cupidatat voluptate sint mollit aliqua commodo sint non mollit. " +
-        "Labore esse id sunt est. Deserunt culpa eiusmod nisi cillum. Irure Lorem " +
-        "commodo eiusmod cupidatat ea consequat irure ea adipisicing incididunt ex.\r\n",
+            "Labore esse id sunt est. Deserunt culpa eiusmod nisi cillum. Irure Lorem " +
+            "commodo eiusmod cupidatat ea consequat irure ea adipisicing incididunt ex.\r\n",
         "registered": "Wednesday, August 27, 2014 12:50 AM",
         "tags": [
             "in",
@@ -79,12 +94,12 @@ var charactors = [
             "last": "Kemp"
         },
         "about": "Proident enim tempor nulla duis commodo. Esse qui ea aliquip fugiat " +
-        "non aliqua dolor et. Et laboris ipsum incididunt ipsum commodo ipsum " +
-        "consectetur incididunt cupidatat adipisicing aute magna mollit esse. Officia " +
-        "eiusmod officia sit aute consequat sunt sint officia dolor. Est do nostrud " +
-        "tempor minim magna duis veniam aliqua proident ut. Aliquip officia officia " +
-        "laborum laborum dolore reprehenderit culpa cupidatat excepteur aliquip " +
-        "pariatur adipisicing. Nulla laborum fugiat ut amet veniam id velit.\r\n",
+            "non aliqua dolor et. Et laboris ipsum incididunt ipsum commodo ipsum " +
+            "consectetur incididunt cupidatat adipisicing aute magna mollit esse. Officia " +
+            "eiusmod officia sit aute consequat sunt sint officia dolor. Est do nostrud " +
+            "tempor minim magna duis veniam aliqua proident ut. Aliquip officia officia " +
+            "laborum laborum dolore reprehenderit culpa cupidatat excepteur aliquip " +
+            "pariatur adipisicing. Nulla laborum fugiat ut amet veniam id velit.\r\n",
         "registered": "Friday, July 11, 2014 4:02 PM",
         "tags": [
             "veniam",
@@ -113,10 +128,10 @@ var charactors = [
             "last": "Diaz"
         },
         "about": "Non ea aliquip in tempor proident adipisicing aliqua reprehenderit " +
-        "aute sunt. Ex deserunt et magna aliqua consequat aliqua deserunt sit. Sit do " +
-        "velit quis eiusmod do deserunt aliquip. Dolor velit occaecat nostrud duis " +
-        "officia in nisi occaecat nulla nisi excepteur. Excepteur sit amet enim " +
-        "cupidatat mollit dolor. Ullamco cupidatat sunt deserunt nostrud.\r\n",
+            "aute sunt. Ex deserunt et magna aliqua consequat aliqua deserunt sit. Sit do " +
+            "velit quis eiusmod do deserunt aliquip. Dolor velit occaecat nostrud duis " +
+            "officia in nisi occaecat nulla nisi excepteur. Excepteur sit amet enim " +
+            "cupidatat mollit dolor. Ullamco cupidatat sunt deserunt nostrud.\r\n",
         "registered": "Saturday, June 28, 2014 11:17 PM",
         "tags": [
             "aliquip",
@@ -145,11 +160,11 @@ var charactors = [
             "last": "Pickett"
         },
         "about": "Culpa labore laborum elit irure Lorem id dolore aute adipisicing. " +
-        "Dolore consectetur ad sit ullamco dolore exercitation cupidatat ad occaecat " +
-        "voluptate. Aliquip eu exercitation culpa consequat mollit. Dolor veniam " +
-        "aliqua sint excepteur aliquip laborum qui nulla dolor elit magna. Sit cillum " +
-        "minim nisi eiusmod consequat consequat consequat incididunt proident velit eu " +
-        "veniam incididunt.\r\n",
+            "Dolore consectetur ad sit ullamco dolore exercitation cupidatat ad occaecat " +
+            "voluptate. Aliquip eu exercitation culpa consequat mollit. Dolor veniam " +
+            "aliqua sint excepteur aliquip laborum qui nulla dolor elit magna. Sit cillum " +
+            "minim nisi eiusmod consequat consequat consequat incididunt proident velit eu " +
+            "veniam incididunt.\r\n",
         "registered": "Friday, January 16, 2015 2:26 AM",
         "tags": [
             "dolore",
@@ -178,9 +193,9 @@ var charactors = [
             "last": "Hart"
         },
         "about": "Excepteur ad ad laboris dolor elit deserunt id nisi exercitation " +
-        "magna cillum incididunt do mollit. Culpa laboris incididunt ad in occaecat id " +
-        "cupidatat deserunt mollit. Ad duis do deserunt labore in irure labore culpa " +
-        "sunt.\r\n",
+            "magna cillum incididunt do mollit. Culpa laboris incididunt ad in occaecat id " +
+            "cupidatat deserunt mollit. Ad duis do deserunt labore in irure labore culpa " +
+            "sunt.\r\n",
         "registered": "Sunday, November 16, 2014 8:58 AM",
         "tags": [
             "amet",
@@ -209,8 +224,8 @@ var charactors = [
             "last": "Whitfield"
         },
         "about": "Sit dolor velit irure cillum Lorem tempor nulla quis aliquip. Est " +
-        "elit consectetur sint voluptate. Ex occaecat laborum qui ex veniam ut " +
-        "voluptate consectetur nisi cupidatat elit nulla occaecat nulla.\r\n",
+            "elit consectetur sint voluptate. Ex occaecat laborum qui ex veniam ut " +
+            "voluptate consectetur nisi cupidatat elit nulla occaecat nulla.\r\n",
         "registered": "Monday, June 2, 2014 9:32 AM",
         "tags": [
             "Lorem",

@@ -10,35 +10,16 @@
     <title>Feats</title>
 </head>
 <body>
-<a href="index.html" data-prefetch data-transition="slide" data-direction="reverse" class="headingIcon"><img src="images/h-menu.svg"></a>
 <h1 class="headingText">Feats</h1>
 
 <div data-role="header" data-position="fixed">
     <div data-role="navbar">
         <ul>
-            <li><a href="#" data-icon="plus" class="ui-btn-active ui-state-persist">All</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Achievement - General</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Grit/Panache - Mythic</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Performance - Teamwork</a></li>
-
-            <!--<li><a href="#" data-icon="plus" class="ui-btn-active ui-state-persist">All</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">General</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Achievement</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Combat</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Critical</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Faction</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Grit/Panache</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Hero Point</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Item Creation</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Meditation</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Metamagic</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Mythic</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Performance</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Racial</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Story</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Style</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Targeting</a></li>
-            <li><a href="#" data-icon="plus" data-transition="none">Teamwork</a></li>-->
+            <li><a href="index.html" data-icon="plus" data-transition="slide" data-direction="reverse">Home</a></li>
+            <li><a href="spells.html" data-icon="plus" data-transition="slidedown">Spells/Abilities</a></li>
+            <li><a href="skills.html" data-icon="plus" data-transition="slidedown">Skills</a></li>
+            <li><a href="gear.html" data-icon="plus" data-transition="slideup">Gear</a></li>
+            <li><a href="condition.html" data-icon="plus" data-transition="slidedown">Conditions</a></li>
         </ul>
     </div>
 </div>
@@ -63,18 +44,12 @@
     <button data-icon="plus">Targeting</button>
     <button data-icon="plus">Teamwork</button>
 </div>-->
+<div data-role="controlgroup" data-type="horizontal" class="btnCenter">
+    <button class="ui-btn-active ui-state-persist">My Feats</button>
+    <!--<button>All Feats</button>-->
+    <a href="feat-all.html" data-role="button" data-transition="none">All Feats</a>
 
-
-<div data-role="controlgroup">
-    <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
-        <input type="radio" name="feats" id="rdbMyFeats" value="my" checked="checked" />
-        <label for="rdbMyFeats">My Feats</label>
-
-        <input type="radio" name="feats" id="rdbAllFeats" value="all"  />
-        <label for="rdbAllFeats">All Feats</label>
-    </fieldset>
 </div>
-
 
 </body>
 </html>

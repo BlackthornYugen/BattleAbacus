@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+    <meta charset="utf-8">
+    <title>Feats</title>
+</head>
+<body>
+<h1 class="headingText">Feats</h1>
+<div data-role="header" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="index.html" data-icon="plus" data-transition="slide" data-direction="reverse">Home</a></li>
+            <li><a href="spells.html" data-icon="plus" data-transition="slidedown">Spells/Abilities</a></li>
+            <li><a href="skills.html" data-icon="plus" data-transition="slidedown">Skills</a></li>
+            <li><a href="gear.html" data-icon="plus" data-transition="slideup">Gear</a></li>
+            <li><a href="condition.html" data-icon="plus" data-transition="slidedown">Conditions</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div data-role="controlgroup" data-type="horizontal" class="btnCenter">
+    <a href="feats.html" data-role="button" data-transition="none">My Feats</a>
+    <a href="" data-role="button" data-transition="none" class="ui-btn-active ui-state-persist">All Feats</a>
+
+</div>
+
+<div data-role="main" class="ui-content">
+    <form>
+        <input id="filterTable-input" data-type="search" placeholder="Search For Feats...">
+    </form>
+    <table data-role="table" class="ui-responsive ui-shadow" id="myTable" data-filter="true" data-input="#filterTable-input">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Source</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a href="#popupBasic" data-rel="popup" data-transition="pop">(feat name)</a></td>
+            <td>(Feat Type)</td>
+            <td>(Feat Source/Book)</td>
+        </tr>
+
+        <tr>
+            <td>Deadly Aim</td>
+            <td>Combat</td>
+            <td>CRB</td>
+        </tr>
+        <tr>
+            <td>Endurance</td>
+            <td>General</td>
+            <td>CRB</td>
+        </tr>
+        <tr>
+            <td>Cosmopolitan</td>
+            <td>General</td>
+            <td>APG</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
+
+<!--<li><a href="#popupBasic" data-icon="plus" data-rel="popup" data-transition="pop">Pop Up Link</a></li>-->
+<div data-role="popup" id="popupBasic">
+    <p>This is a completely basic popup, no options set.</p>
+</div>

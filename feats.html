@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <meta charset="utf-8">
     <title>Feats</title>
 </head>
 <body>
-    <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-    <h1>Feats</h1>
+<h1 class="headingText">Feats</h1>
+
+<div data-role="header" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="index.html" data-icon="plus" data-transition="slide" data-direction="reverse">Home</a></li>
+            <li><a href="spells.html" data-icon="plus" data-transition="slidedown">Spells/Abilities</a></li>
+            <li><a href="skills.html" data-icon="plus" data-transition="slidedown">Skills</a></li>
+            <li><a href="gear.html" data-icon="plus" data-transition="slideup">Gear</a></li>
+            <li><a href="condition.html" data-icon="plus" data-transition="slidedown">Conditions</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--<div data-role="controlgroup" data-type="horizontal">
+    <button data-icon="plus">All</button>
+    <button data-icon="plus">General</button>
+    <button data-icon="plus">Achievement</button>
+    <button data-icon="plus">Combat</button>
+    <button data-icon="plus">Critical</button>
+    <button data-icon="plus">Faction</button>
+    <button data-icon="plus">Grit/Panache</button>
+    <button data-icon="plus">Hero Point</button>
+    <button data-icon="plus">Item Creation</button>
+    <button data-icon="plus">Meditation</button>
+    <button data-icon="plus">Metamagic</button>
+    <button data-icon="plus">Mythic</button>
+    <button data-icon="plus">Performance</button>
+    <button data-icon="plus">Racial</button>
+    <button data-icon="plus">Story</button>
+    <button data-icon="plus">Style</button>
+    <button data-icon="plus">Targeting</button>
+    <button data-icon="plus">Teamwork</button>
+</div>-->
+<div data-role="controlgroup" data-type="horizontal" class="btnCenter">
+    <button class="ui-btn-active ui-state-persist">My Feats</button>
+    <!--<button>All Feats</button>-->
+    <a href="feat-all.html" data-role="button" data-transition="none">All Feats</a>
+
+</div>
+
 </body>
 </html>

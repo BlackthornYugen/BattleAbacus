@@ -33,7 +33,8 @@ $(function () {
         $(document).find('a:eq(0)') // TODO: Select an ID
             .text(name.first + " " + name.last);
         $(".charName").text(name.first + " " + name.last);
-    }
+    };
+
     for (i = 1; i < characters.length; i++) {
         $cList.append(
             $("<img>")

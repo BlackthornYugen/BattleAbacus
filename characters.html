@@ -16,50 +16,30 @@
     <title><!Characters Name></title>
 </head>
 <body>
-<div data-role="page" id="Attributes">
-    <header data-role="header">
-        <div data-role="content">
-            <h1> <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-                <!Characters Name>Put Name Here</h1>
+    <div data-role="page" id="Attributes">
+        <header data-role="header">
+            <div data-role="content">
+                <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
+                <h1 data-var="charName">Timmy</h1>
+            </div>
+        </header>
+        <div data-role="navbar" id="conditionsNav" name="conditionsNav">
+            <ul>
+                <li><a href="#Attributes" data-theme="a">Attributes</a></li>
+                <li><a href="characters_combat.html" data-theme="c">Combat</a></li>
+                <li><a href="characters_details.html" data-theme="c">Details</a></li>
+            </ul>
         </div>
-    </header>
-    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
-        <ul>
-            <li><a href="#Attributes" data-theme="b">Attributes</a></li>
-            <li><a href="#Combat" data-theme="c">Combat</a></li>
-            <li><a href="#Details" data-theme="c">Details</a></li>
-        </ul>
-    </div>
-</div>
-<div data-role="page" id="Combat">
-    <header data-role="header">
-        <div data-role="content">
-            <h1> <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-                <!Characters Name>Put Name Here</h1>
+        <div data-var="charAttributesTable">
+            <table>
+                <tr id="columnNames" name="columnNames">
+                    <td>Strength</td>
+                    <td onclick="editBase()">10</td>
+                    <td>20</td>
+                    <td>+5</td>
+                </tr>
+            </table>
         </div>
-    </header>
-    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
-        <ul>
-            <li><a href="#Attributes" data-theme="c">Attributes</a></li>
-            <li><a href="#Combat" data-theme="b">Combat</a></li>
-            <li><a href="#Details" data-theme="c">Details</a></li>
-        </ul>
     </div>
-</div>
-<div data-role="page" id="Details">
-    <header data-role="header">
-        <div data-role="content">
-            <h1> <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
-                <!Characters Name>Put Name Here</h1>
-        </div>
-    </header>
-    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
-        <ul>
-            <li><a href="#Attributes" data-theme="c">Attributes</a></li>
-            <li><a href="#Combat" data-theme="c">Combat</a></li>
-            <li><a href="#Details" data-theme="b">Details</a></li>
-        </ul>
-    </div>
-</div>
 </body>
 </html>

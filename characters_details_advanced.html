@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><!Characters Name></title>
+</head>
+<body>
+<div data-role="page" id="Details">
+    <header data-role="header">
+        <div data-role="content">
+            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse"><img src="images/h-menu.svg"></a>
+            <h1 data-var="charName">Timmy</h1>
+        </div>
+    </header>
+    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
+        <ul>
+            <li><a href="characters.html" data-theme="c">Attributes</a></li>
+            <li><a href="characters_combat.html" data-theme="c">Combat</a></li>
+            <li><a href="#Details" data-theme="a" class="ui-btn-active ui-state-persist">Details</a></li>
+        </ul>
+    </div>
+    <div>
+        <form id="charAdvancedDetailsEdit">
+            <h3>Deity:</h3>
+            <input type="text" id="charDeity" value="Zues" />
+            <h3>Home Land:</h3>
+            <input type="text" id="charHomeLand" value="Pluto"/>
+            <h3>Race:</h3>
+            <input type="text" id="charRace" value="Human"/>
+            <h3>Size:</h3>
+            <input type="text" id="charSize" value="1"/>
+            <h3>Gender:</h3>
+            <select>
+                <option id="charMale">Male</option>
+                <option id="charFemale">Female</option>
+                <option id="charOther">Other</option>
+            </select>
+            <h3>Age:</h3>
+            <input type="NUMBER" min="0" max="100" id="charAge" value="24"/>
+            <h3>Height:</h3>
+            <input type="NUMBER" min="1" max="2000" id="charHeight" value="185"/>
+            <h3>Weight:</h3>
+            <input type="NUMBER" min="1" max="500" id="charWeight" value="152"/>
+            <h3>Hair:</h3>
+            <input type="text" id="charHair" value="Brown"/>
+            <h3>Eyes:</h3>
+            <input type="text" id="charEyes" value="Green"/>
+
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="characters_details.html">Cancel</a>
+                <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="">Delete</a>
+                <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="">Update</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

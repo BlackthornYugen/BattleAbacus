@@ -20,49 +20,35 @@
         </ul>
     </div>
     <div>
-        <form id="charBasicDetailsEdit">
-            <h3>Character Name:</h3>
-            <input type="text" id="charName"/>
-            <h3>Alignment:</h3>
-            <input type="text" id="charAlignment"/>
-            <h3>Player:</h3>
-            <input type="text" id="charPlayer" />
-            <h3>Class:</h3>
-            <input type="text" id="charClass" />
-            <h3>Level:</h3>
-            <input type="NUMBER" min="0" max="20" id="charLevel" />
-            <h3>Deity:</h3>
-            <input type="text" id="charDeity" />
-            <h3>Home Land:</h3>
-            <input type="text" id="charHomeLand" />
-            <h3>Race:</h3>
-            <input type="text" id="charRace" />
-            <h3>Size:</h3>
-            <input type="text" id="charSize" />
-            <h3>Gender:</h3>
-            <select>
-                <option id="charMale">Male</option>
-                <option id="charFemale">Female</option>
-                <option id="charOther">Other</option>
-            </select>
-            <h3>Age:</h3>
-            <input type="NUMBER" min="0" max="100" id="charAge" />
-            <h3>Height:</h3>
-            <input type="NUMBER" min="1" max="2000" id="charHeight" />
-            <h3>Weight:</h3>
-            <input type="NUMBER" min="1" max="500" id="charWeight" />
-            <h3>Hair:</h3>
-            <input type="text" id="charHair" />
-            <h3>Eyes:</h3>
-            <input type="text" id="charEyes" />
-
-            <div data-role="controlgroup" data-type="horizontal">
-                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="#BEViewFeedback">Cancel</a>
-                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="del_review()">Delete</a>
-                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="update_review()">Update</a>
-            </div>
-
-        </form>
+        <ul data-role="listview" data-var="charOverview" id="charOverview" data-inset="true">
+            <li data-icon="false">
+                <a href="characters_details_basic.html">
+                    <h1><u>Basic Information</u></h1>
+                    <h1></h1>
+                    <h2>Name: Timmy</h2>
+                    <h3>Class: Rogue</h3>
+                    <h3>Level: 2</h3>
+                    <h4>Alignment: Good</h4>
+                    <h4>Player: John Doe</h4>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="characters_details_advanced.html">
+                    <h1><u>Advanced Information</u></h1>
+                    <h1></h1>
+                    <p>Deity: Zues</p>
+                    <p>Homeland: Pluto</p>
+                    <p>Race: Human</p>
+                    <p>Size: 1</p>
+                    <p>Gender: Male</p>
+                    <p>Age: 24</p>
+                    <p>Height: 185</p>
+                    <p>Weight: 152</p>
+                    <p>Hair: Brown</p>
+                    <p>Eyes: Green</p>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 </body>

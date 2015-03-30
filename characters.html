@@ -8,7 +8,7 @@
     <script src="js/jquery.mobile-1.4.2.min.js"></script>
     <meta charset="utf-8">
 
-    <title><!Characters Name></title>
+    <title>Characters Name</title>
 </head>
 <body>
     <div data-role="page" id="Attributes">
@@ -20,19 +20,66 @@
         </header>
         <div data-role="navbar" id="conditionsNav" name="conditionsNav">
             <ul>
-                <li><a href="characters.html" data-theme="a">Attributes</a></li>
+                <li><a href="characters.html" data-theme="a" class="ui-btn-active ui-state-persist">Attributes</a></li>
                 <li><a href="characters_combat.html" data-theme="c">Combat</a></li>
                 <li><a href="characters_details.html" data-theme="c">Details</a></li>
             </ul>
         </div>
-        <div data-var="charAttributesTable">
-            <table>
-                <tr id="columnNames" name="columnNames">
-                    <td>Strength</td>
-                    <td onclick="editBase()">10</td>
-                    <td>20</td>
-                    <td>+5</td>
+        <div>
+            <table data-role="table" id="charAttributesTable" class="ui-responsive table-stroke">
+                <thead>
+                <tr>
+                    <th data-priority="1">Ability Name</th>
+                    <th data-priority="2">Score</th>
+                    <th data-priority="3">Modifier</th>
+                    <th data-priority="4">Temp Adjustment</th>
+                    <th data-priority="5">Temp Modifier</th>
                 </tr>
+                </thead>
+                <tbody>
+                    <tr id="charStrength" name="charStrength">
+                        <td>Strength</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                    <tr id="charDexterity" name="charDexterity">
+                        <td>Dexterity</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                    <tr id="charConstitution" name="charConstitution">
+                        <td>Constitution</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                    <tr id="charIntelligence" name="charIntelligence">
+                        <td>Intelligence</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                    <tr id="charWisdom" name="charWisdom">
+                        <td>Wisdom</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                    <tr id="charCharisma" name="charCharisma">
+                        <td>Charisma</td>
+                        <td><button>10</button></td>
+                        <td>+2</td>
+                        <td>20</td>
+                        <td>+5</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

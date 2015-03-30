@@ -16,8 +16,53 @@
         <ul>
             <li><a href="characters.html" data-theme="c">Attributes</a></li>
             <li><a href="characters_combat.html" data-theme="c">Combat</a></li>
-            <li><a href="#Details" data-theme="a">Details</a></li>
+            <li><a href="#Details" data-theme="a" class="ui-btn-active ui-state-persist">Details</a></li>
         </ul>
+    </div>
+    <div>
+        <form id="charBasicDetailsEdit">
+            <h3>Character Name:</h3>
+            <input type="text" id="charName"/>
+            <h3>Alignment:</h3>
+            <input type="text" id="charAlignment"/>
+            <h3>Player:</h3>
+            <input type="text" id="charPlayer" />
+            <h3>Class:</h3>
+            <input type="text" id="charClass" />
+            <h3>Level:</h3>
+            <input type="NUMBER" min="0" max="20" id="charLevel" />
+            <h3>Deity:</h3>
+            <input type="text" id="charDeity" />
+            <h3>Home Land:</h3>
+            <input type="text" id="charHomeLand" />
+            <h3>Race:</h3>
+            <input type="text" id="charRace" />
+            <h3>Size:</h3>
+            <input type="text" id="charSize" />
+            <h3>Gender:</h3>
+            <select>
+                <option id="charMale">Male</option>
+                <option id="charFemale">Female</option>
+                <option id="charOther">Other</option>
+            </select>
+            <h3>Age:</h3>
+            <input type="NUMBER" min="0" max="100" id="charAge" />
+            <h3>Height:</h3>
+            <input type="NUMBER" min="1" max="2000" id="charHeight" />
+            <h3>Weight:</h3>
+            <input type="NUMBER" min="1" max="500" id="charWeight" />
+            <h3>Hair:</h3>
+            <input type="text" id="charHair" />
+            <h3>Eyes:</h3>
+            <input type="text" id="charEyes" />
+
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="#BEViewFeedback">Cancel</a>
+                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="del_review()">Delete</a>
+                <a href="#" data-role="button" data-theme="a" data-inline=true onclick="update_review()">Update</a>
+            </div>
+
+        </form>
     </div>
 </div>
 </body>

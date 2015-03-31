@@ -11,19 +11,19 @@
             <h1>Hazards</h1>
         </div>
     </header>
-    <div data-role="navbar" id="hazardsNav" name="hazardsNav">
-        <ul>
-            <li><a href="#Buffs" data-theme="c">Buffs</a></li>
-            <li><a href="#Poison" data-theme="c">Poison</a></li>
-            <li><a href="#Disease" data-theme="c">Disease</a></li>
-        </ul>
-    </div>
     <div data-role="controlgroup" data-type="horizontal" id="conditionsOptions"
          name="hazardsOptions" class="btnCenter">
-            <a href="#myHazards" data-theme="c" data-role="button">My Hazards</a>
-            <a href="#allHazards" data-theme="c" data-role="button">All Hazards</a>
+            <a href="#" class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">My Hazards</a>
+            <a href="hazards_all.html" data-theme="c" data-role="button">All Hazards</a>
     </div>
     <div data-output="tableResults" id="hazardsList" name="hazardsList">
+        <ul data-role="listview" data-filter="true" data-inset="true">
+            <li><a href="">Addictions</a></li>
+            <li><a href="">Curses</a></li>
+            <li><a href="">Diseases</a></li>
+            <li><a href="">Poison</a></li>
+            <li><a href="">Traps</a></li>
+        </ul>
     </div>
 </body>
 </html>

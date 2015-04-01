@@ -1,22 +1,22 @@
 /*globals $, Database*/
-var EXPECTED_RECORDS = 1000;
-var DATA_URL = "http://node.steelcomputers.com:31338/spells.json";
-
 function Spell(id, name) {
     "use strict";
     this.id = id || 0;
     this.name = name || "Unnamed Spell";
 }
 
+Spell.DATA_URL = "http://node.steelcomputers.com:31338/spells.json";
+Spell.TABLE_NAME = "Spells";
 
 Spell.loadData = function () {
     "use strict";
-    var spellData, addSpell, onSqlError;
+    var spellData, addItem, onSqlError;
 
-    addSpell = function (tx) {
+    addItem = function (tx) {
         var spell = spellData.shift();
         if (spell) {
-            tx.executeSql('INSERT INTO Spells VALUES (?, ?)', [spell.id, spell.name], addSpell, onSqlError);
+            tx.executeSql('INSERT INTO ' + Spell.TABLE_NAME + ' VALUES (?, ?)',
+                [spell.id, spell.name], addItem, onSqlError);
         }
     };
 
@@ -26,17 +26,17 @@ Spell.loadData = function () {
         } else {
             console.error(error.message);
         }
-        addSpell(tx);
+        addItem(tx);
     };
 
     $.ajax({
         dataType: "json",
-        url: DATA_URL,
+        url: Spell.DATA_URL,
         data: null,
         success: function (data) {
             spellData = data;
             Database.transaction(function (tx) {
-                addSpell(tx);
+                addItem(tx);
             });
         }
     });
@@ -48,15 +48,15 @@ Spell.createTable = function (success) {
 
     createSpellsFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            tx.executeSql("drop table Spells", [], createSpellsTable);
-            console.log("Rebuilding Spells table.");
+            Spell.dropTable(createSpellsTable);
+            console.log("Rebuilding " + Spell.TABLE_NAME + " table.");
         } else {
             console.error(error.message);
         }
     };
 
     createSpellsTable = function (tx) {
-        tx.executeSql('CREATE TABLE Spells ' +
+        tx.executeSql('CREATE TABLE ' + Spell.TABLE_NAME +
             '(' +
             '  type_id INTEGER PRIMARY KEY,' +
             '  type_name varchar(50)' +
@@ -69,11 +69,6 @@ Spell.createTable = function (success) {
 Spell.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {
-        tx.executeSql('DROP TABLE spells', [], next);
+        tx.executeSql('DROP TABLE ' + Spell.TABLE_NAME, [], next);
     });
 };
-
-$(function () {
-    "use strict";
-    // INIT THINGS
-})

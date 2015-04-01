@@ -7,6 +7,8 @@ $(function () {
     // data will persist.
     $.mobile.page.prototype.options.domCache = true;
 
+
+
     // bind function to displaypage event
     $("body").on("pagebeforechange", function (event, object) {
         var toPage = object.toPage;

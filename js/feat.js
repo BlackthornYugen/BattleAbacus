@@ -6,7 +6,7 @@ function Feat(id, name) {
     this.name = name || "Unnamed Feat";
 }
 
-Feat.DATA_URL = "http://node.steelcomputers.com:31338/feats.json";
+Feat.DATA_URL = "https://localhost:444/feats_trimmed.json";//"http://node.steelcomputers.com:31338/feats.json";
 Feat.TABLE_NAME = "Feats";
 
 Feat.loadData = function () {
@@ -78,4 +78,32 @@ Feat.dropTable = function (next) {
     Database.transaction(function (tx) {
         tx.executeSql('DROP TABLE ' + Feat.TABLE_NAME, [], next);
     });
+};
+
+/**
+ * Count the number of records in the table
+ * @param next Calls this with the number of records or with -1 on error.
+ */
+Feat.countRecords = function (next) {
+    "use strict";
+    var executeSql, afterSQL;
+    var sql = 'SELECT COUNT(*) as count FROM ' + Feat.TABLE_NAME;
+
+    executeSql = function (tx) {
+        tx.executeSql(sql, [], afterSQL, afterSQL);
+    };
+
+    afterSQL = function (tx, response) {
+        var count = -1;
+        if (/SQLError/.test(response)) {
+            console.error(response); // Got an SQL error, dump it to console.
+        } else if (response.rows.length > 0) {
+            count = response.rows.item(0).count;
+        } else {
+            console.error("The following statement yielded no results: \n" + sql);
+        }
+        next(count);
+    };
+
+    Database.transaction(executeSql);
 };

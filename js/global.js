@@ -1,6 +1,3 @@
-/**
- * Created by John on 2015-03-14.
- */
 /*globals $ */
 var characters;
 

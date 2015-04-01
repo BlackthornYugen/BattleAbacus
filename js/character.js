@@ -1,6 +1,3 @@
-/**
- * Created by John on 2015-03-30.
- */
 function Character(name) {
     "use strict";
     this.name = name || "Unnamed Character";

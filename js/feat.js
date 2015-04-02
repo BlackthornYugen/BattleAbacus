@@ -16,13 +16,13 @@ Feat.loadData = function () {
     addItem = function (tx) {
         var feat = {};
         var sql = 'INSERT INTO ' + Feat.TABLE_NAME +  ' VALUES (?, ?, ?, ?, ?, ?)';
-        var x;
+        var key;
 
-        for (x in featData) {
-            feat[x] = featData[x].shift();
+        for (key in featData) {
+            feat[key] = featData[key].shift();
         }
 
-        if (featData[x].length > 0) {
+        if (featData[key].length > 0) {
             tx.executeSql(sql, [null, feat.name, feat.type, feat.source, feat.description,
                 feat.benefit], addItem, onSqlError);
         }
@@ -52,11 +52,11 @@ Feat.loadData = function () {
 
 Feat.createTable = function (success, rebuild) {
     "use strict";
-    var createSpellsFailure, createSpellsTable;
+    var createTableFailure, createTableSuccess;
 
-    createSpellsFailure = function (tx, error) {
+    createTableFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            Feat.dropTable(createSpellsTable);
+            Feat.dropTable(createTableSuccess);
             if (rebuild === true) {
                 console.log("Rebuilding " + Feat.TABLE_NAME + " table.");
             } else {
@@ -67,7 +67,7 @@ Feat.createTable = function (success, rebuild) {
         }
     };
 
-    createSpellsTable = function (tx) {
+    createTableSuccess = function (tx) {
         tx.executeSql('CREATE TABLE ' + Feat.TABLE_NAME +
             '(' +
             '  id INTEGER PRIMARY KEY,' +
@@ -76,10 +76,10 @@ Feat.createTable = function (success, rebuild) {
             '  source varchar(50),' +
             '  description varchar(50),' +
             '  benefit varchar(50)' +
-            ')', [], success, createSpellsFailure);
+            ')', [], success, createTableFailure);
     };
 
-    Database.transaction(createSpellsTable);
+    Database.transaction(createTableSuccess);
 };
 
 Feat.dropTable = function (next) {

@@ -1,31 +1,30 @@
 /*globals $, Database*/
-function Spell(id, name) {
+
+function Hazard(id, name) {
     "use strict";
     this.id = id || 0;
-    this.name = name || "Unnamed Spell";
+    this.name = name || "Unnamed Hazard";
 }
 
-Spell.REQUIREMENTS = ["sor", "wiz", "cleric", "druid", "ranger", "bard", "paladin", "alchemist",
-    "summoner", "witch", "inquisitor", "oracle"]
-Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
-Spell.TABLE_NAME = "Spells";
+Hazard.DATA_URL = "http://home.steelcomputers.com:31338/hazzards.json";
+Hazard.TABLE_NAME = "Hazzards";
 
-Spell.loadData = function () {
+Hazard.loadData = function () {
     "use strict";
-    var spellData, addItem, onSqlError;
+    var hazzardData, addItem, onSqlError;
 
     addItem = function (tx) {
-        var i;
-        var spell = spellData.shift();
-        if (spell) {
-            var data = [null, spell.name, spell.description_formated];
-            var sql = 'INSERT INTO ' + Spell.TABLE_NAME + ' VALUES (?, ?, ?)';
-            for (i in Spell.REQUIREMENTS) {
-                data.push(spell[Spell.REQUIREMENTS[i]]);
-                sql = sql.replace('?, ', '?, ?, ');
-            }
-            tx.executeSql(sql,
-                data, addItem, onSqlError);
+        var hazzard = {};
+        var sql = 'INSERT INTO ' + Hazard.TABLE_NAME +  ' VALUES (?, ?, ?, ?, ?, ?, ?)';
+        var key;
+
+        for (key in hazzardData) {
+            hazzard[key] = hazzardData[key].shift();
+        }
+
+        if (hazzardData[key].length > 0) {
+            tx.executeSql(sql, [null, hazzard.name, hazzard.type, hazzard.save, hazzard.onset,
+                hazzard.frequency, hazzard.effect], addItem, onSqlError);
         }
     };
 
@@ -40,10 +39,10 @@ Spell.loadData = function () {
 
     $.ajax({
         dataType: "json",
-        url: Spell.DATA_URL,
+        url: Hazard.DATA_URL,
         data: null,
         success: function (data) {
-            spellData = data;
+            hazzardData = data;
             Database.transaction(function (tx) {
                 addItem(tx);
             });
@@ -51,17 +50,17 @@ Spell.loadData = function () {
     });
 };
 
-Spell.createTable = function (success, rebuild) {
+Hazard.createTable = function (success, rebuild) {
     "use strict";
     var createTableFailure, createTableSuccess;
 
     createTableFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            Spell.dropTable(createTableSuccess);
+            Hazard.dropTable(createTableSuccess);
             if (rebuild === true) {
-                console.log("Rebuilding " + Spell.TABLE_NAME + " table.");
+                console.log("Rebuilding " + Hazard.TABLE_NAME + " table.");
             } else {
-                console.log(Spell.TABLE_NAME + " table already exists.");
+                console.log(Hazard.TABLE_NAME + " table already exists.");
             }
         } else {
             console.error(error.message);
@@ -69,26 +68,25 @@ Spell.createTable = function (success, rebuild) {
     };
 
     createTableSuccess = function (tx) {
-        var i;
-        var sql = 'CREATE TABLE ' + Spell.TABLE_NAME +
+        tx.executeSql('CREATE TABLE ' + Hazard.TABLE_NAME +
             '(' +
-            '  id INTEGER PRIMARY KEY, ' +
-            '  name varchar(50), ' +
-            '  description ntext ';
-        for (i in Spell.REQUIREMENTS) {
-            sql += ", " + Spell.REQUIREMENTS[i] + "_lvl TINYINT";
-        }
-        sql += ')';
-        tx.executeSql(sql, [], success, createTableFailure);
+            '  id INTEGER PRIMARY KEY,' +
+            '  name varchar(50),' +
+            '  type varchar(50),' +
+            '  save varchar(255),' +
+            '  onset varchar(25),' +
+            '  frequency varchar(255),' +
+            '  effect ntext' +
+            ')', [], success, createTableFailure);
     };
 
     Database.transaction(createTableSuccess);
 };
 
-Spell.dropTable = function (next) {
+Hazard.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {
-        tx.executeSql('DROP TABLE ' + Spell.TABLE_NAME, [], next);
+        tx.executeSql('DROP TABLE ' + Hazard.TABLE_NAME, [], next);
     });
 };
 
@@ -96,10 +94,10 @@ Spell.dropTable = function (next) {
  * Count the number of records in the table
  * @param next Calls this with the number of records or with -1 on error.
  */
-Spell.countRecords = function (next) {
+Hazard.countRecords = function (next) {
     "use strict";
     var executeSql, afterSQL;
-    var sql = 'SELECT COUNT(*) as count FROM ' + Spell.TABLE_NAME;
+    var sql = 'SELECT COUNT(*) as count FROM ' + Hazard.TABLE_NAME;
 
     executeSql = function (tx) {
         tx.executeSql(sql, [], afterSQL, afterSQL);

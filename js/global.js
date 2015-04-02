@@ -1,4 +1,4 @@
-/*globals $, Feat, Spell, Database */
+/*globals $, Feat, Spell, Hazard, Database */
 var characters;
 
 $(function () {
@@ -14,6 +14,10 @@ $(function () {
 
     Spell.createTable(function () {
         Spell.loadData();
+    }, true);
+
+    Hazard.createTable(function () {
+        Hazard.loadData();
     }, true);
 
     // bind function to displaypage event
@@ -92,7 +96,6 @@ $(function () {
                 .data('char', characters[i])
                 .on('tap', tapEvent)
         );
-        console.log("Loaded " + characters[i].name.first);
     }
 });
 

@@ -5,7 +5,7 @@ function Spell(id, name) {
     this.name = name || "Unnamed Spell";
 }
 
-Spell.DATA_URL = "https://localhost:444/spell_trimmed.json";//"http://node.steelcomputers.com:31338/spells.json";
+Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
 Spell.TABLE_NAME = "Spells";
 
 Spell.loadData = function () {

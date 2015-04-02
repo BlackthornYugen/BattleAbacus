@@ -1,4 +1,4 @@
-/*globals $ */
+/*globals $, Feat, Spell */
 var characters;
 
 $(function () {
@@ -8,6 +8,13 @@ $(function () {
     $.mobile.page.prototype.options.domCache = true;
 
 
+    Feat.createTable(function () {
+        Feat.loadData();
+    }, true);
+
+    Spell.createTable(function () {
+        Spell.loadData();
+    }, true);
 
     // bind function to displaypage event
     $("body").on("pagebeforechange", function (event, object) {

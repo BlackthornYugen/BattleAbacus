@@ -6,7 +6,7 @@ function Feat(id, name) {
     this.name = name || "Unnamed Feat";
 }
 
-Feat.DATA_URL = "https://localhost:444/feats_trimmed.json";//"http://node.steelcomputers.com:31338/feats.json";
+Feat.DATA_URL = "http://home.steelcomputers.com:31338/feats.json";
 Feat.TABLE_NAME = "Feats";
 
 Feat.loadData = function () {
@@ -49,14 +49,18 @@ Feat.loadData = function () {
     });
 };
 
-Feat.createTable = function (success) {
+Feat.createTable = function (success, rebuild) {
     "use strict";
     var createSpellsFailure, createSpellsTable;
 
     createSpellsFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
             Feat.dropTable(createSpellsTable);
-            console.log("Rebuilding " + Feat.TABLE_NAME + " table.");
+            if (rebuild === true) {
+                console.log("Rebuilding " + Feat.TABLE_NAME + " table.");
+            } else {
+                console.log(Feat.TABLE_NAME + " table already exists.");
+            }
         } else {
             console.error(error.message);
         }

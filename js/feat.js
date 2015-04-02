@@ -15,6 +15,7 @@ Feat.loadData = function () {
 
     addItem = function (tx) {
         var feat = {};
+        var sql = 'INSERT INTO ' + Feat.TABLE_NAME +  ' VALUES (?, ?, ?, ?, ?, ?)';
         var x;
 
         for (x in featData) {
@@ -22,8 +23,8 @@ Feat.loadData = function () {
         }
 
         if (featData[x].length > 0) {
-            tx.executeSql('INSERT INTO ' + Feat.TABLE_NAME +  ' VALUES (?, ?)',
-                [feat.id, feat.name], addItem, onSqlError);
+            tx.executeSql(sql, [feat.id, feat.name, feat.type, feat.source, feat.description,
+                feat.benefit], addItem, onSqlError);
         }
     };
 
@@ -69,8 +70,12 @@ Feat.createTable = function (success, rebuild) {
     createSpellsTable = function (tx) {
         tx.executeSql('CREATE TABLE ' + Feat.TABLE_NAME +
             '(' +
-            '  type_id INTEGER PRIMARY KEY,' +
-            '  type_name varchar(50)' +
+            '  id INTEGER PRIMARY KEY,' +
+            '  name varchar(50),' +
+            '  type varchar(50),' +
+            '  source varchar(50),' +
+            '  description varchar(50),' +
+            '  benefit varchar(50)' +
             ')', [], success, createSpellsFailure);
     };
 

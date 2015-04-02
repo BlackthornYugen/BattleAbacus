@@ -1,4 +1,4 @@
-/*globals $, Feat, Spell */
+/*globals $, Feat, Spell, Database */
 var characters;
 
 $(function () {
@@ -19,8 +19,51 @@ $(function () {
     // bind function to displaypage event
     $("body").on("pagebeforechange", function (event, object) {
         var toPage = object.toPage;
-        if (typeof toPage === "string" && toPage.indexOf("index") > -1) {
-            console.log(object);
+
+        if (typeof toPage === "string") {
+            if (/index/.test(toPage)) {
+                console.log(object);
+            } else if (/feat-all/.test(toPage)) {
+                var Entity = Feat;
+                var afterSql, nextItem;
+
+                var $fillNode = $("[data-fill=Feats]").removeAttr("data-fill");
+                if ($fillNode.length === 1) {
+                    Database.transaction(function (tx) {
+                        var sql = "SELECT * FROM " + Entity.TABLE_NAME;
+
+                        afterSql = function (tx, response) {
+                            if (/SQLError/.test(response)) {
+                                console.error(response); // Got an SQL error, dump it to console.
+                            } else if (response.rows.length > 0) {
+                                nextItem(response, 0);
+                            } else {
+                                console.error("The following statement yielded no results: \n" + sql);
+                            }
+                        };
+
+                        nextItem = function (response, position) {
+                            var item = response.rows.item(position);
+                            var rowId = "FEAT_" + item.id;
+
+                            $fillNode.append(
+                                $("<tr>").attr('id', rowId).append(
+                                    $("<td>").text(item.name),
+                                    $("<td>").text(item.type),
+                                    $("<td>").text(item.source)
+                                )
+                            );
+
+                            if (position + 1 < response.rows.length) {
+                                nextItem(response, position + 1);
+                            }
+                        };
+
+                        tx.executeSql(sql, [], afterSql, afterSql);
+                    });
+                }
+                console.log(object);
+            }
         }
     });
 

@@ -23,14 +23,14 @@ Feat.loadData = function () {
         }
 
         if (featData[x].length > 0) {
-            tx.executeSql(sql, [feat.id, feat.name, feat.type, feat.source, feat.description,
+            tx.executeSql(sql, [null, feat.name, feat.type, feat.source, feat.description,
                 feat.benefit], addItem, onSqlError);
         }
     };
 
     onSqlError = function (tx, error) {
         if (error.message && error.message.match(/constraint failed/)) {
-            console.error("ID already exists or is invalid");
+            console.error("Constraint failure. Is the name unique?");
         } else {
             console.error(error.message);
         }

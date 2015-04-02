@@ -5,6 +5,8 @@ function Spell(id, name) {
     this.name = name || "Unnamed Spell";
 }
 
+Spell.REQUIREMENTS = ["sor", "wiz", "cleric", "druid", "ranger", "bard", "paladin", "alchemist",
+    "summoner", "witch", "inquisitor", "oracle"]
 Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
 Spell.TABLE_NAME = "Spells";
 
@@ -13,16 +15,23 @@ Spell.loadData = function () {
     var spellData, addItem, onSqlError;
 
     addItem = function (tx) {
+        var i;
         var spell = spellData.shift();
         if (spell) {
-            tx.executeSql('INSERT INTO ' + Spell.TABLE_NAME + ' VALUES (?, ?)',
-                [spell.id, spell.name], addItem, onSqlError);
+            var data = [null, spell.name, spell.description_formated];
+            var sql = 'INSERT INTO ' + Spell.TABLE_NAME + ' VALUES (?, ?, ?)';
+            for (i in Spell.REQUIREMENTS) {
+                data.push(spell[Spell.REQUIREMENTS[i]]);
+                sql = sql.replace('?, ', '?, ?, ');
+            }
+            tx.executeSql(sql,
+                data, addItem, onSqlError);
         }
     };
 
     onSqlError = function (tx, error) {
         if (error.message && error.message.match(/constraint failed/)) {
-            console.error("ID already exists or is invalid");
+            console.error("Constraint failure. Is the name unique?");
         } else {
             console.error(error.message);
         }
@@ -60,11 +69,17 @@ Spell.createTable = function (success, rebuild) {
     };
 
     createSpellsTable = function (tx) {
-        tx.executeSql('CREATE TABLE ' + Spell.TABLE_NAME +
+        var i;
+        var sql = 'CREATE TABLE ' + Spell.TABLE_NAME +
             '(' +
-            '  type_id INTEGER PRIMARY KEY,' +
-            '  type_name varchar(50)' +
-            ')', [], success, createSpellsFailure);
+            '  id INTEGER PRIMARY KEY, ' +
+            '  name varchar(50), ' +
+            '  description ntext ';
+        for (i in Spell.REQUIREMENTS) {
+            sql += ", " + Spell.REQUIREMENTS[i] + "_lvl TINYINT";
+        }
+        sql += ')';
+        tx.executeSql(sql, [], success, createSpellsFailure);
     };
 
     Database.transaction(createSpellsTable);

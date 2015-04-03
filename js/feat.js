@@ -1,7 +1,7 @@
 /*globals $, Database*/
 /**
  * Feat class
- * @param name of the Feat
+ * @param {String} [name=Unnamed Feat] - Name of the Feat
  * @constructor
  */
 function Feat(name) {
@@ -59,8 +59,8 @@ Feat.loadData = function () {
 
 /**
  * Create table
- * @param success Executed when the table is created
- * @param rebuild True when you want drop the previous table
+ * @param {Function} success - Executed when the table is created
+ * @param {Boolean} rebuild - Drop the previous table
  */
 Feat.createTable = function (success, rebuild) {
     "use strict";
@@ -97,7 +97,7 @@ Feat.createTable = function (success, rebuild) {
 
 /**
  * Drop table
- * @param next Executed when the table is dropped
+ * @param {Function} next - Executed when the table is dropped
  */
 Feat.dropTable = function (next) {
     "use strict";
@@ -108,7 +108,7 @@ Feat.dropTable = function (next) {
 
 /**
  * Count the number of records in the table
- * @param next Calls this with the number of records or with -1 on error.
+ * @param {Function} next - Calls this with the number of records or with -1 on error.
  */
 Feat.countRecords = function (next) {
     "use strict";
@@ -136,8 +136,8 @@ Feat.countRecords = function (next) {
 
 /**
  * Get all records
- * @param next The function to call with the matching records
- * @param options Specify filter, skip and limit values.
+ * @param {Function} next - The function to call with the matching records
+ * @param {{filter: string, skip: number, limit: number}} options
  */
 Feat.GetRecords = function (next, options) {
     "use strict";
@@ -175,8 +175,8 @@ Feat.GetRecords = function (next, options) {
 
 /**
  * Get the record that matches a specific ID
- * @param next The function to call with the record
- * @param id The record ID to locate
+ * @param {Function} next - The function to call with the record
+ * @param {(Number|String)} id The record ID to locate
  */
 Feat.GetRecord = function (next, id) {
     "use strict";

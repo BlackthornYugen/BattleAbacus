@@ -1,7 +1,7 @@
 /*globals $, Database*/
 /**
  * Spell class
- * @param name The name of the spell
+ * @param {String} [name=Unnamed Spell] - The name of the spell
  * @constructor
  */
 function Spell(name) {
@@ -11,7 +11,7 @@ function Spell(name) {
 }
 
 Spell.REQUIREMENTS = ["sor", "wiz", "cleric", "druid", "ranger", "bard", "paladin", "alchemist",
-    "summoner", "witch", "inquisitor", "oracle"]
+    "summoner", "witch", "inquisitor", "oracle"];
 Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
 Spell.TABLE_NAME = "Spells";
 
@@ -61,8 +61,8 @@ Spell.loadData = function () {
 
 /**
  * Create table
- * @param success Executed when the table is created
- * @param rebuild True when you want drop the previous table
+ * @param {Function} success - Executed when the table is created
+ * @param {Boolean} rebuild - Drop the previous table
  */
 Spell.createTable = function (success, rebuild) {
     "use strict";
@@ -101,7 +101,7 @@ Spell.createTable = function (success, rebuild) {
 
 /**
  * Drop table
- * @param next Executed when the table is dropped
+ * @param {Function} next - Executed when the table is dropped
  */
 Spell.dropTable = function (next) {
     "use strict";
@@ -112,7 +112,7 @@ Spell.dropTable = function (next) {
 
 /**
  * Count the number of records in the table
- * @param next Calls this with the number of records or with -1 on error.
+ * @param {Function} next - Calls this with the number of records or with -1 on error.
  */
 Spell.countRecords = function (next) {
     "use strict";
@@ -140,8 +140,8 @@ Spell.countRecords = function (next) {
 
 /**
  * Get all records
- * @param next The function to call with the matching records
- * @param options Specify filter, skip and limit values.
+ * @param {Function} next - The function to call with the matching records
+ * @param {{filter: string, skip: number, limit: number}} options
  */
 Spell.GetRecords = function (next, options) {
     "use strict";
@@ -179,8 +179,8 @@ Spell.GetRecords = function (next, options) {
 
 /**
  * Get the record that matches a specific ID
- * @param next The function to call with the record
- * @param id The record ID to locate
+ * @param {Function} next - The function to call with the record
+ * @param {(Number|String)} id - The record ID to locate
  */
 Spell.GetRecord = function (next, id) {
     "use strict";

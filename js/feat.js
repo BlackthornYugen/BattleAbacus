@@ -1,14 +1,21 @@
 /*globals $, Database*/
-
-function Feat(id, name) {
+/**
+ * Feat class
+ * @param name of the Feat
+ * @constructor
+ */
+function Feat(name) {
     "use strict";
-    this.id = id || 0;
+    this.id = 0;
     this.name = name || "Unnamed Feat";
 }
 
 Feat.DATA_URL = "http://home.steelcomputers.com:31338/feats.json";
 Feat.TABLE_NAME = "Feats";
 
+/**
+ * Load json data and insert it into websql
+ */
 Feat.loadData = function () {
     "use strict";
     var featData, addItem, onSqlError;
@@ -50,6 +57,11 @@ Feat.loadData = function () {
     });
 };
 
+/**
+ * Create table
+ * @param success Executed when the table is created
+ * @param rebuild True when you want drop the previous table
+ */
 Feat.createTable = function (success, rebuild) {
     "use strict";
     var createTableFailure, createTableSuccess;
@@ -83,6 +95,10 @@ Feat.createTable = function (success, rebuild) {
     Database.transaction(createTableSuccess);
 };
 
+/**
+ * Drop table
+ * @param next Executed when the table is dropped
+ */
 Feat.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {

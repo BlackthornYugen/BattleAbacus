@@ -1,7 +1,12 @@
 /*globals $, Database*/
-function Spell(id, name) {
+/**
+ * Spell class
+ * @param name The name of the spell
+ * @constructor
+ */
+function Spell(name) {
     "use strict";
-    this.id = id || 0;
+    this.id = 0;
     this.name = name || "Unnamed Spell";
 }
 
@@ -10,6 +15,9 @@ Spell.REQUIREMENTS = ["sor", "wiz", "cleric", "druid", "ranger", "bard", "paladi
 Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
 Spell.TABLE_NAME = "Spells";
 
+/**
+ * Load json data and insert it into websql
+ */
 Spell.loadData = function () {
     "use strict";
     var spellData, addItem, onSqlError;
@@ -51,6 +59,11 @@ Spell.loadData = function () {
     });
 };
 
+/**
+ * Create table
+ * @param success Executed when the table is created
+ * @param rebuild True when you want drop the previous table
+ */
 Spell.createTable = function (success, rebuild) {
     "use strict";
     var createTableFailure, createTableSuccess;
@@ -86,6 +99,10 @@ Spell.createTable = function (success, rebuild) {
     Database.transaction(createTableSuccess);
 };
 
+/**
+ * Drop table
+ * @param next Executed when the table is dropped
+ */
 Spell.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {

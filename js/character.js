@@ -1,4 +1,9 @@
 /*globals $, Database*/
+/**
+ * Character Class
+ * @param name The name of the character
+ * @constructor
+ */
 function Character(name) {
     "use strict";
     this.name = name || "Unnamed Character";
@@ -10,6 +15,9 @@ function Character(name) {
 
 Character.TABLE_NAME = "Characters"
 
+/**
+ * Save to websql
+ */
 Character.prototype.save = function () {
     "use strict";
     console.log("Saving \"" + this.name + "\"");
@@ -17,19 +25,18 @@ Character.prototype.save = function () {
     console.log("\"" + this.name + "\" saved");
 };
 
-Character.prototype.load = function () {
-    "use strict";
-    console.log("Loading \"" + this.name + "\"");
-    // TODO: FILL PERSIST CHAR CODE
-    console.log("\"" + this.name + "\" loaded");
-};
-
+/**
+ * Create table
+ * @param success Executed when the table is created
+ * @param rebuild True when you want drop the previous table
+ */
 Character.createTable = function (success, rebuild) {
     "use strict";
     var createTableFunction, afterSql;
     var sql = 'CREATE TABLE ' + Character.TABLE_NAME +
         '(' +
         '  id INTEGER PRIMARY KEY,' +
+        '  name varchar(50),' +
         '  bab TINYINT,' +
         '  class INTEGER,' +
         '  level TINYINT' +
@@ -60,6 +67,10 @@ Character.createTable = function (success, rebuild) {
     Database.transaction(createTableFunction);
 };
 
+/**
+ * Drop table
+ * @param next Executed when the table is dropped
+ */
 Character.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {

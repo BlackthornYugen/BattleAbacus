@@ -1,14 +1,21 @@
 /*globals $, Database*/
-
-function Hazard(id, name) {
+/**
+ * Hazard Class
+ * @param name The name for the Hazard
+ * @constructor
+ */
+function Hazard(name) {
     "use strict";
-    this.id = id || 0;
+    this.id = 0;
     this.name = name || "Unnamed Hazard";
 }
 
 Hazard.DATA_URL = "http://home.steelcomputers.com:31338/hazards.json";
 Hazard.TABLE_NAME = "Hazards";
 
+/**
+ * Load json data and insert it into websql
+ */
 Hazard.loadData = function () {
     "use strict";
     var hazardData, addItem, onSqlError;
@@ -50,6 +57,11 @@ Hazard.loadData = function () {
     });
 };
 
+/**
+ * Create table
+ * @param success Executed when the table is created
+ * @param rebuild True when you want drop the previous table
+ */
 Hazard.createTable = function (success, rebuild) {
     "use strict";
     var createTableFailure, createTableSuccess;
@@ -84,6 +96,10 @@ Hazard.createTable = function (success, rebuild) {
     Database.transaction(createTableSuccess);
 };
 
+/**
+ * Drop table
+ * @param next Executed when the table is dropped
+ */
 Hazard.dropTable = function (next) {
     "use strict";
     Database.transaction(function (tx) {

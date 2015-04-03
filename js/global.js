@@ -7,11 +7,10 @@ $(function () {
     // data will persist.
     $.mobile.page.prototype.options.domCache = true;
 
-
-    Feat.createTable(function () { Feat.loadData(); }, false);
-    Spell.createTable(function () { Spell.loadData(); }, false);
-    Hazard.createTable(function () { Hazard.loadData(); }, false);
-    Character.createTable(null, false);
+    Feat.createTable(function () { Feat.loadData(); });
+    Spell.createTable(function () { Spell.loadData(); });
+    Hazard.createTable(function () { Hazard.loadData(); });
+    Character.createTable();
 
     // bind function to displaypage event
     $("body").on("pagebeforechange", function (event, object) {

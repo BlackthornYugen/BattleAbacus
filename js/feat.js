@@ -56,8 +56,9 @@ Feat.createTable = function (success, rebuild) {
 
     createTableFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            Feat.dropTable(createTableSuccess);
             if (rebuild === true) {
+                rebuild = false;
+                Feat.dropTable(createTableSuccess);
                 console.log("Rebuilding " + Feat.TABLE_NAME + " table.");
             } else {
                 console.log(Feat.TABLE_NAME + " table already exists.");

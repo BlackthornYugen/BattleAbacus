@@ -6,25 +6,25 @@ function Hazard(id, name) {
     this.name = name || "Unnamed Hazard";
 }
 
-Hazard.DATA_URL = "http://home.steelcomputers.com:31338/hazzards.json";
-Hazard.TABLE_NAME = "Hazzards";
+Hazard.DATA_URL = "http://home.steelcomputers.com:31338/hazards.json";
+Hazard.TABLE_NAME = "Hazards";
 
 Hazard.loadData = function () {
     "use strict";
-    var hazzardData, addItem, onSqlError;
+    var hazardData, addItem, onSqlError;
 
     addItem = function (tx) {
-        var hazzard = {};
+        var hazard = {};
         var sql = 'INSERT INTO ' + Hazard.TABLE_NAME +  ' VALUES (?, ?, ?, ?, ?, ?, ?)';
         var key;
 
-        for (key in hazzardData) {
-            hazzard[key] = hazzardData[key].shift();
+        for (key in hazardData) {
+            hazard[key] = hazardData[key].shift();
         }
 
-        if (hazzardData[key].length > 0) {
-            tx.executeSql(sql, [null, hazzard.name, hazzard.type, hazzard.save, hazzard.onset,
-                hazzard.frequency, hazzard.effect], addItem, onSqlError);
+        if (hazardData[key].length > 0) {
+            tx.executeSql(sql, [null, hazard.name, hazard.type, hazard.save, hazard.onset,
+                hazard.frequency, hazard.effect], addItem, onSqlError);
         }
     };
 
@@ -42,7 +42,7 @@ Hazard.loadData = function () {
         url: Hazard.DATA_URL,
         data: null,
         success: function (data) {
-            hazzardData = data;
+            hazardData = data;
             Database.transaction(function (tx) {
                 addItem(tx);
             });
@@ -56,8 +56,9 @@ Hazard.createTable = function (success, rebuild) {
 
     createTableFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            Hazard.dropTable(createTableSuccess);
             if (rebuild === true) {
+                rebuild = false;
+                Hazard.dropTable(createTableSuccess);
                 console.log("Rebuilding " + Hazard.TABLE_NAME + " table.");
             } else {
                 console.log(Hazard.TABLE_NAME + " table already exists.");

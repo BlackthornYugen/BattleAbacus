@@ -57,8 +57,9 @@ Spell.createTable = function (success, rebuild) {
 
     createTableFailure = function (tx, error) {
         if (error.message.indexOf("already exists") > 0) {
-            Spell.dropTable(createTableSuccess);
             if (rebuild === true) {
+                rebuild = false;
+                Spell.dropTable(createTableSuccess);
                 console.log("Rebuilding " + Spell.TABLE_NAME + " table.");
             } else {
                 console.log(Spell.TABLE_NAME + " table already exists.");

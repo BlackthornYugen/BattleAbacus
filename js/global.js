@@ -1,4 +1,4 @@
-/*globals $, Feat, Spell, Hazard, Database */
+/*globals $, Feat, Spell, Hazard, Database, Character*/
 var characters;
 
 $(function () {
@@ -8,17 +8,10 @@ $(function () {
     $.mobile.page.prototype.options.domCache = true;
 
 
-    Feat.createTable(function () {
-        Feat.loadData();
-    }, true);
-
-    Spell.createTable(function () {
-        Spell.loadData();
-    }, true);
-
-    Hazard.createTable(function () {
-        Hazard.loadData();
-    }, true);
+    Feat.createTable(function () { Feat.loadData(); }, false);
+    Spell.createTable(function () { Spell.loadData(); }, false);
+    Hazard.createTable(function () { Hazard.loadData(); }, false);
+    Character.createTable(null, false);
 
     // bind function to displaypage event
     $("body").on("pagebeforechange", function (event, object) {

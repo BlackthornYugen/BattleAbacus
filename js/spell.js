@@ -119,3 +119,66 @@ Spell.countRecords = function (next) {
 
     Database.transaction(executeSql);
 };
+
+/**
+ * Get all records
+ * @param next The function to call with the matching records
+ * @param options Specify filter, skip and limit values.
+ */
+Spell.GetRecords = function (next, options) {
+    "use strict";
+    var sql = "SELECT * FROM " + Spell.TABLE_NAME;
+    var DEFAULT_LIMIT = 100;
+    var DEFAULT_SKIP = 0;
+    if (typeof options !== "object") {
+        options = {};
+    }
+    var i, afterSql;
+    if (options.filter) {
+        sql += " WHERE name LIKE \"%" + options.filter + "%\"";
+    }
+    sql += " LIMIT "
+        + (options.skip || DEFAULT_SKIP) + ", "
+        + (options.limit || DEFAULT_LIMIT) +  ";";
+    Database.transaction(function (tx) {
+        tx.executeSql(sql, null, afterSql, afterSql);
+    });
+
+    afterSql = function (tx, response) {
+        if (/SQLError/.test(response)) {
+            console.error(response);
+        } else if (response.rows.length > 0) {
+            var results = [];
+            for (i = 0; i < response.rows.length; i++) {
+                results.push(response.rows.item(i));
+            }
+            next(results);
+        } else {
+            console.error("The following statement yielded no results: \n" + sql);
+        }
+    };
+};
+
+/**
+ * Get the record that matches a specific ID
+ * @param next The function to call with the record
+ * @param id The record ID to locate
+ */
+Spell.GetRecord = function (next, id) {
+    "use strict";
+    var sql = "SELECT * FROM " + Spell.TABLE_NAME + " WHERE id = ?";
+
+    function afterSql(tx, response) {
+        if (/SQLError/.test(response)) {
+            console.error(response);
+        } else if (response.rows.length > 0) {
+            next(response.rows.item(0));
+        } else {
+            console.error("No record matched ID: " + id);
+        }
+    }
+
+    Database.transaction(function (tx) {
+        tx.executeSql(sql, [id], afterSql, afterSql);
+    });
+};

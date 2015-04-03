@@ -75,7 +75,7 @@ $(function () {
     var i;
     var tapEvent = function (event) {
         var name = $(this).data('char').name;
-        $(document).find('a:eq(0)') // TODO: Select an ID
+        $(document).find('a:eq(1)') // TODO: Select an ID
             .text(name.first + " " + name.last);
         $(".charName").text(name.first + " " + name.last);
     };
@@ -89,6 +89,14 @@ $(function () {
                 .on('tap', tapEvent)
         );
     }
+
+    $cList.append(
+        $("<a>")
+            .text("+")
+            .css("font-size", "3.2em")
+            .css("text-decoration", "none")
+            .attr('href', 'characters_new.html')
+    );
 });
 
 // Sample Data

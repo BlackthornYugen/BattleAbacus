@@ -23,14 +23,35 @@
             <a href="#" class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">My Hazards</a>
             <a href="hazards_all.html" data-theme="c" data-role="button">All Hazards</a>
     </div>
-    <div data-output="tableResults" id="hazardsList" name="hazardsList">
+    <div id="hazardsListMine" name="hazardsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-            <li><a href="">Addictions</a></li>
-            <li><a href="">Curses</a></li>
-            <li><a href="">Diseases</a></li>
-            <li><a href="">Poison</a></li>
-            <li><a href="">Traps</a></li>
+            <li data-role="list-divider">Addictions</li>
+            <li data-role="list-divider">Curses</li>
+            <li data-role="list-divider">Diseases</li>
+            <li data-role="list-divider">Poisons</li>
+            <li data-role="list-divider">Traps</li>
         </ul>
     </div>
+    <script>
+        (function () {
+            var $hazardList = $("#hazardsListMine > ul");
+            $hazardList.find('li[data-role=list-divider]').each(
+                function () {
+                    var $li = $(this);
+                    Hazard.GetRecords(function (hazardArray) {
+                        $.each(hazardArray, function (index, hazard) {
+                            $("<li>")
+                                .append($("<a>")
+                                    .attr("href", "#HAZ_" + hazard.id)
+                                    .text(hazard.name))
+                                .insertAfter($li);
+                        });
+                        $li.removeClass("ui-screen-hidden")
+                        $hazardList.listview('refresh');
+                    }, {filter: $li.text().slice(0, -1).replace("addiction", "drug")});
+                }
+            );
+        })();
+    </script>
 </body>
 </html>

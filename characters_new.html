@@ -6,6 +6,48 @@
 </head>
 <body>
     <div data-role="page">
+        <header data-role="header" class="heading">
+            <div data-role="content">
+                <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                    <img border="0" src="images/h-menu.svg"></a>
+                <h1>New Character</h1>
+            </div>
+        </header>
+        <div data-role="content">
+            <input type='file' onchange="readURL(this);" class="ui-input-clear-hidden" />
+            <br>
+            <label for="imageFrame">Avatar:</label>
+            <div style="max-width: 100%; padding: 5px; border: 1px solid black; overflow: hidden;">
+                <img id="imageFrame" style="max-width: 100%; display: block; margin: auto;" />
+            </div>
+            <br>
+            <form>
+                <input type="hidden" name="imageData">
+                <label for="charName">Name:</label>
+                <input type="text" name="charName" id="charName">
+                <label for="charClass">Class:</label>
+                <select name="charClass" id="charClass" data-native-menu="false">
+                    <option value="choose-one" data-placeholder="true">Choose one...</option>
+                    <option value="sor">Sorcerer</option>
+                    <option value="wiz">Wizard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="bard">Bard</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="alchemist">Alchemist</option>
+                    <option value="summoner">Summoner</option>
+                    <option value="witch">Witch</option>
+                    <option value="inquisitor">Inquisitor</option>
+                    <option value="oracle">Oracle</option>
+                </select>
+            </form>
+            <div data-role="controlgroup" data-type="horizontal">
+                <button onclick="$('input').trigger('click')" >Set Avatar</button>
+                <button >Save</button>
+                <button >Cancel</button>
+            </div>
+        </div>
         <script>
             function readURL(input)
             {
@@ -13,28 +55,13 @@
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        document.getElementById("image").src = e.target.result;
+                        $("#imageFrame").attr("src", e.target.result);
                     }
 
                     reader.readAsDataURL(input.files[0]);
                 }
             }
         </script>
-        <header data-role="header" class="heading">
-            <div data-role="content">
-                <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-                    <img border="0" src="images/h-menu.svg"></a>
-                <h1>New Char</h1>
-            </div>
-        </header>
-        <div data-role="content">
-            <button onclick="$('input').trigger('click')">Set Avatar</button>
-            <input type='file' onchange="readURL(this);" class="ui-input-clear-hidden" />
-            <br>
-            <div style="max-width: 100%; padding: 5px; border: 1px solid black; overflow: hidden;">
-                <img id="image" style="max-width: 100%; display: block; margin: auto;" />
-            </div>
-        </div>
     </div>
 </body>
 </html>

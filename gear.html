@@ -5,21 +5,31 @@
     <title>Gear</title>
 </head>
 <body>
-        <header data-role="header" class="heading">
-            <div data-role="content">
-                <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-                    <img border="0" src="images/h-menu.svg"></a>
-                <h1>Gear</h1>
-            </div>
-        </header>
+    <header data-role="header" class="heading">
         <div data-role="content">
-        <label for="demo">Demo Text</label>
-        <input id="demo" type="text" value="Change me"/>
-        <p>
-            If domCashe is enabled, changes to the textbox should persist even after
-            leaving and coming back.
-        </p>
-        <code>$.mobile.page.prototype.options.domCache = true;</code>
+            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="images/h-menu.svg"></a>
+            <h1>Gear</h1>
+        </div>
+    </header>
+    <div data-role="content">
+        <div data-role="controlgroup" data-type="horizontal" id="gearOptions"
+             name="gearOptions" class="btnCenter">
+            <a href="" class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">My Gear</a>
+            <a href="gear_all.html" data-theme="c" data-role="button">All Gear</a>
+        </div>
+        </br>
+        <div>
+            <ul data-role="listview" class="ui-listview">
+                <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-c">Equiped</li>
+                    <li>Sword</li>
+                    <li>Shotgun</li>
+                    <li>RPG</li>
+                <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-c">Unequiped</li>
+                    <li>Knife</li>
+                    <li>CAR-4</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

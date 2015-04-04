@@ -32,17 +32,13 @@
             $(this).find(".ui-li-count").text(spell.remaining);
         }
     </script>
-        <div data-role="header" data-position="fixed">
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="index.html" data-icon="plus" data-transition="slide" data-direction="reverse">Home</a></li>
-                    <li><a href="skills.html" data-icon="plus" data-transition="slideup">Skills</a></li>
-                    <li><a href="feats.html" data-icon="plus" data-transition="slideup">Feats</a></li>
-                    <li><a href="gear.html" data-icon="plus" data-transition="slideup">Gear</a></li>
-                    <li><a href="hazards.html" data-icon="plus" data-transition="slideup">Conditions</a></li>
-                </ul>
-            </div>
+    <header data-role="header" class="heading">
+        <div data-role="content">
+            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="images/h-menu.svg"></a>
+            <h1>Spells</h1>
         </div>
+    </header>
     <section data-role="content" data-dialog="true">
         <form>
 

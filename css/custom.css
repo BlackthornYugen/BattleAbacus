@@ -10,12 +10,15 @@
     text-align: center;
 }
 
-.heading{
+.heading h1{
     text-align: center;
     width: 60%;
     position: absolute;
     top: 0;
     left: 20%;
+}
+.heading img{
+    width:2.5em
 }
 th {
     border-bottom: 1px solid #d6d6d6;

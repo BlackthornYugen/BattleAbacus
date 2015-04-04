@@ -11,7 +11,7 @@ function Hazard(name) {
 }
 
 Hazard.DATA_URL = "http://home.steelcomputers.com:31338/hazards.json";
-Hazard.TABLE_NAME = "Hazards";
+Hazard.TABLE_NAME = "Hazard";
 
 /**
  * Load json data and insert it into websql

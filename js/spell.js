@@ -13,7 +13,7 @@ function Spell(name) {
 Spell.REQUIREMENTS = ["sor", "wiz", "cleric", "druid", "ranger", "bard", "paladin", "alchemist",
     "summoner", "witch", "inquisitor", "oracle"];
 Spell.DATA_URL = "http://home.steelcomputers.com:31338/spells.json";
-Spell.TABLE_NAME = "Spells";
+Spell.TABLE_NAME = "Spell";
 
 /**
  * Load json data and insert it into websql

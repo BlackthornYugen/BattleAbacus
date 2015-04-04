@@ -11,7 +11,7 @@ function Feat(name) {
 }
 
 Feat.DATA_URL = "http://home.steelcomputers.com:31338/feats.json";
-Feat.TABLE_NAME = "Feats";
+Feat.TABLE_NAME = "Feat";
 
 /**
  * Load json data and insert it into websql

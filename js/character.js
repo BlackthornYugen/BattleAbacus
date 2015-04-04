@@ -15,7 +15,7 @@ function Character(name) {
     this.level = 0;
 }
 
-Character.TABLE_NAME = "Characters"
+Character.TABLE_NAME = "Character";
 
 /**
  * Add a spell to the Character
@@ -24,33 +24,30 @@ Character.TABLE_NAME = "Characters"
  */
 Character.prototype.addSpell = function (id, success) {
     "use strict";
-    if (!this.id) {
-        console.error(this.name + " does not have a valid ID");
-    }
-    var afterSql;
-    var characterId = this.id;
-    var itemTableName = Spell.TABLE_NAME;
-    var joinTableName = Character.TABLE_NAME + itemTableName;
-    var sql = "INSERT INTO " + joinTableName + "(" +
-        Character.TABLE_NAME + "Id, " + itemTableName + "Id) VALUES (?, ?)";
+    Database.addJoinedItem({idA: this.id, idB: id, idsArray: this.spells,
+        tableNameA: Character.TABLE_NAME, tableNameB: Spell.TABLE_NAME}, success);
+};
 
-    // If spell not already added, add it to object & persist to websql
-    if (this.spells.indexOf(id) === -1) {
-        this.spells.push(id); // TODO: Only add to object on successful SQL insert
-        Database.transaction(function (tx) {
-            tx.executeSql(sql, [characterId, id], afterSql, afterSql);
-        });
-    }
+/**
+ * Add a feat to the Character
+ * @param {(Number|String)} id - The feat id
+ * @param {Function} [success] - Executed after success
+ */
+Character.prototype.addFeat = function (id, success) {
+    "use strict";
+    Database.addJoinedItem({idA: this.id, idB: id, idsArray: this.feats,
+        tableNameA: Character.TABLE_NAME, tableNameB: Feat.TABLE_NAME}, success);
+};
 
-    afterSql = function (tx, response) {
-        if (/SQLError/.test(response)) {
-            throw response.message;
-        }
-
-        if (success) {
-            success();
-        }
-    };
+/**
+ * Add a hazard to the Character
+ * @param {(Number|String)} id - The spell id
+ * @param {Function} [success] - Executed after success
+ */
+Character.prototype.addHazard = function (id, success) {
+    "use strict";
+    Database.addJoinedItem({idA: this.id, idB: id, idsArray: this.hazard,
+        tableNameA: Character.TABLE_NAME, tableNameB: Hazard.TABLE_NAME}, success);
 };
 
 /**
@@ -60,35 +57,34 @@ Character.prototype.addSpell = function (id, success) {
  */
 Character.prototype.removeSpell = function (id, success) {
     "use strict";
-    var afterSql;
-    var characterId = this.id;
-    var itemTableName = Spell.TABLE_NAME;
-    var joinTableName = Character.TABLE_NAME + itemTableName;
-    var spellArrayIndex = this.spells.indexOf(id);
-    var sql = "DELETE FROM " + joinTableName + " WHERE " +
-        Character.TABLE_NAME + "Id = ? AND " + itemTableName + "Id = ?";
-
-    // If spell added, remove it from object & websql
-    if (spellArrayIndex !== -1) {
-        this.spells.splice(spellArrayIndex, 1); // TODO: Only remove successful SQL delete
-        Database.transaction(function (tx) {
-            tx.executeSql(sql, [characterId, id], afterSql, afterSql);
-        });
-    }
-
-    afterSql = function (tx, response) {
-        if (/SQLError/.test(response)) {
-            throw response.message;
-        }
-
-        if (success) {
-            success();
-        }
-    };
+    Database.removeJoinedItem({idA: this.id, idB: id, idsArray: this.spells,
+        tableNameA: Character.TABLE_NAME, tableNameB: Spell.TABLE_NAME}, success);
 };
 
 /**
- * Create table
+ * Remove a feat from the Character
+ * @param {(Number|String)} id - The spell id
+ * @param {Function} [success] - Executed after success
+ */
+Character.prototype.removeFeat = function (id, success) {
+    "use strict";
+    Database.removeJoinedItem({idA: this.id, idB: id, idsArray: this.feats,
+        tableNameA: Character.TABLE_NAME, tableNameB: Feat.TABLE_NAME}, success);
+};
+
+/**
+ * Remove a hazard from the Character
+ * @param {(Number|String)} id - The spell id
+ * @param {Function} [success] - Executed after success
+ */
+Character.prototype.removeHazard = function (id, success) {
+    "use strict";
+    Database.removeJoinedItem({idA: this.id, idB: id, idsArray: this.hazard,
+        tableNameA: Character.TABLE_NAME, tableNameB: Hazard.TABLE_NAME}, success);
+};
+
+/**
+ * Create tables
  * @param success Executed when the table is created
  * @param rebuild True when you want drop the previous table
  */
@@ -104,7 +100,7 @@ Character.createTable = function (success, rebuild) {
         '  level TINYINT' +
         ')';
 
-    var joinTables = [Feat.TABLE_NAME, Spell.TABLE_NAME, Hazard.TABLE_NAME, "Skills"];
+    var joinTables = [Feat.TABLE_NAME, Spell.TABLE_NAME, Hazard.TABLE_NAME, Skill.TABLE_NAME];
     var createJoinTableSql = 'CREATE TABLE ? ( ' +
         '?Id INTEGER, ' +
         '?Id INTEGER' +

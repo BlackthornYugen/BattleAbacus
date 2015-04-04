@@ -10,6 +10,13 @@
     text-align: center;
 }
 
+.heading{
+    text-align: center;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    left: 20%;
+}
 th {
     border-bottom: 1px solid #d6d6d6;
 }

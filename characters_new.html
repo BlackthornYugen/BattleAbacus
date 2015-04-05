@@ -72,6 +72,7 @@
                     var image = "http://placehold.it/60.png/F76DD2/fff";
                     characters.push(new Character(name));
                     var imageData = $form.find("input[name=imageData]").val();
+                    setupMenu();
                     if(imageData !== "") {
                         localStorage.setItem(name, imageData);
                     }

@@ -126,7 +126,7 @@ Feat.countRecords = function (next) {
         } else if (response.rows.length > 0) {
             count = response.rows.item(0).count;
         } else {
-            console.error("The following statement yielded no results: \n" + sql);
+            console.info("The following statement yielded no results: \n" + sql);
         }
         next(count);
     };
@@ -168,7 +168,7 @@ Feat.GetRecords = function (next, options) {
             }
             next(results);
         } else {
-            console.error("The following statement yielded no results: \n" + sql);
+            console.info("The following statement yielded no results: \n" + sql);
         }
     };
 };

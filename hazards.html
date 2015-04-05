@@ -42,7 +42,7 @@
                         });
                         $li.removeClass("ui-screen-hidden")
                         $hazardList.listview('refresh');
-                    }, {filter: $li.text().slice(0, -1).replace("addiction", "drug")});
+                    }, {filter: $li.text().slice(0, -1).replace("addiction", "drug"), charId: characters[0].id});
                 }
             );
         })();

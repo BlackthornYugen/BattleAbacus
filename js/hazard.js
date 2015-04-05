@@ -138,11 +138,12 @@ Hazard.countRecords = function (next) {
 /**
  * Get all records
  * @param {Function} next - The function to call with the matching records
- * @param {{filter: string, skip: number, limit: number}} options
+ * @param {{filter: String, skip: Number, limit: Number, charId: (Number|String)}} options
  */
 Hazard.GetRecords = function (next, options) {
     "use strict";
     var sql = "SELECT * FROM " + Hazard.TABLE_NAME;
+    var wheres = [];
     var DEFAULT_LIMIT = 100;
     var DEFAULT_SKIP = 0;
     if (typeof options !== "object") {
@@ -150,7 +151,14 @@ Hazard.GetRecords = function (next, options) {
     }
     var i, afterSql;
     if (options.filter) {
-        sql += " WHERE type LIKE \"%" + options.filter + "%\"";
+        wheres.push("type LIKE \"%" + options.filter + "%\"");
+    }
+    if (options.charId) {
+        wheres.push("id IN (SELECT " + Hazard.TABLE_NAME + "Id FROM " + Character.TABLE_NAME
+            + Hazard.TABLE_NAME + " WHERE " + Character.TABLE_NAME + "Id = " + options.charId +  ")");
+    }
+    if (wheres.length > 0) {
+        sql += " WHERE " + wheres.join(" AND ");
     }
     sql += " LIMIT "
         + (options.skip || DEFAULT_SKIP) + ", "

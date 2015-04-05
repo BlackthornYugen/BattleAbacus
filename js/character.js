@@ -1,4 +1,4 @@
-/*globals $, Database, Feat, Spell, Hazard*/
+/*globals $, Database, Feat, Spell, Hazard, Skill*/
 /**
  * Character Class
  * @param name The name of the character
@@ -6,13 +6,61 @@
  */
 function Character(name) {
     "use strict";
+    var self = this;
     this.name = name || "Unnamed Character";
     this.feats = [];
-    this.hazard = [];
+    this.hazards = [];
     this.spells = [];
     this.skills = [];
     this.bab = 0;
     this.level = 0;
+
+    function recoverChar(tx, response) {
+        var i, tableName, ids;
+        for (i = 0; i < response.rows.length; i++) {
+            tableName = response.rows.item(i).table.toLowerCase() + "s";
+            ids = response.rows.item(i).ids;
+            if (ids) {
+                self[tableName] = ids.split(',');
+            }
+        }
+    }
+
+    function afterSql(tx, response) {
+        if (/SQLError/.test(response)) {
+            if (/constraint failed/.test(response.message)) {
+                var sql = "SELECT id FROM " + Character.TABLE_NAME + " WHERE name = ?";
+                tx.executeSql(sql, [self.name], afterSql);
+            } else {
+                throw response.message;
+            }
+        } else if (response.rows.length > 0) {
+            self.id = response.rows.item(0).id;
+            var sqlLine = "SELECT GROUP_CONCAT(?Id) as ids, " +
+                "'?' as 'table' from " + Character.TABLE_NAME + "? WHERE " +
+                Character.TABLE_NAME + "Id = ?";
+            var tables = [Spell.TABLE_NAME, Feat.TABLE_NAME, Skill.TABLE_NAME, Hazard.TABLE_NAME];
+            var sqlLines = [];
+            $.each(tables, function (index, value) {
+                sqlLines.push(sqlLine
+                    .replace("?", value) // valueId
+                    .replace("?", value) // 'value' as 'table'
+                    .replace("?", value) // from 'Character.TABLE_NAME + value.TableName'
+                    .replace("?", self.id)); // WHERE Character.TABLE_NAME + Id = self.id
+            });
+            tx.executeSql(sqlLines.join(" UNION "), [], recoverChar, recoverChar);
+        } else {
+            self.id = response.insertId;
+            console.log(self.name + " added to the database. ID: " + self.id);
+        }
+    }
+
+    function addCharacter(tx) {
+        var sql = "INSERT INTO " + Character.TABLE_NAME + "(name) VALUES (?)";
+        tx.executeSql(sql, [self.name], afterSql, afterSql);
+    }
+
+    Database.transaction(addCharacter);
 }
 
 Character.TABLE_NAME = "Character";
@@ -46,7 +94,7 @@ Character.prototype.addFeat = function (id, success) {
  */
 Character.prototype.addHazard = function (id, success) {
     "use strict";
-    Database.addJoinedItem({idA: this.id, idB: id, idsArray: this.hazard,
+    Database.addJoinedItem({idA: this.id, idB: id, idsArray: this.hazards,
         tableNameA: Character.TABLE_NAME, tableNameB: Hazard.TABLE_NAME}, success);
 };
 
@@ -79,7 +127,7 @@ Character.prototype.removeFeat = function (id, success) {
  */
 Character.prototype.removeHazard = function (id, success) {
     "use strict";
-    Database.removeJoinedItem({idA: this.id, idB: id, idsArray: this.hazard,
+    Database.removeJoinedItem({idA: this.id, idB: id, idsArray: this.hazards,
         tableNameA: Character.TABLE_NAME, tableNameB: Hazard.TABLE_NAME}, success);
 };
 
@@ -94,7 +142,7 @@ Character.createTable = function (success, rebuild) {
     var createCharTableSql = 'CREATE TABLE ' + Character.TABLE_NAME +
         '(' +
         '  id INTEGER PRIMARY KEY,' +
-        '  name varchar(50),' +
+        '  name varchar(50) UNIQUE,' +
         '  bab TINYINT,' +
         '  class INTEGER,' +
         '  level TINYINT' +

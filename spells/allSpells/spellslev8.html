@@ -33,23 +33,17 @@
     </script>
     <header data-role="header" class="heading">
         <div data-role="content">
-            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-                <img border="0" src="images/h-menu.svg"></a>
+            <a href="../../index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="../../images/h-menu.svg"></a>
             <h1>Spells</h1>
         </div>
     </header>
     <section data-role="content" data-dialog="true">
         <form>
-
-            <div data-role="controlgroup">
-                <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
-                    <input type="radio" name="spells" id="rdbMySpells" value="my" checked="checked" />
-                    <label for="rdbMySpells">My Spells</label>
-
-                    <input type="radio" name="spells" id="rdbAllSpells" value="all"  />
-                    <label for="rdbAllSpells">All Spells</label>
-                </fieldset>
-            </div>
+                <div data-role="controlgroup" data-type="horizontal" id="spellOptions" name="spellOptions" class="btnCenter">
+                    <a href="../mySpells/spellslev8.html" data-role="button" data-transition="none">My Spells</a>
+                    <a href="#"class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">All Spells</a>
+                </div>
 
             <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
                 <a data-role="button" href="spellsSpecAbil.html" data-transition="none">Special Abil</a>
@@ -58,25 +52,23 @@
                 <a data-role="button" href="spellslev2.html" data-transition="none">2</a>
                 <a data-role="button" href="spellslev3.html" data-transition="none">3</a>
                 <a data-role="button" href="spellslev4.html" data-transition="none">4</a>
-                <a data-role="button" href="spellslev5.html" data-transition="none" data-theme="b">5</a>
+                <a data-role="button" href="spellslev5.html" data-transition="none">5</a>
                 <a data-role="button" href="spellslev6.html" data-transition="none">6</a>
                 <a data-role="button" href="spellslev7.html" data-transition="none">7</a>
-                <a data-role="button" href="spellslev8.html" data-transition="none">8</a>
+                <a data-role="button" data-theme="b" data-transition="none">8</a>
                 <a data-role="button" href="spellslev9.html" data-transition="none">9</a>
             </fieldset>
         </form>
 
         <ul data-role="listview" data-split-icon="back" data-theme="a" data-split-theme="b" data-inset="true">
             <li>
-                <a onclick="cast.call(this.parentNode,1)">Spell One<span class="ui-li-count">3</span></a>
-                <a onclick="uncast.call(this.parentNode,1)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
-            <li>
-                <a onclick="cast.call(this.parentNode,2)">Spell Two<span class="ui-li-count">3</span></a>
-                <a onclick="uncast.call(this.parentNode,2)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+                <a>Spell One</a>
             </li>
             <li>
-                <a onclick="cast.call(this.parentNode,3)">Spell Three<span class="ui-li-count">3</span></a>
-                <a onclick="uncast.call(this.parentNode,3)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+                <a>Spell Two</a>
+            </li>
+            <li>
+                <a>Spell Three</a>
             </li>
         </ul>
     </section>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Spells</title>
+</head>
+<body>
+<div data-role="page">
+    <script>
+        var spells = {
+            1: {name:"one", remaining:6, max:7},
+            2: {name:"two", remaining:4, max:4},
+            3: {name:"three", remaining:4, max:4}
+        };
+
+        function cast(num){
+            console.log(1);
+            var spell = spells[num];
+            if(spell.remaining > 0){
+                spell.remaining--;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+
+        function uncast(num){
+            console.log(2);
+            var spell = spells[num];
+            if(spell.remaining < spell.max){
+                spell.remaining++;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+    </script>
+    <header data-role="header" class="heading">
+        <div data-role="content">
+            <a href="../../index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="../../images/h-menu.svg"></a>
+            <h1>Spells</h1>
+        </div>
+    </header>
+    <section data-role="content" data-dialog="true">
+        <form>
+            <div data-role="controlgroup" data-type="horizontal" id="spellOptions" name="spellOptions" class="btnCenter">
+                <a data-role="button" class="ui-btn-active ui-state-persist" data-theme="c">My Spells</a>
+                <a href="../allSpells/spellslev6.html" data-role="button" data-transition="none">All Spells</a>
+            </div>
+
+            <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
+                <a data-role="button" href="spellsSpecAbil.html" data-transition="none">Special Abil</a>
+                <a data-role="button" href="spellslev0.html" data-transition="none">0</a>
+                <a data-role="button" href="spellslev1.html" data-transition="none">1</a>
+                <a data-role="button" href="spellslev2.html" data-transition="none">2</a>
+                <a data-role="button" href="spellslev3.html" data-transition="none">3</a>
+                <a data-role="button" href="spellslev4.html" data-transition="none">4</a>
+                <a data-role="button" href="spellslev5.html" data-transition="none">5</a>
+                <a data-role="button" href="spellslev6.html" data-transition="none" data-theme="b">6</a>
+                <a data-role="button" href="spellslev7.html" data-transition="none">7</a>
+                <a data-role="button" href="spellslev8.html" data-transition="none">8</a>
+                <a data-role="button" href="spellslev9.html" data-transition="none">9</a>
+            </fieldset>
+        </form>
+
+        <ul data-role="listview" data-split-icon="back" data-theme="a" data-split-theme="b" data-inset="true">
+            <li>
+                <a onclick="cast.call(this.parentNode,1)">Spell One<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,1)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            <li>
+                <a onclick="cast.call(this.parentNode,2)">Spell Two<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,2)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            </li>
+            <li>
+                <a onclick="cast.call(this.parentNode,3)">Spell Three<span class="ui-li-count">3</span></a>
+                <a onclick="uncast.call(this.parentNode,3)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
+            </li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>

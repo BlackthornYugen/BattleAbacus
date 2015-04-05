@@ -5,22 +5,21 @@
     <title>Characters Name</title>
 </head>
 <body>
-<div data-role="page" id="Details">
     <header data-role="header" class="heading">
-        <div data-role="content">
+        <section data-role="content">
             <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
                 <img border="0" src="images/h-menu.svg"></a>
             <h1 data-var="charName">Timmy</h1>
-        </div>
+        </section>
     </header>
-    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
+    <section data-role="navbar" id="conditionsNav" name="conditionsNav">
         <ul>
             <li><a href="characters.html" data-theme="c">Attributes</a></li>
             <li><a href="characters_combat.html" data-theme="c">Combat</a></li>
             <li><a href="characters_details.html" data-theme="a" class="ui-btn-active ui-state-persist">Details</a></li>
         </ul>
-    </div>
-    <div>
+    </section>
+    <section data-role="content">
         <form id="charAdvancedDetailsEdit">
             <h3>Deity:</h3>
             <input type="text" id="charDeity" value="Zues" />
@@ -47,13 +46,12 @@
             <h3>Eyes:</h3>
             <input type="text" id="charEyes" value="Green"/>
 
-            <div data-role="controlgroup" data-type="horizontal">
+            <section data-role="controlgroup" data-type="horizontal">
                 <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="characters_details.html">Cancel</a>
                 <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="">Delete</a>
                 <a href="characters_details.html" data-role="button" data-theme="a" data-inline=true onclick="">Update</a>
-            </div>
+            </section>
         </form>
-    </div>
-</div>
+    </section>
 </body>
 </html>

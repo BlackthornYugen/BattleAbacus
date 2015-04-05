@@ -5,24 +5,30 @@
     <title>Characters Name</title>
 </head>
 <body>
-<div data-role="page" id="Combat">
-    <header data-role="header" class="heading">
-        <div data-role="content">
-            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-                <img border="0" src="images/h-menu.svg"></a>
-                <img src="images/h-menu.svg"></a>
-            <h1 data-var="charName">Timmy</h1>
-        </div>
-    </header>
-    <div data-role="navbar" id="conditionsNav" name="conditionsNav">
+<header data-role="header" class="heading">
+    <section data-role="content">
+        <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+            <img border="0" src="images/h-menu.svg"></a>
+        <h1 data-var="charName">Timmy</h1>
+    </section>
+</header>
+    <section data-role="navbar" id="conditionsNav" name="conditionsNav">
         <ul>
             <li><a href="characters.html" data-theme="c">Attributes</a></li>
             <li><a href="characters_combat.html" data-theme="a" class="ui-btn-active ui-state-persist">Combat</a></li>
             <li><a href="characters_details.html" data-theme="c">Details</a></li>
         </ul>
-    </div>
-    <div data-role="content">
-        <p><b>HP</b>: Total: 50 DR: 5</p>
+    </section>
+    <section data-role="content">
+        <ul data-role="listview" data-var="charCombat" id="charCombat" data-inset="true">
+            <li data-icon="false">
+                <a href="">
+                    <h1><b>HP</b></h1>
+                    <h2>Total: 50</h2>
+                    <h3>DR: 5</h3>
+
+                </a>
+            </li>
         <textarea id="hpWounds">Current HP: 43
             Wounds: Arrow to knee</textarea>
         <p><b>Non Lethal Damage</b>: 7</p>
@@ -47,7 +53,7 @@
         <p><b>Weapon:</b> Lazer Sword <b>Attack Bonus:</b> +6 <b>Critical:</b> +8</p>
         <p><b>Type:</b> Energy <b>Range:</b> 6ft <b>Ammunition:</b> N/A <b>Damage:</b> 16</p>
 
-    </div>
-</div>
+    </section>
+
 </body>
 </html>

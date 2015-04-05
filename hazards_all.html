@@ -5,51 +5,53 @@
     <title>Hazards</title>
 </head>
 <body>
-<header data-role="header" class="heading">
+    <header data-role="header" class="heading">
+        <section data-role="content">
+            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="images/h-menu.svg"></a>
+            <h1>Hazards</h1>
+        </section>
+    </header>
     <section data-role="content">
-        <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-            <img border="0" src="images/h-menu.svg"></a>
-        <h1>Hazards</h1>
-    </section>
-</header>
-<section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
-     name="hazardsOptions" class="btnCenter">
-    <a href="hazards.html" data-role="button" data-transition="none">My Hazards</a>
-    <a href="#"class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">All Hazards</a>
-</section>
-<section id="hazardsListAll" name="hazardsList">
-    <ul data-role="listview" data-filter="true" data-inset="true">
-        <li data-role="list-sectionider">Addictions</li>
-        <li data-role="list-sectionider">Curses</li>
-        <li data-role="list-sectionider">Diseases</li>
-        <li data-role="list-sectionider">Haunts</li>
-        <li data-role="list-sectionider">Infestations</li>
-        <li data-role="list-sectionider">Insanities</li>
-        <li data-role="list-sectionider">Poison</li>
-        <li data-role="list-sectionider">Traps</li>
-    </ul>
-</section>
+        <section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
+             name="hazardsOptions" class="btnCenter">
+            <a href="hazards.html" data-role="button" data-transition="none">My Hazards</a>
+            <a href="#"class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">All Hazards</a>
+        </section>
+        <section id="hazardsListAll" name="hazardsList">
+            <ul data-role="listview" data-filter="true" data-inset="true">
+                <li data-role="list-sectionider">Addictions</li>
+                <li data-role="list-sectionider">Curses</li>
+                <li data-role="list-sectionider">Diseases</li>
+                <li data-role="list-sectionider">Haunts</li>
+                <li data-role="list-sectionider">Infestations</li>
+                <li data-role="list-sectionider">Insanities</li>
+                <li data-role="list-sectionider">Poison</li>
+                <li data-role="list-sectionider">Traps</li>
+            </ul>
+        </section>
 
-<script>
-    (function () {
-        var $hazardList = $("#hazardsListAll > ul");
-        $hazardList.find('li[data-role=list-sectionider]').each(
-            function () {
-                var $li = $(this);
-                Hazard.GetRecords(function (hazardArray) {
-                    $.each(hazardArray, function (index, hazard) {
-                        $("<li>")
-                            .append($("<a>")
-                                .attr("href", "#HAZ_" + hazard.id)
-                                .text(hazard.name))
-                            .insertAfter($li);
-                    });
-                    $li.removeClass("ui-screen-hidden")
-                    $hazardList.listview('refresh');
-                }, {filter: $li.text().slice(0, -1).replace("addiction", "drug")});
-            }
-        );
-    })();
-</script>
+        <script>
+            (function () {
+                var $hazardList = $("#hazardsListAll > ul");
+                $hazardList.find('li[data-role=list-sectionider]').each(
+                    function () {
+                        var $li = $(this);
+                        Hazard.GetRecords(function (hazardArray) {
+                            $.each(hazardArray, function (index, hazard) {
+                                $("<li>")
+                                    .append($("<a>")
+                                        .attr("href", "#HAZ_" + hazard.id)
+                                        .text(hazard.name))
+                                    .insertAfter($li);
+                            });
+                            $li.removeClass("ui-screen-hidden")
+                            $hazardList.listview('refresh');
+                        }, {filter: $li.text().slice(0, -1).replace("addiction", "drug")});
+                    }
+                );
+            })();
+        </script>
+    </section>
 </body>
 </html>

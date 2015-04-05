@@ -12,40 +12,42 @@
             <h1>Hazards</h1>
         </section>
     </header>
-    <section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
-         name="hazardsOptions" class="btnCenter">
+    <section  data-role="content">
+        <section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
+                 name="hazardsOptions" class="btnCenter">
             <a href="" class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">My Hazards</a>
             <a href="hazards_all.html" data-theme="c" data-role="button" data-transition="none">All Hazards</a>
+        </section>
+        <section id="hazardsListMine" name="hazardsList">
+            <ul data-role="listview" data-filter="true" data-inset="true">
+                <li data-role="list-sectionider">Addictions</li>
+                <li data-role="list-sectionider">Curses</li>
+                <li data-role="list-sectionider">Diseases</li>
+                <li data-role="list-sectionider">Poisons</li>
+                <li data-role="list-sectionider">Traps</li>
+            </ul>
+        </section>
+        <script>
+            (function () {
+                var $hazardList = $("#hazardsListMine > ul");
+                $hazardList.find('li[data-role=list-sectionider]').each(
+                        function () {
+                            var $li = $(this);
+                            Hazard.GetRecords(function (hazardArray) {
+                                $.each(hazardArray, function (index, hazard) {
+                                    $("<li>")
+                                        .append($("<a>")
+                                            .attr("href", "#HAZ_" + hazard.id)
+                                            .text(hazard.name))
+                                        .insertAfter($li);
+                                });
+                                $li.removeClass("ui-screen-hidden")
+                                $hazardList.listview('refresh');
+                            },{filter: $li.text().slice(0, -1).replace("addiction", "drug"), charId: characters[0].id});
+                        }
+                    );
+                })();
+        </script>
     </section>
-    <section id="hazardsListMine" name="hazardsList">
-        <ul data-role="listview" data-filter="true" data-inset="true">
-            <li data-role="list-sectionider">Addictions</li>
-            <li data-role="list-sectionider">Curses</li>
-            <li data-role="list-sectionider">Diseases</li>
-            <li data-role="list-sectionider">Poisons</li>
-            <li data-role="list-sectionider">Traps</li>
-        </ul>
-    </section>
-    <script>
-        (function () {
-            var $hazardList = $("#hazardsListMine > ul");
-            $hazardList.find('li[data-role=list-sectionider]').each(
-                function () {
-                    var $li = $(this);
-                    Hazard.GetRecords(function (hazardArray) {
-                        $.each(hazardArray, function (index, hazard) {
-                            $("<li>")
-                                .append($("<a>")
-                                    .attr("href", "#HAZ_" + hazard.id)
-                                    .text(hazard.name))
-                                .insertAfter($li);
-                        });
-                        $li.removeClass("ui-screen-hidden")
-                        $hazardList.listview('refresh');
-                    }, {filter: $li.text().slice(0, -1).replace("addiction", "drug"), charId: characters[0].id});
-                }
-            );
-        })();
-    </script>
 </body>
 </html>

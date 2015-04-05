@@ -7,7 +7,6 @@
 <body>
 <div data-role="page">
     <script>
-        //I've placed this here as a placeholder for proper javascript, feel free to remove it whenever it's in the way
         var spells = {
             1: {name:"one", remaining:6, max:7},
             2: {name:"two", remaining:4, max:4},
@@ -53,40 +52,33 @@
             </div>
 
             <fieldset data-role="controlgroup" data-type="horizontal" class="rdbCenter">
-                <input type="button" value="Special Abilities" >
-                <input type="button" value="0" >
-                <input type="button" value="1" >
-                <input type="button" value="2" >
-                <input type="button" value="3" >
-                <input type="button" value="4" >
-                <input type="button" value="5" >
-                <input type="button" value="6" >
-                <input type="button" value="7" >
-                <input type="button" value="8" >
-                <input type="button" value="9" >
-                </fieldset>
+                <a data-role="button" href="spellsSpecAbil.html" data-transition="none">Special Abil</a>
+                <a data-role="button" href="spellslev0.html" data-transition="none">0</a>
+                <a data-role="button" href="spellslev1.html" data-transition="none">1</a>
+                <a data-role="button" href="spellslev2.html" data-transition="none">2</a>
+                <a data-role="button" href="spellslev3.html" data-transition="none" data-theme="b">3</a>
+                <a data-role="button" href="spellslev4.html" data-transition="none">4</a>
+                <a data-role="button" href="spellslev5.html" data-transition="none">5</a>
+                <a data-role="button" href="spellslev6.html" data-transition="none">6</a>
+                <a data-role="button" href="spellslev7.html" data-transition="none">7</a>
+                <a data-role="button" href="spellslev8.html" data-transition="none">8</a>
+                <a data-role="button" href="spellslev9.html" data-transition="none">9</a>
+            </fieldset>
         </form>
 
         <ul data-role="listview" data-split-icon="back" data-theme="a" data-split-theme="b" data-inset="true">
             <li>
-                <a onclick="cast.call(this.parentNode,1)">One<span class="ui-li-count">3</span></a>
+                <a onclick="cast.call(this.parentNode,1)">Spell One<span class="ui-li-count">3</span></a>
                 <a onclick="uncast.call(this.parentNode,1)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
             <li>
-                <a onclick="cast.call(this.parentNode,2)">Two<span class="ui-li-count">3</span></a>
+                <a onclick="cast.call(this.parentNode,2)">Spell Two<span class="ui-li-count">3</span></a>
                 <a onclick="uncast.call(this.parentNode,2)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
             </li>
             <li>
-                <a onclick="cast.call(this.parentNode,3)">Three<span class="ui-li-count">3</span></a>
+                <a onclick="cast.call(this.parentNode,3)">Spell Three<span class="ui-li-count">3</span></a>
                 <a onclick="uncast.call(this.parentNode,3)" href="/jovohicibo/quiet" data-rel="popup" data-position-to="window" data-transition="pop">Uncast</a>
             </li>
         </ul>
-
-        <div data-role="controlgroup" data-type="horizontal">
-            <a href="#" data-role="button">Yes</a>
-            <a href="#" data-role="button">No</a>
-            <a href="#" data-role="button">Maybe</a>
-        </div>
-
     </section>
 </div>
 </body>

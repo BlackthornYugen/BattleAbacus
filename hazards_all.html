@@ -20,21 +20,21 @@
         </section>
         <section id="hazardsListAll" name="hazardsList">
             <ul data-role="listview" data-filter="true" data-inset="true">
-                <li data-role="list-sectionider">Addictions</li>
-                <li data-role="list-sectionider">Curses</li>
-                <li data-role="list-sectionider">Diseases</li>
-                <li data-role="list-sectionider">Haunts</li>
-                <li data-role="list-sectionider">Infestations</li>
-                <li data-role="list-sectionider">Insanities</li>
-                <li data-role="list-sectionider">Poison</li>
-                <li data-role="list-sectionider">Traps</li>
+                <li data-role="list-divider">Addictions</li>
+                <li data-role="list-divider">Curses</li>
+                <li data-role="list-divider">Diseases</li>
+                <li data-role="list-divider">Haunts</li>
+                <li data-role="list-divider">Infestations</li>
+                <li data-role="list-divider">Insanities</li>
+                <li data-role="list-divider">Poison</li>
+                <li data-role="list-divider">Traps</li>
             </ul>
         </section>
 
         <script>
             (function () {
                 var $hazardList = $("#hazardsListAll > ul");
-                $hazardList.find('li[data-role=list-sectionider]').each(
+                $hazardList.find('li[data-role=list-divider]').each(
                     function () {
                         var $li = $(this);
                         Hazard.GetRecords(function (hazardArray) {

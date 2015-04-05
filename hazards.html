@@ -6,30 +6,30 @@
 </head>
 <body>
     <header data-role="header" class="heading">
-        <div data-role="content">
+        <section data-role="content">
             <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
                 <img border="0" src="images/h-menu.svg"></a>
             <h1>Hazards</h1>
-        </div>
+        </section>
     </header>
-    <div data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
+    <section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
          name="hazardsOptions" class="btnCenter">
             <a href="" class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">My Hazards</a>
             <a href="hazards_all.html" data-theme="c" data-role="button" data-transition="none">All Hazards</a>
-    </div>
-    <div id="hazardsListMine" name="hazardsList">
+    </section>
+    <section id="hazardsListMine" name="hazardsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-            <li data-role="list-divider">Addictions</li>
-            <li data-role="list-divider">Curses</li>
-            <li data-role="list-divider">Diseases</li>
-            <li data-role="list-divider">Poisons</li>
-            <li data-role="list-divider">Traps</li>
+            <li data-role="list-sectionider">Addictions</li>
+            <li data-role="list-sectionider">Curses</li>
+            <li data-role="list-sectionider">Diseases</li>
+            <li data-role="list-sectionider">Poisons</li>
+            <li data-role="list-sectionider">Traps</li>
         </ul>
-    </div>
+    </section>
     <script>
         (function () {
             var $hazardList = $("#hazardsListMine > ul");
-            $hazardList.find('li[data-role=list-divider]').each(
+            $hazardList.find('li[data-role=list-sectionider]').each(
                 function () {
                     var $li = $(this);
                     Hazard.GetRecords(function (hazardArray) {

@@ -21,9 +21,9 @@
                 <img id="imageFrame" style="max-width: 100%; display: block; margin: auto;" />
             </div>
             <br>
-            <form>
+            <form id="newCharForm">
                 <input type="hidden" name="imageData">
-                <label for="charName">Name:</label>
+                <label for="charName" required>Name:</label>
                 <input type="text" name="charName" id="charName">
                 <label for="charClass">Class:</label>
                 <select name="charClass" id="charClass" data-native-menu="false">
@@ -44,8 +44,8 @@
             </form>
             <div data-role="controlgroup" data-type="horizontal">
                 <button onclick="$('input').trigger('click')" >Set Avatar</button>
-                <button >Save</button>
-                <button >Cancel</button>
+                <a href="index.html" data-role="button" id="saveChar">Save</a>
+                <a href="index.html" data-role="button">Cancel</a>
             </div>
         </div>
         <script>
@@ -56,11 +56,32 @@
 
                     reader.onload = function (e) {
                         $("#imageFrame").attr("src", e.target.result);
-                    }
-
+                        var ctx = document.createElement("canvas").getContext('2d');
+                        ctx.canvas.height = 300;
+                        ctx.drawImage($("#imageFrame")[0],0,0);
+                        $("input[name=imageData]").val(ctx.canvas.toDataURL());
+                    };
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+
+            function createChar(event) {
+                var $form =  $("#newCharForm");
+                var name = $form.find("#charName").val().trim();
+                if(name !== "") {
+                    var image = "http://placehold.it/60.png/F76DD2/fff";
+                    characters.push(new Character(name));
+                    var imageData = $form.find("input[name=imageData]").val();
+                    if(imageData !== "") {
+                        localStorage.setItem(name, imageData);
+                    }
+                } else {
+                    alert("Please enter a valid name");
+                    event.preventDefault();
+                }
+            }
+
+            $("#saveChar").on("tap", createChar);
         </script>
     </div>
 </body>

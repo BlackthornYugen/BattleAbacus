@@ -27,19 +27,20 @@
                 <label for="charClass">Class:</label>
                 <select name="charClass" id="charClass" data-native-menu="false">
                     <option value="choose-one" data-placeholder="true">Choose one...</option>
-                    <option value="sor">Sorcerer</option>
-                    <option value="wiz">Wizard</option>
+                    <option value="bard">Bard</option>
+                    <option value="barbarian">Barbarian</option>
                     <option value="cleric">Cleric</option>
                     <option value="druid">Druid</option>
-                    <option value="ranger">Ranger</option>
-                    <option value="bard">Bard</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
                     <option value="paladin">Paladin</option>
-                    <option value="alchemist">Alchemist</option>
-                    <option value="summoner">Summoner</option>
-                    <option value="witch">Witch</option>
-                    <option value="inquisitor">Inquisitor</option>
-                    <option value="oracle">Oracle</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sor">Sorcerer</option>
+                    <option value="wiz">Wizard</option>
                 </select>
+                <label for="txtLevel">Level</label>
+                <input type="number" id="txtLevel" min="1" max="20" value="1">
             </form>
             <section data-role="controlgroup" data-type="horizontal" class="btnCenter">
                 <button onclick="$('input').trigger('click')" >Set Avatar</button>

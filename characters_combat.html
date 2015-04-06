@@ -5,15 +5,13 @@
     <title>Characters Name</title>
 </head>
 <body>
-<section data-role="page" id="Combat">
-    <header data-role="header" class="heading">
-        <section data-role="content">
-            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
-                <img border="0" src="images/h-menu.svg"></a>
-                <img src="images/h-menu.svg"></a>
-            <h1 data-var="charName">Timmy</h1>
-        </section>
-    </header>
+<header data-role="header" class="heading">
+    <section data-role="content">
+        <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+            <img border="0" src="images/h-menu.svg"></a>
+        <h1 data-var="charName">Timmy</h1>
+    </section>
+</header>
     <section data-role="navbar" id="conditionsNav" name="conditionsNav">
         <ul>
             <li><a href="characters.html" data-theme="c">Attributes</a></li>
@@ -22,32 +20,105 @@
         </ul>
     </section>
     <section data-role="content">
-        <p><b>HP</b>: Total: 50 DR: 5</p>
-        <textarea id="hpWounds">Current HP: 43
-            Wounds: Arrow to knee</textarea>
-        <p><b>Non Lethal Damage</b>: 7</p>
-        </br>
-        <p><b>Initiative Modifier</b>: Total: 5 = 3(Dex Mod) + 2(Misc Mod)</p>
-        <p><b>Armor Class</b>: Total: 30 = 10 + 3(Armor Bonus) + 4(Shield Bonus) + 3(Dex Mod) + 2(Size Mod) +
-            2(Misc Mod)</p>
-        <p><b>Touch Armor class:</b> 2  <b>Flat-footed Armor class:</b> 3  <b>Modifiers:</b> none</p>
-        <p><b>Fortitude (Constitution):</b> Total: 5 = 1(Base Save) + 1(Ability Mod) + 0(Magic Mod) + 0(Misc Mod) +
-        3(Temp Mod)</p>
-        <p><b>Reflex (Dexterity):</b> Total: 5 = 1(Base Save) + 1(Ability Mod) + 0(Magic Mod) + 0(Misc Mod) +
-            3(Temp Mod)</p>
-        <p><b>Will (Wisdom):</b> Total: 5 = 1(Base Save) + 1(Ability Mod) + 0(Magic Mod) + 0(Misc Mod) +
-            3(Temp Mod)</p>
-        <p><b>Base Attack Bonus:</b> 5 <b>Spell Resistance:</b> 2</p>
-        <p><b>CMB:</b> Total: 5 = 1(Base Atk Bonus) + 1(Str Mod) + 3(Size Mod)</p>
-        <p><b>CMD:</b> Total: 5 = 1(Base Atk Bonus) + 1(Str Mod) + 3(Dex Mod) + 0(Size Mod) + 10</p>
-        <p><b>Speed (Land):</b> 4ft 5sq (Base) | 2ft 3sq (w/Armor)</p>
-        <p>4ft (Fly Maneuverability) | 2ft (swim) | 2ft (Climb) | 2ft (Burrow)</p>
-        <p><b>Temp Modifiers:</b> +2 Base Speed</p>
-        </br>
-        <p><b>Weapon:</b> Lazer Sword <b>Attack Bonus:</b> +6 <b>Critical:</b> +8</p>
-        <p><b>Type:</b> Energy <b>Range:</b> 6ft <b>Ammunition:</b> N/A <b>Damage:</b> 16</p>
-
+        <ul data-role="listview" data-var="charCombat" id="charCombat" data-inset="true">
+            <li data-icon="false">
+                <a href="">
+                    <h1>HP: 43 / 50</h1>
+                    <p>Non Lethal Damage: 7</p>
+                    <p>Wounds: Arrow to knee</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Initiative Modifier: 5</h1>
+                    <p>3(Dex) + 2(Misc)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Armor Class: 30</h1>
+                    <p>10 + 3(Armor) + 4(Shield) + 3(Dex) + 2(Size) + 2(Misc)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Touch Armor class: 2</h1>
+                    <h1>Flat-footed Armor class: 3</h1>
+                    <p>Modifiers: none</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Fortitude (Constitution): 5</h1>
+                    <p>1(Base) + 1(Ability) + 0(Magic) + 0(Misc) + 3(Temp)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Reflex (Dexterity): 5</h1>
+                    <p>1(Base) + 1(Ability) + 0(Magic) + 0(Misc) + 3(Temp)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Will (Wisdom): 5</h1>
+                    <p>(Base) + 1(Ability) + 0(Magic) + 0(Misc) + 3(Temp)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Base Attack Bonus: 5</h1>
+                    <h1>Spell Resistance: 2</h1>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>CMB: 5</h1>
+                    <p>1(Base Atk Bonus) + 1(Str) + 3(Size)</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>CMD: 5</h1>
+                    <p>1(Base Atk Bonus) + 1(Str) + 3(Dex)+ 3(Size) + 10</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Speed (Land):</h1>
+                    <p>4ft 5sq (Base)</p>
+                    <p>2ft 3sq (w/Armor)</p>
+                    <h1>Speed (Fly Maneuverability):</h1>
+                    <p>4ft</p>
+                    <h1>Speed (Swim):</h1>
+                    <p>2ft</p>
+                    <h1>Speed (Climb):</h1>
+                    <p>2ft</p>
+                    <h1>Speed (Burrow):</h1>
+                    <p>2ft</p>
+                </a>
+            </li>
+            <li data-icon="false">
+                <a href="">
+                    <h1>Temp Modifiers:</h1>
+                    <p>+2 Base Speed</p>
+                </a>
+            </li>
+        </ul>
+        <ul data-role="listview" data-var="charCombatWeapons" id="charCombatWeapons" data-inset="true">
+            <li data-icon="false">
+                <a href="">
+                    <h1>Weapon: Laser Sword</h1>
+                    <h3>Type: Energy</h3>
+                    <h3>Damage: 16</h3>
+                    <p>Attack Bonus: +6</p>
+                    <p>Critical: +8</p>
+                    <p>Range: 6ft</p>
+                    <p>Ammunition: N/A</p>
+                </a>
+            </li>
+        </ul>
     </section>
-</section>
+
 </body>
 </html>

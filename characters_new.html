@@ -5,7 +5,6 @@
     <title>New Character</title>
 </head>
 <body>
-    <section data-role="page">
         <header data-role="header" class="heading">
             <section data-role="content">
                 <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
@@ -42,7 +41,7 @@
                     <option value="oracle">Oracle</option>
                 </select>
             </form>
-            <section data-role="controlgroup" data-type="horizontal">
+            <section data-role="controlgroup" data-type="horizontal" class="btnCenter">
                 <button onclick="$('input').trigger('click')" >Set Avatar</button>
                 <a href="index.html" data-role="button" id="saveChar">Save</a>
                 <a href="index.html" data-role="button">Cancel</a>
@@ -72,6 +71,7 @@
                     var image = "http://placehold.it/60.png/F76DD2/fff";
                     characters.push(new Character(name));
                     var imageData = $form.find("input[name=imageData]").val();
+                    setupMenu();
                     if(imageData !== "") {
                         localStorage.setItem(name, imageData);
                     }
@@ -83,6 +83,5 @@
 
             $("#saveChar").on("tap", createChar);
         </script>
-    </section>
 </body>
 </html>

@@ -16,69 +16,30 @@
     <button class="ui-btn-active ui-state-persist">My Feats</button>
     <a href="feat-all.html" data-prefetch data-role="button" data-transition="none">All Feats</a>
 </section>
-<section id="featsListMine" name="featsList">
+<section data-role="content" id="featsListMine" name="featsList">
     <ul data-role="listview" data-filter="true" data-inset="true">
-        <li data-role="list-sectionider">All</li>
-        <!--remove below and replace with dynamically generated-->
-        <li><a href="#featPopup" data-rel="popup">Open Popup</a></li>
-        <!--remove above and replace with dynamically generated-->
-        <li data-role="list-sectionider">General</li>
-        <li data-role="list-sectionider">Achievement</li>
-        <li data-role="list-sectionider">Combat</li>
-        <li data-role="list-sectionider">Critical</li>
-        <li data-role="list-sectionider">Faction</li>
-        <li data-role="list-sectionider">General</li>
-        <li data-role="list-sectionider">Grit/Panache</li>
-        <li data-role="list-sectionider">Hero Point</li>
-        <li data-role="list-sectionider">Item Creation</li>
-        <li data-role="list-sectionider">Meditation</li>
-        <li data-role="list-sectionider">Metamagic</li>
-        <li data-role="list-sectionider">Mythic</li>
-        <li data-role="list-sectionider">Performance</li>
-        <li data-role="list-sectionider">Racial</li>
-        <li data-role="list-sectionider">Story</li>
-        <li data-role="list-sectionider">Targeting</li>
-        <li data-role="list-sectionider">Teamwork</li>
+        <li data-role="list-divider">All</li>
+        <li data-role="list-divider">General</li>
+        <li data-role="list-divider">Achievement</li>
+        <li data-role="list-divider">Combat</li>
+        <li data-role="list-divider">Critical</li>
+        <li data-role="list-divider">Faction</li>
+        <li data-role="list-divider">General</li>
+        <li data-role="list-divider">Grit/Panache</li>
+        <li data-role="list-divider">Hero Point</li>
+        <li data-role="list-divider">Item Creation</li>
+        <li data-role="list-divider">Meditation</li>
+        <li data-role="list-divider">Metamagic</li>
+        <li data-role="list-divider">Mythic</li>
+        <li data-role="list-divider">Performance</li>
+        <li data-role="list-divider">Racial</li>
+        <li data-role="list-divider">Story</li>
+        <li data-role="list-divider">Targeting</li>
+        <li data-role="list-divider">Teamwork</li>
     </ul>
 </section>
 <script>
 </script>
 
-<div data-role="popup" id="featPopup">
-    <ul data-role="listview">
-
-        <div data-role="header" data-theme="a" class="ui-header ui-bar-a" role="banner">
-            <h1 class="ui-title" role="heading" aria-level="1">Feat Name</h1>
-        </div>
-        <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content ui-body-d" role="main">
-            <p>
-                Feat Descriptions: Combat Feats are summarized on the table below. Note that the prerequisites and
-                benefits of the feats on this table are abbreviated for ease of reference. See the feats description for
-                full details. The following format is used for all feat descriptions.
-            </p>
-
-            <p>
-                Prerequisite: A minimum ability score, another feat or feats, a minimum base attack bonus, a minimum
-                number of ranks in one or more skills, or anything else required in order to take the feat. This entry
-                is absent if a feat has no prerequisite. A feat may have more than one prerequisite.
-            </p>
-            <p>
-                Benefit: What the feat enables the character (“you” in the feat description) to do. If a character has
-                the same feat more than once, its benefits do not stack unless indicated otherwise in the description.
-            </p>
-            <p>
-                Normal: What a character who does not have this feat is limited to or restricted from doing. If not
-                having the feat causes no particular drawback, this entry is absent.
-            </p>
-            <p>
-                Special: Additional unusual facts about the feat..
-            </p>
-        </div>
-        <div data-role="controlgroup" data-type="horizontal" class="btnCenter">
-            <a href="#" data-role="button">Add Feat</a>
-            <a href="#" data-role="button" data-rel="back">Cancel</a>
-        </div>
-    </ul>
-</div>
 </body>
 </html>

@@ -12,34 +12,26 @@
         <h1>Feats</h1>
     </section>
 </header>
-<section data-role="controlgroup" data-type="horizontal" class="btnCenter">
+<div data-role="controlgroup" data-type="horizontal" class="btnCenter">
     <a href="feats.html" data-role="button" data-transition="none">My Feats</a>
     <a href="" data-role="button" data-transition="none" class="ui-btn-active ui-state-persist">All Feats</a>
-</section>
-<section id="featsListAll" name="featsList">
-    <ul data-role="listview" data-filter="true" data-inset="true">
-        <li data-role="list-sectionider">All</li>
-        <li data-role="list-sectionider">General</li>
-        <li data-role="list-sectionider">Achievement</li>
-        <li data-role="list-sectionider">Combat</li>
-        <li data-role="list-sectionider">Critical</li>
-        <li data-role="list-sectionider">Faction</li>
-        <li data-role="list-sectionider">General</li>
-        <li data-role="list-sectionider">Grit/Panache</li>
-        <li data-role="list-sectionider">Hero Point</li>
-        <li data-role="list-sectionider">Item Creation</li>
-        <li data-role="list-sectionider">Meditation</li>
-        <li data-role="list-sectionider">Metamagic</li>
-        <li data-role="list-sectionider">Mythic</li>
-        <li data-role="list-sectionider">Performance</li>
-        <li data-role="list-sectionider">Racial</li>
-        <li data-role="list-sectionider">Story</li>
-        <li data-role="list-sectionider">Targeting</li>
-        <li data-role="list-sectionider">Teamwork</li>
-    </ul>
-</section>
-<script>
-</script>
+</div>
+<div data-role="main" class="ui-content">
+    <form>
+        <input id="filterTable-input" data-type="search" placeholder="Search For Feats...">
+    </form>
+    <table data-role="table" class="ui-responsive ui-shadow" id="myTable" data-filter="true" data-input="#filterTable-input">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Source</th>
+        </tr>
+        </thead>
+        <tbody data-fill="Feats" data-filter="none">
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

@@ -3,10 +3,6 @@ var characters = [];
 
 $(function () {
     "use strict";
-    // Disable reloading of page content so that form
-    // data will persist.
-    $.mobile.page.prototype.options.domCache = true;
-
     Feat.createTable(function () { Feat.loadData(); });
     Spell.createTable(function () { Spell.loadData(); });
     Hazard.createTable(function () { Hazard.loadData(); });
@@ -82,8 +78,6 @@ $(function () {
             }
         }
     });
-
-    setTimeout(setupMenu, 300);
 });
 
 
@@ -100,8 +94,6 @@ function setupMenu() {
         $cList.append($("<img>")
                 .attr('src', localStorage[characters[0].name] || "http://placehold.it/128.png/F76DD2/fff")
                 .css({"max-width": "128px", "max-height": "128px"}));
-        $(document).find('a[href="characters.html"]') //TODO: Select an ID instead of the first anchor tag
-            .text(characters[0].name);
 
         // Add char images
         var i, defaultImage;

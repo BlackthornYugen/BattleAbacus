@@ -1,7 +1,7 @@
 {
   "name": "battle-abacus",
   "description": "Battle Abacus is a character manager app for the pathfinder roleplaying game.",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "homepage": "http://battleabacus.com",
   "license": "MIT",
   "private": true,

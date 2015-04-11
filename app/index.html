@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="battleAbacus">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
-    
-    <script src="lib/jquery-1.11.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="js/database.js"></script>
-    <script src="js/spell.js"></script>
-    <script src="js/feat.js"></script>
-    <script src="js/hazard.js"></script>
-    <script src="js/skill.js"></script>
-    <script src="js/character.js"></script>
-    <script src="js/global.js"></script>
 
     <meta charset="utf-8">
     <title>Battle Abacus</title>
 </head>
 <body>
 <section>
-    <section id="characterList">
-    </section>
     <ul>
         <li><a href="character.html">Character</a></li>
-        <li><a href="spell.html">Spells / Abilities</a></li>
+        <li><a>Spells / Abilities</a></li>
         <li><a href="skill.html">Skills</a></li>
         <li><a href="feat.html">Feats</a></li>
         <li><a href="gear.html">Gear</a></li>
         <li><a href="hazard.html">Hazards</a></li>
     </ul>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript">var app = angular.module('battleAbacus',[]);</script>
+    <script src="js/database.js"></script>
+    <script src="js/spell.js"></script>
+    <script src="js/feat.js"></script>
+    <script src="js/hazard.js"></script>
+    <script src="js/skill.js"></script>
+    <script src="js/character.js"></script>
+    <script type="text/javascript">
+        app.run(["Spell", "Hazard", "Feat", "Character", function(Spell, Hazard, Feat, Character){
+            Spell.createTable(function () { Spell.loadData(); });
+            Hazard.createTable(function () { Hazard.loadData(); });
+            Feat.createTable(function () { Feat.loadData(); });
+            Character.createTable();
+        }]);
+    </script>
 </section>
 </body>
 </html>

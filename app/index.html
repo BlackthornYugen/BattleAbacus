@@ -19,21 +19,13 @@
     </ul>
 
     <script src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript">var app = angular.module('battleAbacus',[]);</script>
+    <script src="js/app.js"></script>
     <script src="js/database.js"></script>
     <script src="js/spell.js"></script>
     <script src="js/feat.js"></script>
     <script src="js/hazard.js"></script>
     <script src="js/skill.js"></script>
     <script src="js/character.js"></script>
-    <script type="text/javascript">
-        app.run(["Spell", "Hazard", "Feat", "Character", function(Spell, Hazard, Feat, Character){
-            Spell.createTable(function () { Spell.loadData(); });
-            Hazard.createTable(function () { Hazard.loadData(); });
-            Feat.createTable(function () { Feat.loadData(); });
-            Character.createTable();
-        }]);
-    </script>
 </section>
 </body>
 </html>

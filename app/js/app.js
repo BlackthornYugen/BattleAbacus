@@ -1,4 +1,14 @@
-/*globals $, Feat, Spell, Hazard, Database, Character*/
+var app = angular.module('battleAbacus', []);
+
+app.run(["Spell", "Hazard", "Feat", "Character", function (Spell, Hazard, Feat, Character) {
+    "use strict";
+    Spell.createTable(function () { Spell.loadData(); });
+    Hazard.createTable(function () { Hazard.loadData(); });
+    Feat.createTable(function () { Feat.loadData(); });
+    Character.createTable();
+}]);
+
+/* TODO DELETE OLD GLOBAL CODE
 var characters = [];
 
 $(function () {
@@ -82,10 +92,10 @@ $(function () {
 
 
 
-/**
+/!**
  * Setup the char select menu
  *
- */
+ *!/
 function setupMenu() {
     "use strict";
     var $cList = $("#characterList")
@@ -130,4 +140,4 @@ function setupMenu() {
             .css("text-decoration", "none")
             .attr('href', 'characters_new.html')
     );
-}
+}*/

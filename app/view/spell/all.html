@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Spells</title>
+</head>
+<body>
+    <script>
+        var spells = {
+            1: {name:"one", remaining:6, max:7},
+            2: {name:"two", remaining:4, max:4},
+            3: {name:"three", remaining:4, max:4}
+        };
+
+        function cast(num){
+            console.log(1);
+            var spell = spells[num];
+            if(spell.remaining > 0){
+                spell.remaining--;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+
+        function uncast(num){
+            console.log(2);
+            var spell = spells[num];
+            if(spell.remaining < spell.max){
+                spell.remaining++;
+            }
+            $(this).find(".ui-li-count").text(spell.remaining);
+        }
+    </script>
+    <header data-role="header" class="heading">
+        <section data-role="content">
+            <a href="index.html" data-prefetch data-transition="slide" data-direction="reverse">
+                <img border="0" src="images/h-menu.svg"></a>
+            <h1>Spells</h1>
+        </section>
+    </header>
+    <section data-role="content" data-dialog="true">
+        <form>
+                <section data-role="controlgroup" data-type="horizontal" id="spellOptions" name="spellOptions" class="btnCenter">
+                    <a href="spellsMy.html" data-role="button" data-transition="none">My Spells</a>
+                    <a href="#"class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">All Spells</a>
+                </section>
+
+            <section data-role="collapsible"><h2>Special Abilities</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>Special Ability One</a></li>
+                    <li><a>Special Ability two</a></li>
+                </ul>
+            </section>
+
+            <section data-role="collapsible"><h2>0 Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>1st Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>2nd Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>3rd Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>4th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>5th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>6th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>7th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>8th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+            <section data-role="collapsible"><h2>9th Level Spells</h2>
+                <ul data-role="listview" class="ui-listview" data-filter="true">
+                    <li><a>A Spell</a></li>
+                    <li><a>Another Spell</a></li>
+                </ul>
+            </section>
+
+        </form>
+    </section>
+</body>
+</html>

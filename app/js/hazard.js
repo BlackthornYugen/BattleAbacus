@@ -1,10 +1,31 @@
 /*globals app*/
-app.controller("HazardController", ["$scope", "Character", function (
+app.controller("HazardsController", ["$scope", "Hazard", function (
     $scope, // The view scope
-    Character // The character object
+    Hazard // The character object
 ) {
     "use strict";
-    $scope.title = "hazards?";
+    Hazard.GetRecords(function (hazards) {
+        $scope.hazards = hazards;
+        $scope.$apply();
+    });
+}]);
+
+app.controller("HazardController", ["$scope", "$routeParams", "Hazard", function (
+    $scope, // The view scope
+    $routeParams, // An object to get route paramaters
+    Hazard // The character object
+) {
+    "use strict";
+    $scope.hazard = {name: "Can't find hazard...", id: "?"};
+
+    function afterSql(response) {
+        $scope.hazard = response;
+        $scope.$apply();
+    }
+
+    if ($routeParams.hazardId) {
+        Hazard.GetRecord(afterSql, $routeParams.hazardId);
+    }
 }]);
 
 app.service('Hazard', ["$http", "Database", function ($http, Database) {

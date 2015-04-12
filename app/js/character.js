@@ -1,33 +1,61 @@
 /*globals app*/
-app.controller("CharacterController", ["$scope", "Character", "Database", function (
-    $scope, // The view scope
-    Character, // The character object
-    Database // A reference to the db object
-) {
-    "use strict";
-    $scope.characters = [];
+app.controller("CharacterController",
+    ["$scope", "$window", "$location", "Character", "Database", function (
+        $scope, // The view scope
+        $window, // The browser window
+        $location, // The window location service
+        Character, // The character object
+        Database // A reference to the db object
+    ) {
+        "use strict";
+        $scope.errorMessage = "";
+        function processNewCharacters(tx, response) {
+            if (/SQLError/.test(response)) {
+                throw response.message;
+            }
+            var i;
 
-    // TODO: REMOVE TEST CHARS
-    new Character("John");
-    new Character("Brett");
-    new Character("Dan");
-
-    function loadCharacters(tx, response) {
-        if (/SQLError/.test(response)) {
-            throw response.message;
+            $scope.characters = [];
+            for (i = 0; i < response.rows.length; i++) {
+                $scope.characters.push(new Character(response.rows.item(i).name));
+            }
+            $scope.$apply(); // Need to use $apply to let ng know something changed in a callback
         }
-        var i;
-        for (i = 0; i < response.rows.length; i++) {
-            $scope.characters.push(new Character(response.rows.item(i).name));
-        }
-        $scope.$apply(); // Need to use $apply to let ng know something changed in a callback
-    }
 
-    Database.transaction(function (tx) {
-        var sql = "SELECT name FROM " + Character.TABLE_NAME;
-        tx.executeSql(sql, [], loadCharacters, loadCharacters);
-    });
-}]);
+        function loadCharacters() {
+            Database.transaction(function (tx) {
+                var sql = "SELECT name FROM " + Character.TABLE_NAME;
+                tx.executeSql(sql, [], processNewCharacters, processNewCharacters);
+            });
+        }
+
+        $scope.createCharacter = function (name) {
+            if (name && name.length > 1) {
+                $window.setTimeout(loadCharacters, 10);
+                $location.path("/");
+                return new Character(name);
+            }
+            $scope.errorMessage = "You must provide a name.";
+            angular.element("#charName").focus();
+        };
+
+        $scope.readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new $window.FileReader();
+
+                reader.onload = function (e) {
+                    angular.element("#imageFrame").src = e.target.result;
+                    var ctx = document.createElement("canvas").getContext('2d');
+                    ctx.canvas.height = 300;
+                    ctx.drawImage(angular.element("#imageFrame"), 0, 0);
+                    angular.element("input[name=imageData]").value = ctx.canvas.toDataURL();
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        loadCharacters();
+    }]);
 
 app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill", function (
     $http,

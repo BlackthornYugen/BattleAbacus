@@ -14,12 +14,20 @@ app.config(['$routeProvider', function ($routeProvider) {
         when('/', {
             templateUrl: 'view/menu/menu.html'
         }).
-        when('/hazard', {
+        when('/newcharacter', {
+            templateUrl: 'view/character/new.html',
+            controller: 'CharacterController'
+        }).
+        when('/hazards', {
             templateUrl: 'view/hazard/hazards.html',
-            controller: 'HazardController'
+            controller: 'HazardsController'
+        }).
+        when('/hazards/all', {
+            templateUrl: 'view/hazard/hazards_all.html',
+            controller: 'HazardsController'
         }).
         when('/hazard/:hazardId', {
-            templateUrl: 'view/hazard/hazards.html',
+            templateUrl: 'view/hazard/hazard.html',
             controller: 'HazardController'
         }).
         otherwise({

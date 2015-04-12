@@ -14,10 +14,17 @@ app.config(['$routeProvider', function ($routeProvider) {
         when('/', {
             templateUrl: 'view/menu/menu.html'
         }).
+        /* CHARACTER ROUTES */
         when('/newcharacter', {
             templateUrl: 'view/character/new.html',
             controller: 'CharacterController'
         }).
+        /* FEAT ROUTES */
+        when('/feats', {
+            templateUrl: '',
+            controller: ''
+        }).
+        /* HAZARD ROUTES */
         when('/hazards', {
             templateUrl: 'view/hazard/hazards.html',
             controller: 'HazardsController'
@@ -27,9 +34,24 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'HazardsController'
         }).
         when('/hazard/:hazardId', {
-            templateUrl: 'view/hazard/hazard.html',
+            templateUrl: '../view/hazard/details.html',
             controller: 'HazardController'
         }).
+        when('/addHazard/:hazardId', {
+            templateUrl: '../view/hazard/add.html',
+            controller: 'HazardController'
+        }).
+        /* SKILL ROUTES */
+        when('/skills', {
+            templateUrl: '',
+            controller: ''
+        }).
+        /* SPELL ROUTES */
+        when('/spells', {
+            templateUrl: '',
+            controller: ''
+        }).
+        /* DEFAULT ROUTE */
         otherwise({
             redirectTo: '/'
         });

@@ -8,6 +8,7 @@ app.controller("CharacterController",
         Database // A reference to the db object
     ) {
         "use strict";
+        $scope.Character = Character;
         $scope.errorMessage = "";
         function processNewCharacters(tx, response) {
             if (/SQLError/.test(response)) {
@@ -52,6 +53,10 @@ app.controller("CharacterController",
                 };
                 reader.readAsDataURL(input.files[0]);
             }
+        };
+
+        $scope.activate = function (id) {
+            Character.activeCharacter = id;
         };
 
         loadCharacters();

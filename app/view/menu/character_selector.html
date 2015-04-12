@@ -1,5 +1,5 @@
 <h1>Characters:</h1>
 <ul>
     <li><a href="#/newcharacter">Add new character</a></li>
-    <li ng-repeat="character in characters" ng-click="activate(character.id);" ng-class="$first ? 'activeCharacter' : ''">{{character.name}}</li>
+    <li ng-repeat="character in characters" ng-click="activate(character.id);" ng-class="character.id === Character.activeCharacter ? 'activeCharacter' : ''">{{character.name}}</li>
 </ul>

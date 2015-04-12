@@ -20,8 +20,8 @@
             <li data-role="list-divider">Poisons</li>
             <li data-role="list-divider">Traps</li>
 -->
-            <li ng-repeat="hazardId in CharacterManager.getActiveCharacter().hazards">
-                {{hazards[hazardId-1].name}}
+            <li ng-repeat="hazardId in character.hazards">
+                <a href="#/hazard/{{hazardId}}">{{hazards[hazardId-1].name}}</a>
             </li>
         </ul>
     </section>

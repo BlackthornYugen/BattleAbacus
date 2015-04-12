@@ -35,11 +35,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'HazardsController'
         }).
         when('/hazard/:hazardId', {
-            templateUrl: '../view/hazard/details.html',
-            controller: 'HazardController'
-        }).
-        when('/addHazard/:hazardId', {
-            templateUrl: '../view/hazard/add.html',
+            templateUrl: '../view/hazard/hazard.html',
             controller: 'HazardController'
         }).
         /* SKILL ROUTES */

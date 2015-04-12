@@ -103,6 +103,18 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
         this.bab = 0;
         this.level = 0;
 
+        /**
+         * Copy and parse an array of strings to an array of numbers
+         * @param string[] src array to copy from
+         * @param number[] target array to copy to
+         */
+        function copyAndParseIds(src, target) {
+            var i;
+            for (i = 0; i < src.length; i++) {
+                target.push(Number.parseInt(src[i]));
+            }
+        }
+
         function recoverChar(tx, response) {
             if (/SQLError/.test(response)) {
                 throw response.message;
@@ -112,7 +124,7 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
                 tableName = response.rows.item(i).table.toLowerCase() + "s";
                 ids = response.rows.item(i).ids;
                 if (ids) {
-                    self[tableName] = ids.split(',');
+                    copyAndParseIds(ids.split(','), self[tableName]);
                 }
             }
         }
@@ -196,7 +208,7 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
     Character.prototype.addHazard = function (id, success) {
         Database.addJoinedItem({
             idA: this.id,
-            idB: id,
+            idB: Number.parseInt(id),
             idsArray: this.hazards,
             tableNameA: Character.TABLE_NAME,
             tableNameB: Hazard.TABLE_NAME
@@ -241,7 +253,7 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
     Character.prototype.removeHazard = function (id, success) {
         Database.removeJoinedItem({
             idA: this.id,
-            idB: id,
+            idB: Number.parseInt(id),
             idsArray: this.hazards,
             tableNameA: Character.TABLE_NAME,
             tableNameB: Hazard.TABLE_NAME

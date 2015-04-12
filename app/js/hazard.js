@@ -5,7 +5,7 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
     CharacterManager
 ) {
     "use strict";
-    $scope.CharacterManager = CharacterManager;
+    $scope.character = CharacterManager.getActiveCharacter();
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;
         $scope.$apply();
@@ -14,19 +14,19 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
 
 app.controller("HazardController", ["$scope", "$location", "$routeParams", "Hazard", "CharacterManager", function (
     $scope, // The view scope
-    $location, // TODO DOCUMENT ME
+    $location, // Let this controller change the path
     $routeParams, // An object to get route paramaters
     Hazard, // The hazard object
     CharacterManager
 ) {
     "use strict";
-    $scope.CharacterManager = CharacterManager;
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
+    $scope.character = CharacterManager.getActiveCharacter();
 
     $scope.addHazard = function (id) {
-        CharacterManager.getActiveCharacter().addHazard(id);
+        $scope.character.addHazard(id);
         $location.path("/hazards");
-    }
+    };
 
     function afterSql(response) {
         $scope.hazard = response;

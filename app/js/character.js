@@ -1,14 +1,15 @@
 /*globals app*/
 app.controller("CharacterController",
-    ["$scope", "$window", "$location", "Character", "Database", function (
+    ["$scope", "$window", "$location", "Character", "Database", "CharacterManager", function (
         $scope, // The view scope
         $window, // The browser window
         $location, // The window location service
         Character, // The character object
-        Database // A reference to the db object
+        Database, // A reference to the db object
+        CharacterManager // TODO COMMENT
     ) {
         "use strict";
-        $scope.Character = Character;
+        $scope.CharacterManager = CharacterManager;
         $scope.errorMessage = "";
         function processNewCharacters(tx, response) {
             if (/SQLError/.test(response)) {
@@ -16,16 +17,20 @@ app.controller("CharacterController",
             }
             var i;
 
-            $scope.characters = [];
+            CharacterManager.characters = [];
+            var thisCharacter;
             for (i = 0; i < response.rows.length; i++) {
-                $scope.characters.push(new Character(response.rows.item(i).name));
+                thisCharacter = new Character(response.rows.item(i).name);
+                angular.extend(thisCharacter, response.rows.item(i));
+                CharacterManager.characters.push(thisCharacter);
             }
+            $scope.characters = CharacterManager.characters;
             $scope.$apply(); // Need to use $apply to let ng know something changed in a callback
         }
 
         function loadCharacters() {
             Database.transaction(function (tx) {
-                var sql = "SELECT name FROM " + Character.TABLE_NAME;
+                var sql = "SELECT * FROM " + Character.TABLE_NAME;
                 tx.executeSql(sql, [], processNewCharacters, processNewCharacters);
             });
         }
@@ -56,11 +61,23 @@ app.controller("CharacterController",
         };
 
         $scope.activate = function (id) {
-            Character.activeCharacter = id;
+            CharacterManager.activeIndex = id;
         };
 
         loadCharacters();
     }]);
+
+app.service('CharacterManager', function () {
+    "use strict";
+    this.characters = [];
+    this.activeIndex = 1;
+    this.getActiveCharacter = function () {
+        if (this.activeIndex > this.characters.length) {
+            return null;
+        }
+        return this.characters[this.activeIndex - 1];
+    };
+});
 
 app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill", function (
     $http,

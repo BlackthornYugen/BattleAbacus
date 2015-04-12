@@ -1,22 +1,32 @@
 /*globals app*/
-app.controller("HazardsController", ["$scope", "Hazard", function (
+app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", function (
     $scope, // The view scope
-    Hazard // The character object
+    Hazard, // The hazard object
+    CharacterManager
 ) {
     "use strict";
+    $scope.CharacterManager = CharacterManager;
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;
         $scope.$apply();
     });
 }]);
 
-app.controller("HazardController", ["$scope", "$routeParams", "Hazard", function (
+app.controller("HazardController", ["$scope", "$location", "$routeParams", "Hazard", "CharacterManager", function (
     $scope, // The view scope
+    $location, // TODO DOCUMENT ME
     $routeParams, // An object to get route paramaters
-    Hazard // The character object
+    Hazard, // The hazard object
+    CharacterManager
 ) {
     "use strict";
+    $scope.CharacterManager = CharacterManager;
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
+
+    $scope.addHazard = function (id) {
+        CharacterManager.getActiveCharacter().addHazard(id);
+        $location.path("/hazards");
+    }
 
     function afterSql(response) {
         $scope.hazard = response;

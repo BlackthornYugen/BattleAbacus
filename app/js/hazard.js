@@ -1,3 +1,12 @@
+/*globals app*/
+app.controller("HazardController", ["$scope", "Character", function (
+    $scope, // The view scope
+    Character // The character object
+) {
+    "use strict";
+    $scope.title = "hazards?";
+}]);
+
 app.service('Hazard', ["$http", "Database", function ($http, Database) {
     "use strict";
     /**

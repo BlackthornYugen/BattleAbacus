@@ -1,22 +1,13 @@
-.btnCenter {
-    text-align: center !important;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
 
-.headingIcon{
-    float: left;
+.activeCharacter {
+    font-weight: 600;
+    outline: dotted thick #660000;
 }
 
-.headingText{
-    text-align: center;
-}
-
-.heading h1{
-    text-align: center;
-    width: 60%;
-    position: absolute;
-    top: 0;
-    left: 20%;
-}
-.heading img{
-    width:2.5em
+.menu > span {
+    display: inline-block;
+    vertical-align: top;
 }

@@ -7,25 +7,17 @@
     <meta charset="utf-8">
     <title>Battle Abacus</title>
 </head>
-<body>
-<section>
-    <ul>
-        <li><a href="character.html">Character</a></li>
-        <li><a>Spells / Abilities</a></li>
-        <li><a href="skill.html">Skills</a></li>
-        <li><a href="feat.html">Feats</a></li>
-        <li><a href="gear.html">Gear</a></li>
-        <li><a href="hazard.html">Hazards</a></li>
-    </ul>
-
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/database.js"></script>
-    <script src="js/spell.js"></script>
-    <script src="js/feat.js"></script>
-    <script src="js/hazard.js"></script>
-    <script src="js/skill.js"></script>
-    <script src="js/character.js"></script>
+<body ng-cloak>
+<section ng-view>
 </section>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/database.js"></script>
+<script src="js/spell.js"></script>
+<script src="js/feat.js"></script>
+<script src="js/hazard.js"></script>
+<script src="js/skill.js"></script>
+<script src="js/character.js"></script>
 </body>
 </html>

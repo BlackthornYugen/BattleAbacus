@@ -1,3 +1,34 @@
+/*globals app*/
+app.controller("CharacterController", ["$scope", "Character", "Database", function (
+    $scope, // The view scope
+    Character, // The character object
+    Database // A reference to the db object
+) {
+    "use strict";
+    $scope.characters = [];
+
+    // TODO: REMOVE TEST CHARS
+    new Character("John");
+    new Character("Brett");
+    new Character("Dan");
+
+    function loadCharacters(tx, response) {
+        if (/SQLError/.test(response)) {
+            throw response.message;
+        }
+        var i;
+        for (i = 0; i < response.rows.length; i++) {
+            $scope.characters.push(new Character(response.rows.item(i).name));
+        }
+        $scope.$apply(); // Need to use $apply to let ng know something changed in a callback
+    }
+
+    Database.transaction(function (tx) {
+        var sql = "SELECT name FROM " + Character.TABLE_NAME;
+        tx.executeSql(sql, [], loadCharacters, loadCharacters);
+    });
+}]);
+
 app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill", function (
     $http,
     Database,
@@ -23,6 +54,9 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
         this.level = 0;
 
         function recoverChar(tx, response) {
+            if (/SQLError/.test(response)) {
+                throw response.message;
+            }
             var i, tableName, ids;
             for (i = 0; i < response.rows.length; i++) {
                 tableName = response.rows.item(i).table.toLowerCase() + "s";
@@ -50,6 +84,7 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
                 var sqlLines = [];
                 var value;
                 for (value in tables) {
+                    value = tables[value];
                     sqlLines.push(sqlLine
                         .replace("?", value) // valueId
                         .replace("?", value) // 'value' as 'table'

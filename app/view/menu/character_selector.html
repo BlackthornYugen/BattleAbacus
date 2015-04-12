@@ -1,0 +1,5 @@
+<h1>Characters:</h1>
+<ul>
+    <li><a href="#">Add new character</a></li>
+    <li ng-repeat="character in characters" ng-click="activate(character.id);" ng-class="$first ? 'activeCharacter' : ''">{{character.name}}</li>
+</ul>

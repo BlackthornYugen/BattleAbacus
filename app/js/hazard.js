@@ -22,13 +22,20 @@ app.controller("HazardController", ["$scope", "$location", "$routeParams", "Haza
     "use strict";
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
     $scope.character = CharacterManager.getActiveCharacter();
-
-    $scope.addHazard = function (id) {
-        $scope.character.addHazard(id);
+    $scope.existsOnChar = true;
+    $scope.toggleHazard = function (id) {
+        if ($scope.existsOnChar) {
+            $scope.character.removeHazard(id);
+        } else {
+            $scope.character.addHazard(id);
+        }
         $location.path("/hazards");
     };
 
     function afterSql(response) {
+        if ($scope.character.hazards.indexOf(response.id) < 0) {
+            $scope.existsOnChar = false;
+        }
         $scope.hazard = response;
         $scope.$apply();
     }

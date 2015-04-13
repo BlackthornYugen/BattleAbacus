@@ -13,7 +13,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     "use strict";
     $routeProvider.
         when('/', {
-            templateUrl: 'view/menu/menu.html'
+            templateUrl: 'view/menu/menu.html',
+            controller: 'CharacterController'
         }).
         /* CHARACTER ROUTES */
         when('/newcharacter', {

@@ -1,3 +1,3 @@
 <div ng-include="'view/hazard/details.html'"></div>
-<button ng-click="addHazard(hazard.id)">Add to Character</button>
+<button ng-click="toggleHazard(hazard.id)">{{existsOnChar ? "Remove from" : "Add to"}} Character</button>
 <button onclick="window.location.hash='#/hazards/all'">Cancel</button>

@@ -1,3 +1,13 @@
+/*global app*/
+app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", function ($scope, Feat, CharacterManager) {
+    "use strict";
+    $scope.character = CharacterManager.getActiveCharacter();
+    Feat.GetRecords(function (feats) {
+        $scope.feats = feats;
+        $scope.$apply();
+    });
+}]);
+
 app.service('Feat', ["$http", "Database", function ($http, Database) {
     "use strict";
     /**

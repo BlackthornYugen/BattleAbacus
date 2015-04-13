@@ -22,8 +22,16 @@ app.config(['$routeProvider', function ($routeProvider) {
         }).
         /* FEAT ROUTES */
         when('/feats', {
-            templateUrl: '',
-            controller: ''
+            templateUrl: 'view/feat/feats.html',
+            controller: 'FeatsController'
+        }).
+        when('/feats/all', {
+            templateUrl: 'view/feat/feats_all.html',
+            controller: 'FeatsController'
+        }).
+        when('/feats/:featId', {
+            templateUrl: '../view/feat/feat.html',
+            controller: 'FeatController'
         }).
         /* HAZARD ROUTES */
         when('/hazards', {

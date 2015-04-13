@@ -8,6 +8,22 @@ app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", functi
     });
 }]);
 
+app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams", "CharacterManager", function ($scope, $location, Feat, $routeParams, CharacterManager) {
+    "use strict";
+    $scope.feat = {name: "Feat not found", id: "?"};
+    $scope.character = CharacterManager.getActiveCharacter();
+    Feat.GetRecord(function (feats) {
+        $scope.feats = feats;
+        $scope.$apply();
+
+        $scope.addFeat = function (id) {
+            $scope.character.addFeat(id);
+            $location.path("/feats_all");
+        };
+    });
+}]);
+
+
 app.service('Feat', ["$http", "Database", function ($http, Database) {
     "use strict";
     /**

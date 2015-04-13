@@ -1,0 +1,6 @@
+<h1>{{feat.name}} ({{feat.id}})</h1>
+<section ng-repeat="attr in ['save', 'onset', 'type', 'freq']">{{attr}}: {{hazard[attr]}}
+<p>{{feat.description}}</p>
+<button ng-click="addFeat(feat.id)">Add to Character</button>
+<button onclick="go('#/hazards/all')">Cancel</button>
+</section>

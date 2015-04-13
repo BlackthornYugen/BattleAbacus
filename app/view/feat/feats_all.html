@@ -1,16 +1,12 @@
+<section ng-include="'view/common/navbar.html'"></section>
+<section ng-include="'view/feat/feats_nav.html'"></section>
 <section>
-    <a href="feats.html">My Feats</a>
-    <a href="">All Feats</a>
-</section>
-<section>
-    <form>
-        <input ng-model="search">
-    </form>
+    <input ng-model="search">
     <table class="feats-all">
         <tr ng-repeat="feat in feats | filter:search">
-            <th>{{feat.Name}}</th>
-            <th>{{feat.Type}}</th>
-            <th>{{feat.Source}}</th>
+            <th><a ng-href="/feat{{feat.id}}">{{feat.name}}</a></th>
+            <th>{{feat.type}}</th>
+            <th>{{feat.source}}</th>
         </tr>
     </table>
 </section>

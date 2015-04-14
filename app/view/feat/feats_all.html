@@ -4,7 +4,7 @@
     <input ng-model="search">
     <table class="feats-all">
         <tr ng-repeat="feat in feats | filter:search">
-            <th><a ng-href="/feat{{feat.id}}">{{feat.name}}</a></th>
+            <th><a ng-href="#/feats/{{feat.id}}">{{feat.name}}</a></th>
             <th>{{feat.type}}</th>
             <th>{{feat.source}}</th>
         </tr>

@@ -31,7 +31,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'FeatsController'
         }).
         when('/feats/:featId', {
-            templateUrl: '../view/feat/feat.html',
             controller: 'FeatController'
         }).
         /* HAZARD ROUTES */

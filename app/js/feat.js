@@ -4,6 +4,7 @@ app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", functi
     $scope.character = CharacterManager.getActiveCharacter();
     Feat.GetRecords(function (feats) {
         $scope.feats = feats;
+        $scope.title = "feat";
         $scope.$apply();
     });
 }]);

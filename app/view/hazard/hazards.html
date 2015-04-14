@@ -7,13 +7,6 @@
     </section>
     <section id="hazardsListMine" name="hazardsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-<!--
-            <li data-role="list-divider">Addictions</li>
-            <li data-role="list-divider">Curses</li>
-            <li data-role="list-divider">Diseases</li>
-            <li data-role="list-divider">Poisons</li>
-            <li data-role="list-divider">Traps</li>
--->
             <li ng-repeat="hazardId in character.hazards">
                 <a href="#/hazard/{{hazardId}}">{{hazards[hazardId-1].name}}</a>
             </li>

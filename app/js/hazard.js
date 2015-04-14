@@ -5,6 +5,7 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
     CharacterManager
 ) {
     "use strict";
+    $scope.title = "Hazards";
     $scope.character = CharacterManager.getActiveCharacter();
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;
@@ -21,7 +22,6 @@ app.controller("HazardController", ["$scope", "$location", "$routeParams", "Haza
 ) {
     "use strict";
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
-    $scope.title = "All Hazards";
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
     $scope.toggleHazard = function (id) {

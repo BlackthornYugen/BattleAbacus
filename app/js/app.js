@@ -49,14 +49,26 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
             controller: 'HazardController'
         }).
         /* SKILL ROUTES */
-        when('/skills', {
-            templateUrl: '',
-            controller: ''
+        when('/skill/skills', {
+            templateUrl: 'view/skill/skills.html',
+            controller: 'SkillsController'
+        }).
+        when('/skill/:skillId', {
+            templateUrl: 'view/skill/skill.html',
+            controller: 'SkillController'
         }).
         /* SPELL ROUTES */
         when('/spells', {
-            templateUrl: '',
-            controller: ''
+            templateUrl: 'view/spell/spells.html',
+            controller: 'SpellsController'
+        }).
+        when('/spells/all', {
+            templateUrl: 'view/spell/spell_all.html',
+            controller: 'SpellsController'
+        }).
+        when('/spell/:spellId', {
+            templateUrl: 'view/spell/spell.html',
+            controller: 'SpellController'
         }).
         /* DEFAULT ROUTE */
         otherwise({

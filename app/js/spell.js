@@ -18,33 +18,33 @@ app.controller("SpellController", ["$scope", "$location", "$routeParams", "Spell
     $scope, // The view scope
     $location, // Let this controller change the path
     $routeParams, // An object to get route paramaters
-    Spell, // The hazard object
+    Spell, // The Spell object
     CharacterManager
 ) {
     "use strict";
-    $scope.hazard = {name: "Can't find hazard...", id: "?"};
-    $scope.title = "All Hazards";
+    $scope.spell = {name: "Can't find spell...", id: "?"};
+    $scope.title = "All Spells";
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
-    $scope.toggleHazard = function (id) {
+    $scope.toggleSpell = function (id) {
         if ($scope.existsOnChar) {
-            $scope.character.removeHazard(id);
+            $scope.character.removeSpell(id);
         } else {
-            $scope.character.addHazard(id);
+            $scope.character.addSpell(id);
         }
-        $location.path("/hazards");
+        $location.path("/spells");
     };
 
     function afterSql(response) {
-        if ($scope.character.hazards.indexOf(response.id) < 0) {
+        if ($scope.character.spells.indexOf(response.id) < 0) {
             $scope.existsOnChar = false;
         }
-        $scope.hazard = response;
+        $scope.spell = response;
         $scope.$apply();
     }
 
-    if ($routeParams.hazardId) {
-        Hazard.GetRecord(afterSql, $routeParams.hazardId);
+    if ($routeParams.spellId) {
+        Spell.GetRecord(afterSql, $routeParams.spellId);
     }
 }]);
 

@@ -9,19 +9,35 @@ app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", functi
     });
 }]);
 
-app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams", "CharacterManager", function ($scope, $location, Feat, $routeParams, CharacterManager) {
+app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams", "CharacterManager", function (
+    $scope,
+    $location,
+    Feat,
+    $routeParams,
+    CharacterManager
+) {
     "use strict";
     $scope.feat = {name: "Feat not found", id: "?"};
     $scope.character = CharacterManager.getActiveCharacter();
-    Feat.GetRecord(function (feats) {
-        $scope.feats = feats;
-        $scope.$apply();
 
-        $scope.addFeat = function (id) {
+    $scope.addFeat = function (id) {
+        $scope.character.addFeat(id);
+        $location.path("/feats_all");
+    };
+    $scope.existsOnChar = false;
+    $scope.toggleFeat = function (id) {
+        if ($scope.existsOnChar) {
+            $scope.character.removeFeat(id);
+            $location.path("/feats");
+        } else {
             $scope.character.addFeat(id);
-            $location.path("/feats_all");
-        };
-    });
+            $location.path("/feats/all");
+        }
+    };
+    Feat.GetRecord(function (feat) {
+        $scope.feat = feat;
+        $scope.$apply();
+    }, $routeParams.featId);
 }]);
 
 

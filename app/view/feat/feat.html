@@ -1,4 +1,4 @@
 <h1>{{feat.name}} ({{feat.id}})</h1>
 <p>{{feat.description}}</p>
-<button ng-click="addFeat(feat.id)">Add to Character</button>
-<button onclick="go('#/hazards/all')">Cancel</button>
+<button ng-click="toggleFeat(feat.id)">{{existsOnChar ? "Remove from" : "Add to"}} Character</button>
+<button onclick="'#/feats/all'">Cancel</button>

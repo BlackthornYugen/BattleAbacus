@@ -17,7 +17,7 @@ app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams",
     CharacterManager
 ) {
     "use strict";
-    $scope.feat = {name: "Feat not found", id: "?"};
+    $scope.feat = {name: "Feat not found", id: "?"}; //Beef into more validation later?
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
     $scope.toggleFeat = function (id) {

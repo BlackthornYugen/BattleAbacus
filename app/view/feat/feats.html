@@ -3,10 +3,10 @@
 <section>
     <input ng-model="search">
     <table class="feats-all">
-        <tr ng-repeat="feat in character | filter:search" ng-click="go('#/feats/ + feat.id')">
-            <th>{{feat.name}}</th>
-            <th>{{feat.type}}</th>
-            <th>{{feat.source}}</th>
+        <tr ng-repeat="feat in character.feats | filter:search" ng-click="go('#/feats/ + feat.id')">
+            <th>{{feats[feat - 1].name}}</th>
+            <th>{{feats[feat - 1].type}}</th>
+            <th>{{feats[feat - 1].source}}</th>
         </tr>
     </table>
 </section>

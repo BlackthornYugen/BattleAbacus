@@ -15,7 +15,7 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
 app.controller("HazardController", ["$scope", "$location", "$routeParams", "Hazard", "CharacterManager", function (
     $scope, // The view scope
     $location, // Let this controller change the path
-    $routeParams, // An object to get route paramaters
+    $routeParams, // An object to get route parameters
     Hazard, // The hazard object
     CharacterManager
 ) {

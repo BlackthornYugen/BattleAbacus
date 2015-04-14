@@ -2,9 +2,9 @@
 app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", function ($scope, Feat, CharacterManager) {
     "use strict";
     $scope.character = CharacterManager.getActiveCharacter();
+    $scope.title = "Feats";
     Feat.GetRecords(function (feats) {
         $scope.feats = feats;
-        $scope.title = "feat";
         $scope.$apply();
     });
 }]);
@@ -19,25 +19,27 @@ app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams",
     "use strict";
     $scope.feat = {name: "Feat not found", id: "?"};
     $scope.character = CharacterManager.getActiveCharacter();
-
-    $scope.addFeat = function (id) {
-        $scope.character.addFeat(id);
-        $location.path("/feats_all");
-    };
-    $scope.existsOnChar = false;
+    $scope.existsOnChar = true;
     $scope.toggleFeat = function (id) {
         if ($scope.existsOnChar) {
             $scope.character.removeFeat(id);
-            $location.path("/feats");
         } else {
             $scope.character.addFeat(id);
-            $location.path("/feats/all");
         }
+        $location.path("/feats/all");
     };
-    Feat.GetRecord(function (feat) {
-        $scope.feat = feat;
+
+    function afterSql(response) {
+        if ($scope.character.feats.indexOf(response.id) < 0) {
+            $scope.existsOnChar = false;
+        }
+        $scope.feat = response;
         $scope.$apply();
-    }, $routeParams.featId);
+    }
+
+    if ($routeParams.featId) {
+        Feat.GetRecord(afterSql, $routeParams.featId);
+    }
 }]);
 
 

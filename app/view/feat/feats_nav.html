@@ -3,12 +3,35 @@
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="My Feats">
             <md-content class="md-padding">
-                <section ng-include="'view/feat/feats.html'"></section>
+                <section>
+                    <input ng-model="search">
+                    <table class="feats-all">
+                        <tr ng-repeat="feat in character.feats | filter:search" ng-click="go('#/feats/ + feat.id')">
+                            <th>{{feats[feat - 1].name}}</th>
+                            <th>{{feats[feat - 1].type}}</th>
+                            <th>{{feats[feat - 1].source}}</th>
+                        </tr>
+                    </table>
+                </section>
             </md-content>
         </md-tab>
         <md-tab label="All Feats">
             <md-content class="md-padding">
-                <section ng-include="'view/feat/feats_all.html'"></section>
+                <section>
+                    <md-content style="height: 600px;">
+                        <input ng-model="search">
+                        <md-list>
+                            <md-list-item class="feats-all" ng-repeat="feat in feats | filter:search">
+                                <a ng-href="#/feats/{{feat.id}}">
+                                    <section class="md-tile-content">
+                                        <h3>{{feat.name}}</h3>
+                                        <h4>{{feat.type}}</h4>
+                                        <p>{{feat.source}}</p>
+                                    </section></a>
+                                <md-divider inset></md-divider>
+                            </md-list-item>
+                        </md-list>
+                </section>
             </md-content>
         </md-tab>
     </md-tabs>

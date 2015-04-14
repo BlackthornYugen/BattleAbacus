@@ -7,25 +7,6 @@
     </section>
     <section id="spellsListMine" name="spellsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-            <li ng-repeat="spell in spells"><a href="#/spell/{{spell.id}}">{{spell.name}}</a></li>
-        </ul>
-        <ul data-role="listview" data-filter="true" data-inset="true">
-            <li ng-repeat="spellId in character.spells">
-                <a href="#/spell/{{spellId}}">{{spells[spellId-1].name}}</a>
-            </li>
-        </ul>
-    </section>
-</section>
-
-<section ng-include="'view/common/navbar.html'"></section>
-<section data-role="content">
-    <section data-role="controlgroup" data-type="horizontal" id="spellsOptions"
-             name="spellsOptions" class="btnCenter">
-        <a href="#/spells" class="ui-btn-active ui-state-persist" data-theme="c" data-transition="none">My Spells</a>
-        <a href="#/spells/all" data-role="button" data-role="button">All Spells</a>
-    </section>
-    <section id="spellsListMine" name="spellsList">
-        <ul data-role="listview" data-filter="true" data-inset="true">
             <li ng-repeat="spellId in character.spells">
                 <a href="#/spell/{{spellId}}">{{spells[spellId-1].name}}</a>
             </li>

@@ -1,4 +1,15 @@
+<section ng-include="'view/common/navbar.html'"></section>
 <section>
-    <a href="#/feats">My Feats</a>
-    <a href="#/feats/all">All Feats</a>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="My Feats">
+            <md-content class="md-padding">
+                <section ng-include="'view/feat/feats.html'"></section>
+            </md-content>
+        </md-tab>
+        <md-tab label="All Feats">
+            <md-content class="md-padding">
+                <section ng-include="'view/feat/feats_all.html'"></section>
+            </md-content>
+        </md-tab>
+    </md-tabs>
 </section>

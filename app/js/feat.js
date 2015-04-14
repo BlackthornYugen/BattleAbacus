@@ -26,7 +26,7 @@ app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams",
         } else {
             $scope.character.addFeat(id);
         }
-        $location.path("/feats/all");
+        $location.path("/feats");
     };
 
     function afterSql(response) {

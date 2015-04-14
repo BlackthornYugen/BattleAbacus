@@ -1,5 +1,4 @@
-<!--TODO: Fix loading of title-->
-<section ng-include="'view/common/item_navbar.html'" ng-init="title = feat.name"></section>
+<section ng-include="'view/common/item_navbar.html'"></section>
 <p>{{feat.description}}</p>
 <p>{{feat.benefit}}</p>
 <md-button class="md-raised md-primary" ng-click="toggleFeat(feat.id)">{{existsOnChar ? "Remove from" : "Add to"}} Character</md-button>

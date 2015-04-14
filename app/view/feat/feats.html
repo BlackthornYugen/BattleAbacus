@@ -1,9 +1,5 @@
 <section>
     <md-content style="height: 600px;">
-        <md-input-container flex>
-            <label>Search</label>
-            <input ng-model="search">
-        </md-input-container>
         <md-list>
             <md-list-item class="feats-all" ng-repeat="feat in character.feats | filter:search">
                 <md-card><a ng-href="#/feats/{{feat.id}}">

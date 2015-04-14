@@ -34,6 +34,7 @@ app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams",
             $scope.existsOnChar = false;
         }
         $scope.feat = response;
+        $scope.title = response.name;
         $scope.$apply();
     }
 

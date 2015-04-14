@@ -1,4 +1,4 @@
-var app = angular.module('battleAbacus', ['ngRoute']);
+var app = angular.module('battleAbacus', ['ngRoute', 'ngMaterial']);
 
 app.run(["Spell", "Hazard", "Feat", "Character", function (Spell, Hazard, Feat, Character) {
     "use strict";
@@ -9,8 +9,9 @@ app.run(["Spell", "Hazard", "Feat", "Character", function (Spell, Hazard, Feat, 
     Character.createTable();
 }]);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $mdThemingProvider) {
     "use strict";
+    // Configure routes
     $routeProvider.
         when('/', {
             templateUrl: 'view/menu/menu.html',
@@ -61,4 +62,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         otherwise({
             redirectTo: '/'
         });
+
+    // Configure a dark theme with primary foreground yellow
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('yellow')
+        .dark();
 }]);

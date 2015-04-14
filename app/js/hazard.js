@@ -21,6 +21,7 @@ app.controller("HazardController", ["$scope", "$location", "$routeParams", "Haza
 ) {
     "use strict";
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
+    $scope.title = "All Hazards";
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
     $scope.toggleHazard = function (id) {

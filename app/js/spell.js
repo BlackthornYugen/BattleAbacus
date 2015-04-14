@@ -1,3 +1,52 @@
+/*globals app*/
+app.controller("SpellsController", ["$scope", "Spell", "CharacterManager", function (
+    $scope, // The view scope
+    Spell, // The hazard object
+    CharacterManager
+) {
+    "use strict";
+    $scope.character = CharacterManager.getActiveCharacter();
+    Spell.GetRecords(function (hazards) {
+        $scope.spells = spells;
+        $scope.$apply();
+    });
+}]);
+
+app.controller("SpellController", ["$scope", "$location", "$routeParams", "Spell", "CharacterManager", function (
+    $scope, // The view scope
+    $location, // Let this controller change the path
+    $routeParams, // An object to get route paramaters
+    Spell, // The hazard object
+    CharacterManager
+) {
+    "use strict";
+    $scope.hazard = {name: "Can't find hazard...", id: "?"};
+    $scope.title = "All Hazards";
+    $scope.character = CharacterManager.getActiveCharacter();
+    $scope.existsOnChar = true;
+    $scope.toggleHazard = function (id) {
+        if ($scope.existsOnChar) {
+            $scope.character.removeHazard(id);
+        } else {
+            $scope.character.addHazard(id);
+        }
+        $location.path("/hazards");
+    };
+
+    function afterSql(response) {
+        if ($scope.character.hazards.indexOf(response.id) < 0) {
+            $scope.existsOnChar = false;
+        }
+        $scope.hazard = response;
+        $scope.$apply();
+    }
+
+    if ($routeParams.hazardId) {
+        Hazard.GetRecord(afterSql, $routeParams.hazardId);
+    }
+}]);
+
+
 app.service('Spell', ["$http", "Database", function ($http, Database) {
     "use strict";
     /**

@@ -5,8 +5,10 @@ app.controller("SpellsController", ["$scope", "Spell", "CharacterManager", funct
     CharacterManager
 ) {
     "use strict";
+    //sets current character
     $scope.character = CharacterManager.getActiveCharacter();
-    Spell.GetRecords(function (hazards) {
+    //gets all spells from the websql db
+    Spell.GetRecords(function (spells) {
         $scope.spells = spells;
         $scope.$apply();
     });

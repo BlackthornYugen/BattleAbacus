@@ -1,4 +1,4 @@
-var app = angular.module('battleAbacus', ['ngRoute', 'ngMaterial']);
+var app = angular.module('battleAbacus', ['ngRoute', 'ngMaterial', 'ngSanitize']);
 
 app.run(["Spell", "Hazard", "Feat", "Character", function (Spell, Hazard, Feat, Character) {
     "use strict";

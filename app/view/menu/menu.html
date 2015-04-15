@@ -1,16 +1,43 @@
-<section class="menu">
-    <span>
-        <h1>Menu</h1>
-        <ul>
-            <li><a href="">Character</a></li>
-            <li><a href="#/spells">Spells / Abilities</a></li>
-            <li><a href="">Skills</a></li>
-            <li><a href="#/feats">Feats</a></li>
-            <li><a href="">Gear</a></li>
-            <li><a href="#/hazards">Hazards</a></li>
-        </ul>
-    </span>
-
-    <span ng-controller="CharacterController" ng-include="'view/menu/character_selector.html'">
-    </span>
-</section>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+        <md-content layout="column">
+            <md-grid-list
+                    md-cols-sm="0.5" md-cols-md="3" md-cols-gt-md="6"
+                    md-row-height-gt-md="4:1" md-row-height="1:1"
+                    md-gutter="12px" md-gutter-gt-sm="8px" >
+                <md-grid-tile class="green" ng-repeat="character in characters" ng-click="activate(character.id);"
+                              ng-class="character.id === CharacterManager.activeIndex ? 'activeCharacter' : ''">
+                    <md-grid-tile-footer>
+                        <h3>{{character.name}}</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+                <a href="#/newcharacter">
+                    <md-grid-tile class="newChar">
+                        <md-grid-tile-footer>New Character</md-grid-tile-footer>
+                    </md-grid-tile></a>
+            </md-grid-list>
+            <md-button ng-href="#/" class="md-primary" hide-gt-md>
+                Character
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="#/spells" class="md-primary" hide-gt-md>
+                Spells / Abilities
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="#/" class="md-primary" hide-gt-md>
+                Skills
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="#/feats" class="md-primary" hide-gt-md>
+                Feats
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="#/" class="md-primary" hide-gt-md>
+                Gear
+            </md-button>
+            <md-divider></md-divider>
+            <md-button ng-href="#/hazards"class="md-primary" hide-gt-md>
+                Hazards
+            </md-button>
+            <md-divider></md-divider>
+        </md-content>
+    </md-sidenav>

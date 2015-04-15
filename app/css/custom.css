@@ -31,3 +31,10 @@ a:active {
     text-decoration: none;
     color: #000000;
 }
+
+.green {
+    background: #b9f6ca; }
+
+.newChar {
+    background: #84ffff;
+}

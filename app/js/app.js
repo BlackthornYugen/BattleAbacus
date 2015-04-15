@@ -27,10 +27,6 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
             templateUrl: 'view/feat/feats_nav.html',
             controller: 'FeatsController'
         }).
-        when('/feats/all', {
-            templateUrl: 'view/feat/feats_all.html',
-            controller: 'FeatsController'
-        }).
         when('/feats/:featId', {
             templateUrl: 'view/feat/feat.html',
             controller: 'FeatController'

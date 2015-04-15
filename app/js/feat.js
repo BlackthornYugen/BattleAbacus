@@ -20,6 +20,8 @@ app.controller("FeatController", ["$scope", "$location", "Feat", "$routeParams",
     $scope.feat = {name: "Feat not found", id: "?"}; //Beef into more validation later?
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
+    //used for item_navbar back button
+    $scope.link = "feats";
     $scope.toggleFeat = function (id) {
         if ($scope.existsOnChar) {
             $scope.character.removeFeat(id);

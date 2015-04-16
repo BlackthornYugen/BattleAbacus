@@ -1,43 +1,31 @@
-<header data-role="header" class="heading">
-    <section data-role="content">
-        <a href="#/" data-prefetch data-transition="slide" data-direction="reverse">
-            <img border="0" src="images/h-menu.svg"></a>
-        <h1>New Character</h1>
-    </section>
-</header>
-<section data-role="content" ng-controller="CharacterController">
-    <h1 style="color:red;">{{errorMessage}}</h1>
-    <input type='file' ng-model="fileUrl" class="ui-input-clear-hidden" />
-    <br>
-    <label for="imageFrame">Avatar:</label>
-    <section style="max-width: 100%; padding: 5px; border: 1px solid black; overflow: hidden;">
-        <img id="imageFrame" style="max-width: 100%; display: block; margin: auto;" />
-    </section>
-    <br>
-    <form id="newCharForm">
-        <input type="hidden" name="imageData">
-        <label for="charName" required>Name:</label>
-        <input type="text" ng-model="charName" id="charName">
-        <label for="charClass">Class:</label>
-        <select name="charClass" id="charClass" data-native-menu="false">
-            <option value="choose-one" data-placeholder="true">Choose one...</option>
-            <option value="bard">Bard</option>
-            <option value="barbarian">Barbarian</option>
-            <option value="cleric">Cleric</option>
-            <option value="druid">Druid</option>
-            <option value="fighter">Fighter</option>
-            <option value="monk">Monk</option>
-            <option value="paladin">Paladin</option>
-            <option value="ranger">Ranger</option>
-            <option value="rogue">Rogue</option>
-            <option value="sor">Sorcerer</option>
-            <option value="wiz">Wizard</option>
-        </select>
-        <label for="txtLevel">Level</label>
-        <input type="number" id="txtLevel" min="1" max="20" value="1">
-    </form>
-    <section data-role="controlgroup" data-type="horizontal" class="btnCenter">
-        <a href="" ng-click="createCharacter(charName)">Save</a>
-        <a href="#/">Cancel</a>
-    </section>
+<section ng-include="'view/common/navbar.html'" ng-init="title = 'New Character'"></section>
+<section>
+    <div layout="column">
+        <md-content md-theme="docs-dark" layout-padding layout="row" layout-sm="column">
+            <h1 style="color:red;">{{errorMessage}}</h1>
+        </md-content>
+        <md-content layout-padding>
+            <form ng-submit="createCharacter(charName)">
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Name</label>
+                        <input ng-model="charName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Level</label>
+                        <input label="Character Level" ng-model="charLevel">
+                    </md-input-container>
+                </div>
+                <div layout-align="center center" style="min-height: 300px;">
+                    <md-select placeholder="Class" ng-model="charClass">
+                        <md-option ng-repeat="c in classes" ng-value="c.attribute">{{c.name}}</md-option>
+                    </md-select>
+                </div>
+                <section>
+                    <input type="submit" value="Save">
+                    <button type="button" onclick="window.location.hash='#/'">Cancel</button>
+                </section>
+            </form>
+        </md-content>
+    </div>
 </section>

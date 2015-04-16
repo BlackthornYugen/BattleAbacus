@@ -12,6 +12,18 @@ app.controller("CharacterController",
         "use strict";
         $scope.CharacterManager = CharacterManager;
         $scope.errorMessage = "";
+        $scope.classes = [{attribute: "bard", name: "Bard"},
+            {attribute: "barbarian", name: "Barbarian"},
+            {attribute: "cleric", name: "Cleric"},
+            {attribute: "druid", name: "Druid"},
+            {attribute: "fighter", name: "Fighter"},
+            {attribute: "monk", name: "Monk"},
+            {attribute: "paladin", name: "Paladin"},
+            {attribute: "ranger", name: "Ranger"},
+            {attribute: "rogue", name: "Rogue"},
+            {attribute: "sor", name: "Sorcerer"},
+            {attribute: "wiz", name: "Wizard"}];
+
         function processNewCharacters(tx, response) {
             if (/SQLError/.test(response)) {
                 throw response.message;

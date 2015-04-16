@@ -1,7 +1,7 @@
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
         <md-content layout="column">
             <md-grid-list
-                    md-cols-sm="0.5" md-cols-md="3" md-cols-gt-md="6"
+                    md-cols-sm="3" md-cols-md="3" md-cols-gt-md="6"
                     md-row-height-gt-md="4:1" md-row-height="1:1"
                     md-gutter="12px" md-gutter-gt-sm="8px" >
                 <md-grid-tile class="green" ng-repeat="character in characters" ng-click="activate(character.id);"
@@ -14,7 +14,8 @@
                     <md-grid-tile class="newChar">
                         <md-grid-tile-footer>New Character</md-grid-tile-footer>
                     </md-grid-tile></a>
-            </md-grid-list>
+            </md-grid-list><br>
+            <md-divider></md-divider>
             <md-button ng-href="#/" class="md-primary" hide-gt-md>
                 Character
             </md-button>

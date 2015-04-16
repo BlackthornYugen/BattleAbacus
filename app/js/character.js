@@ -1,12 +1,13 @@
 /*globals app*/
 app.controller("CharacterController",
-    ["$scope", "$window", "$location", "Character", "Database", "CharacterManager", function (
+    ["$scope", "$window", "$location", "Character", "Database", "CharacterManager", "$mdSidenav", function (
         $scope, // The view scope
         $window, // The browser window
         $location, // The window location service
         Character, // The character object
         Database, // A reference to the db object
-        CharacterManager // TODO COMMENT
+        CharacterManager, // TODO COMMENT
+        $mdSidenav
     ) {
         "use strict";
         $scope.CharacterManager = CharacterManager;
@@ -65,6 +66,17 @@ app.controller("CharacterController",
         };
 
         loadCharacters();
+
+        $scope.toggleLeft = buildToggler('left');
+        /**
+         * Build handler to open/close a SideNav; when animation finishes
+         * report completion in console
+         */
+        function buildToggler(navID) {
+            return function () {
+                return $mdSidenav(navID).toggle();
+            };
+        }
     }]);
 
 app.service('CharacterManager', function () {

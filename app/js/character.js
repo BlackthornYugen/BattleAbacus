@@ -75,6 +75,7 @@ app.controller("CharacterController",
 
         $scope.activate = function (id) {
             CharacterManager.activeIndex = id;
+            localStorage.setItem("activeCharacter", id);
         };
 
         loadCharacters();
@@ -93,8 +94,9 @@ app.controller("CharacterController",
 
 app.service('CharacterManager', function () {
     "use strict";
+    var oldCharacter = localStorage.getItem("activeCharacter");
     this.characters = [];
-    this.activeIndex = 1;
+    this.activeIndex = Number.parseInt(oldCharacter) || 1;
     this.getActiveCharacter = function () {
         if (this.activeIndex > this.characters.length) {
             return null;

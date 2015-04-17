@@ -5,6 +5,11 @@ app.controller("SpellsController", ["$scope", "Spell", "CharacterManager", funct
     CharacterManager
 ) {
     "use strict";
+    $scope.skip = 0;
+    $scope.setSkip = function(num){
+        num = Math.max(num, 0);
+        $scope.skip = num;
+    }
     //sets current character
     $scope.character = CharacterManager.getActiveCharacter();
     //gets all spells from the websql db
@@ -189,7 +194,7 @@ app.service('Spell', ["$http", "Database", function ($http, Database) {
      */
     Spell.GetRecords = function (next, options) {
         var sql = "SELECT * FROM " + Spell.TABLE_NAME;
-        var DEFAULT_LIMIT = 100;
+        var DEFAULT_LIMIT = 10000;
         var DEFAULT_SKIP = 0;
         if (typeof options !== "object") {
             options = {};

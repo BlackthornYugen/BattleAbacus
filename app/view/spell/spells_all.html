@@ -20,7 +20,7 @@
         </md-tab>
     </md-tabs> -->
     <md-list>
-        <md-list-item class="spells-my" ng-repeat="spell in spells | filter:search">
+        <md-list-item class="spells-my" ng-repeat="spell in spellSet = (spells | filter:search) | limitTo: pageSize : skip">
             <md-card><a ng-href="#/spell/{{spell.id}}">
                 <section class="md-tile-content">
                     <h3>{{spell.name}}</h3>
@@ -29,3 +29,10 @@
         </md-list-item>
     </md-list>
 </md-content>
+<button ng-mousedown="setSkip(0)">First</button>
+<button ng-mousedown="setSkip(skip - pageSize)">Prev</button>
+<!--<span ng-repeat="num in [] | btnRange:(spellSet.length / pageSize):skip">
+    <button ng-disabled="num * pageSize == skip" ng-click="setSkip(num * pageSize)">{{num}}</button>
+</span>-->
+<button ng-mousedown="setSkip(skip + pageSize)">Next</button>
+<button ng-mousedown="setSkip(spellSet.length - (spellSet.length % pageSize))">Last</button>

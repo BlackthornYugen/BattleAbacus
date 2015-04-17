@@ -13,6 +13,7 @@ app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Fea
     $rootScope.toggleLeft = function () {
         return $mdSidenav('left').toggle();
     };
+    $rootScope.pageSize = 50;
 
     CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });
@@ -80,3 +81,54 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
         .primaryPalette('yellow')
         .dark();
 }]);
+
+/* FILTERS */
+
+/**
+ * This filter is+ from Angular 4
+ */
+app.filter("limitTo", function() {
+    return function(input, limit, begin) {
+        function toInt(str) { return parseInt(str, 10);}
+        function isNumber(value) {return typeof value === 'number';}
+        function isString(value) {return typeof value === 'string';}
+        var isArray = Array.isArray;
+
+        if (Math.abs(Number(limit)) === Infinity) {
+            limit = Number(limit);
+        } else {
+            limit = toInt(limit);
+        }
+        if (isNaN(limit)) return input;
+
+        if (isNumber(input)) input = input.toString();
+        if (!isArray(input) && !isString(input)) return input;
+
+        begin = (!begin || isNaN(begin)) ? 0 : toInt(begin);
+        begin = (begin < 0 && begin >= -input.length) ? input.length + begin : begin;
+
+        if (limit >= 0) {
+            return input.slice(begin, begin + limit);
+        } else {
+            if (begin === 0) {
+                return input.slice(limit, input.length);
+            } else {
+                return input.slice(Math.max(0, begin + limit), begin);
+            }
+        }
+    }
+});
+
+/**
+ * ref http://stackoverflow.com/a/11878038/2535649
+ */
+app.filter('btnRange', function() {
+    return function(input, total, current) {
+        total = parseInt(total);
+        var i = Math.max(0, current-2);
+        var max = Math.min(current+2, total);
+        for (var i=0; i<max; i++)
+            input.push(i);
+        return input;
+    };
+});

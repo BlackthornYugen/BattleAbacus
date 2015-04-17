@@ -1,6 +1,7 @@
 /*global app*/
 app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", function ($scope, Feat, CharacterManager) {
     "use strict";
+    $scope.skip = 0;
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.title = "Feats";
     Feat.GetRecords(function (feats) {
@@ -180,14 +181,14 @@ app.service('Feat', ["$http", "Database", function ($http, Database) {
      */
     Feat.GetRecords = function (next, options) {
         var sql = "SELECT * FROM " + Feat.TABLE_NAME;
-        var DEFAULT_LIMIT = 100;
+        var DEFAULT_LIMIT = 10000;
         var DEFAULT_SKIP = 0;
         if (typeof options !== "object") {
             options = {};
         }
         var i, afterSql;
         if (options.filter) {
-            sql += " WHERE type LIKE \"%" + options.filter + "%\"";
+            sql += " WHERE source LIKE \"%" + options.filter + "%\"";
         }
         sql += " LIMIT "
             + (options.skip || DEFAULT_SKIP) + ", "

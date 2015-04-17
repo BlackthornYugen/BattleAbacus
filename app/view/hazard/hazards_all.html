@@ -7,14 +7,6 @@
     </section>
     <section id="hazardsListAll" name="hazardsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-<!--            <li data-role="list-divider">Addictions</li>
-            <li data-role="list-divider">Curses</li>
-            <li data-role="list-divider">Diseases</li>
-            <li data-role="list-divider">Haunts</li>
-            <li data-role="list-divider">Infestations</li>
-            <li data-role="list-divider">Insanities</li>
-            <li data-role="list-divider">Poison</li>
-            <li data-role="list-divider">Traps</li>-->
             <li ng-repeat="hazard in hazards"><a href="#/hazard/{{hazard.id}}">{{hazard.name}}</a></li>
         </ul>
     </section>

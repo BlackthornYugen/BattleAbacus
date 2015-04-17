@@ -1,8 +1,7 @@
 /*globals app*/
-app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", function (
+app.controller("HazardsController", ["$scope", "Hazard", function (
     $scope, // The view scope
-    Hazard, // The hazard object
-    CharacterManager
+    Hazard // The hazard object
 ) {
     "use strict";
     $scope.title = "Hazards";
@@ -12,28 +11,26 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
     });
 }]);
 
-app.controller("HazardController", ["$scope", "$location", "$routeParams", "Hazard", "CharacterManager", function (
+app.controller("HazardController", ["$scope", "$location", "$routeParams", "Hazard", function (
     $scope, // The view scope
     $location, // Let this controller change the path
     $routeParams, // An object to get route parameters
-    Hazard, // The hazard object
-    CharacterManager
+    Hazard // The hazard object
 ) {
     "use strict";
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
-    $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
     $scope.toggleHazard = function (id) {
         if ($scope.existsOnChar) {
-            $scope.character.removeHazard(id);
+            $scope.currentCharacter.removeHazard(id);
         } else {
-            $scope.character.addHazard(id);
+            $scope.currentCharacter.addHazard(id);
         }
         $location.path("/hazards");
     };
 
     function afterSql(response) {
-        if ($scope.character.hazards.indexOf(response.id) < 0) {
+        if ($scope.currentCharacter.hazards.indexOf(response.id) < 0) {
             $scope.existsOnChar = false;
         }
         $scope.hazard = response;

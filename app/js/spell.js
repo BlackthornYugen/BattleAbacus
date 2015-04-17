@@ -5,6 +5,11 @@ app.controller("SpellsController", ["$scope", "Spell", "CharacterManager", funct
     CharacterManager
 ) {
     "use strict";
+    $scope.skip = 0;
+    $scope.setSkip = function(num){
+        num = Math.max(num, 0);
+        $scope.skip = num;
+    }
     //sets current character
     $scope.character = CharacterManager.getActiveCharacter();
     //gets all spells from the websql db

@@ -4,6 +4,7 @@ app.controller("HazardsController", ["$scope", "Hazard", function (
     Hazard // The hazard object
 ) {
     "use strict";
+    $scope.skip = 0;
     $scope.title = "Hazards";
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;

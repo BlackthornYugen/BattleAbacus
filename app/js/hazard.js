@@ -6,7 +6,6 @@ app.controller("HazardsController", ["$scope", "Hazard", "CharacterManager", fun
 ) {
     "use strict";
     $scope.title = "Hazards";
-    $scope.character = CharacterManager.getActiveCharacter();
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;
         $scope.$apply();

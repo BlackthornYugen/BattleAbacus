@@ -63,11 +63,7 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
         }).
         /* SPELL ROUTES */
         when('/spells', {
-            templateUrl: 'view/spell/spells.html',
-            controller: 'SpellsController'
-        }).
-        when('/spells/all', {
-            templateUrl: 'view/spell/spells_all.html',
+            templateUrl: 'view/spell/spells_nav.html',
             controller: 'SpellsController'
         }).
         when('/spell/:spellId', {

@@ -26,6 +26,7 @@ app.controller("SpellController", ["$scope", "$location", "$routeParams", "Spell
     $scope.title = "All Spells";
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.existsOnChar = true;
+    $scope.link = "spells";
     $scope.toggleSpell = function (id) {
         if ($scope.existsOnChar) {
             $scope.character.removeSpell(id);
@@ -40,6 +41,7 @@ app.controller("SpellController", ["$scope", "$location", "$routeParams", "Spell
             $scope.existsOnChar = false;
         }
         $scope.spell = response;
+        $scope.title = response.name;
         $scope.$apply();
     }
 

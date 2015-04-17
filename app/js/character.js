@@ -73,35 +73,33 @@ app.controller("CharacterController",
             }
         };
 
-        $scope.activate = function (id) {
-            CharacterManager.activeIndex = id;
-            localStorage.setItem("activeCharacter", id);
-        };
+        $scope.activate = CharacterManager.setActiveCharacter;
 
         loadCharacters();
 
-        $scope.toggleLeft = buildToggler('left');
-        /**
-         * Build handler to open/close a SideNav; when animation finishes
-         * report completion in console
-         */
-        function buildToggler(navID) {
-            return function () {
-                return $mdSidenav(navID).toggle();
-            };
-        }
+        $scope.toggleLeft = function () {
+            return $mdSidenav('left').toggle();
+        };
+
     }]);
 
-app.service('CharacterManager', function () {
+app.service('CharacterManager', function ($rootScope) {
     "use strict";
-    var oldCharacter = localStorage.getItem("activeCharacter");
+    var oldCharacter = Number.parseInt(localStorage.getItem("activeCharacter")) || 1;
+    var self = this;
     this.characters = [];
-    this.activeIndex = Number.parseInt(oldCharacter) || 1;
+    this.activeIndex = oldCharacter;
+    this.setActiveCharacter = function(index) {
+        index = index || oldCharacter;
+        $rootScope.currentCharacter = self.characters[index - 1];
+        self.activeIndex = index;
+        localStorage.setItem("activeCharacter", index);
+    };
     this.getActiveCharacter = function () {
-        if (this.activeIndex > this.characters.length) {
+        if (self.activeIndex > self.characters.length) {
             return null;
         }
-        return this.characters[this.activeIndex - 1];
+        return self.characters[self.activeIndex - 1];
     };
 });
 

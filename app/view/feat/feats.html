@@ -1,7 +1,7 @@
 <section>
     <md-content style="height: 600px;">
         <md-list>
-            <md-list-item class="feats-all" ng-repeat="feat in character.feats | filter:search">
+            <md-list-item class="feats-all" ng-repeat="feat in currentCharacter.feats | filter:search">
                 <md-card><a ng-href="#/feats/{{feat}}">
                     <section class="md-tile-content">
                         <h3>{{feats[feat - 1].name}}</h3>

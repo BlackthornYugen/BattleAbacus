@@ -1,8 +1,20 @@
 var app = angular.module('battleAbacus', ['ngRoute', 'ngMaterial', 'ngSanitize']);
 
-app.run(["Spell", "Hazard", "Feat", "Character", function (Spell, Hazard, Feat, Character) {
+app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Feat", "Character", function (
+    $rootScope,
+    $mdSidenav,
+    CharacterManager,
+    Spell,
+    Hazard,
+    Feat,
+    Character
+) {
     "use strict";
-    Character.activeCharacter = 1; // Set default character
+    $rootScope.toggleLeft = function () {
+        return $mdSidenav('left').toggle();
+    };
+
+    CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });
     Hazard.createTable(function () { Hazard.loadData(); });
     Feat.createTable(function () { Feat.loadData(); });

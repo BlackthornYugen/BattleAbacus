@@ -1,13 +1,20 @@
 <section ng-include="'view/common/navbar.html'"></section>
-<section data-role="content">
-    <section data-role="controlgroup" data-type="horizontal" id="hazardsOptions"
-         name="hazardsOptions" class="btnCenter">
-        <a href="#/hazards" data-role="button" data-transition="none">My Hazards</a>
-        <a href="#/hazards/all"class="ui-btn-active ui-state-persist" data-theme="c" data-role="button">All Hazards</a>
-    </section>
-    <section id="hazardsListAll" name="hazardsList">
-        <ul data-role="listview" data-filter="true" data-inset="true">
-            <li ng-repeat="hazard in hazards"><a href="#/hazard/{{hazard.id}}">{{hazard.name}}</a></li>
-        </ul>
-    </section>
+<section>
+    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" class="md-primary">
+        <a ng-href="#/hazards"><md-tab label="My Hazards" /></a>
+        <a ng-href="#/hazards/all"><md-tab label="All Hazards" /></a>
+    </md-tabs>
+</section>
+<section>
+    <md-content>
+        <md-list>
+            <md-list-item ng-repeat="hazard in hazards">
+                <md-card>
+                    <section class="md-tile-content">
+                        <a ng-href="#/hazard/{{hazard.id}}">{{hazard.name}}</a>
+                    </section>
+                </md-card>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </section>

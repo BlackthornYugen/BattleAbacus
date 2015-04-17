@@ -1,3 +1,34 @@
-<div ng-include="'view/hazard/details.html'"></div>
-<button ng-click="toggleHazard(hazard.id)">{{existsOnChar ? "Remove" : "Add"}} Hazard</button>
-<button onclick="window.history.back()">Cancel</button>
+<section ng-include="'view/common/item_navbar.html'"></section><br>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Save:</h3><br>
+        <h4>{{hazard.save}}</h4>
+    </section>
+</md-card>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Onset:</h3><br>
+        <h4>{{hazard.onset}}</h4>
+    </section>
+</md-card>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Type:</h3><br>
+        <h4>{{hazard.type}}</h4>
+    </section>
+</md-card>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Frequency:</h3><br>
+        <h4>{{hazard.frequency}}</h4>
+    </section>
+</md-card>
+<md-bottom-sheet>
+    <section layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="toggleHazards(hazard.id)">
+            {{existsOnChar ? "Remove from" : "Add to"}} Character
+        </md-button>
+        <p>&nbsp</p>
+        <md-button class="md-raised md-primary" onclick="window.location.hash='/hazards'">Cancel</md-button>
+    </section>
+</md-bottom-sheet>

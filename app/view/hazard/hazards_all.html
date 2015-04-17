@@ -1,20 +1,12 @@
-<section ng-include="'view/common/navbar.html'"></section>
-<section>
-    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" class="md-primary">
-        <a ng-href="#/hazards"><md-tab label="My Hazards" /></a>
-        <a ng-href="#/hazards/all"><md-tab label="All Hazards" /></a>
-    </md-tabs>
-</section>
-<section>
-    <md-content>
-        <md-list>
-            <md-list-item ng-repeat="hazard in hazards">
-                <md-card>
-                    <section class="md-tile-content">
-                        <a ng-href="#/hazard/{{hazard.id}}">{{hazard.name}}</a>
-                    </section>
-                </md-card>
-            </md-list-item>
-        </md-list>
-    </md-content>
-</section>
+<md-content style="height: 600px;">
+    <md-list>
+        <md-list-item class="hazards-my" ng-repeat="hazard in hazards | filter:search">
+            <md-card><a ng-href="#/hazard/{{hazard.id}}">
+                <section class="md-tile-content">
+                    <h3>{{hazard.name}}</h3>
+                    <h4>{{hazard.type}}</h4>
+                </section></a>
+            </md-card>
+        </md-list-item>
+    </md-list>
+</md-content>

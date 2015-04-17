@@ -20,6 +20,7 @@ app.controller("HazardController", ["$scope", "$location", "$routeParams", "Haza
     "use strict";
     $scope.hazard = {name: "Can't find hazard...", id: "?"};
     $scope.existsOnChar = true;
+    $scope.link = "hazards";
     $scope.toggleHazard = function (id) {
         if ($scope.existsOnChar) {
             $scope.currentCharacter.removeHazard(id);
@@ -34,6 +35,7 @@ app.controller("HazardController", ["$scope", "$location", "$routeParams", "Haza
             $scope.existsOnChar = false;
         }
         $scope.hazard = response;
+        $scope.title = response.name;
         $scope.$apply();
     }
 

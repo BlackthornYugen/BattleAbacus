@@ -45,11 +45,7 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
         }).
         /* HAZARD ROUTES */
         when('/hazards', {
-            templateUrl: 'view/hazard/hazards.html',
-            controller: 'HazardsController'
-        }).
-        when('/hazards/all', {
-            templateUrl: 'view/hazard/hazards_all.html',
+            templateUrl: 'view/hazard/hazards_nav.html',
             controller: 'HazardsController'
         }).
         when('/hazard/:hazardId', {

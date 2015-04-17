@@ -47,7 +47,6 @@ app.controller("CharacterController",
                 reader.readAsDataURL(input.files[0]);
             }
         };
-
         $scope.activate = CharacterManager.setActiveCharacter;
     }]);
 
@@ -58,7 +57,7 @@ app.service('CharacterManager', function ($rootScope, Database, Character) {
     this.characters = [];
     this.activeIndex = oldCharacter;
 
-    this.setActiveCharacter = function(index) {
+    this.setActiveCharacter = function (index) {
         index = index || oldCharacter;
         $rootScope.currentCharacter = self.characters[index - 1];
         self.activeIndex = index;

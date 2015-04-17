@@ -7,7 +7,7 @@
     </section>
     <section id="spellsListMine" name="spellsList">
         <ul data-role="listview" data-filter="true" data-inset="true">
-            <li ng-repeat="spellId in character.spells">
+            <li ng-repeat="spellId in currentCharacter.spells">
                 <a href="#/spell/{{spellId}}">{{spells[spellId-1].name}}</a>
             </li>
         </ul>

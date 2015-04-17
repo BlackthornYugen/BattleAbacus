@@ -1,13 +1,12 @@
 /*globals app*/
 app.controller("CharacterController",
-    ["$scope", "$window", "$location", "Character", "Database", "CharacterManager", "$mdSidenav", function (
+    ["$scope", "$window", "$location", "Character", "Database", "CharacterManager", function (
         $scope, // The view scope
         $window, // The browser window
         $location, // The window location service
         Character, // The character object
         Database, // A reference to the db object
-        CharacterManager, // TODO COMMENT
-        $mdSidenav
+        CharacterManager // TODO COMMENT
     ) {
         "use strict";
         $scope.CharacterManager = CharacterManager;
@@ -23,30 +22,6 @@ app.controller("CharacterController",
             {attribute: "rogue", name: "Rogue"},
             {attribute: "sor", name: "Sorcerer"},
             {attribute: "wiz", name: "Wizard"}];
-
-        function processNewCharacters(tx, response) {
-            if (/SQLError/.test(response)) {
-                throw response.message;
-            }
-            var i;
-
-            CharacterManager.characters = [];
-            var thisCharacter;
-            for (i = 0; i < response.rows.length; i++) {
-                thisCharacter = new Character(response.rows.item(i).name);
-                angular.extend(thisCharacter, response.rows.item(i));
-                CharacterManager.characters.push(thisCharacter);
-            }
-            $scope.characters = CharacterManager.characters;
-            $scope.$apply(); // Need to use $apply to let ng know something changed in a callback
-        }
-
-        function loadCharacters() {
-            Database.transaction(function (tx) {
-                var sql = "SELECT * FROM " + Character.TABLE_NAME;
-                tx.executeSql(sql, [], processNewCharacters, processNewCharacters);
-            });
-        }
 
         $scope.createCharacter = function (name) {
             if (name && name.length > 1) {
@@ -74,32 +49,52 @@ app.controller("CharacterController",
         };
 
         $scope.activate = CharacterManager.setActiveCharacter;
-
-        loadCharacters();
-
-        $scope.toggleLeft = function () {
-            return $mdSidenav('left').toggle();
-        };
-
     }]);
 
-app.service('CharacterManager', function ($rootScope) {
+app.service('CharacterManager', function ($rootScope, Database, Character) {
     "use strict";
     var oldCharacter = Number.parseInt(localStorage.getItem("activeCharacter")) || 1;
     var self = this;
     this.characters = [];
     this.activeIndex = oldCharacter;
+
     this.setActiveCharacter = function(index) {
         index = index || oldCharacter;
         $rootScope.currentCharacter = self.characters[index - 1];
         self.activeIndex = index;
         localStorage.setItem("activeCharacter", index);
     };
+
     this.getActiveCharacter = function () {
         if (self.activeIndex > self.characters.length) {
             return null;
         }
         return self.characters[self.activeIndex - 1];
+    };
+
+    var processNewCharacters = function (tx, response) {
+        if (/SQLError/.test(response)) {
+            throw response.message;
+        }
+        var i;
+
+        self.characters = [];
+        var thisCharacter;
+        for (i = 0; i < response.rows.length; i++) {
+            thisCharacter = new Character(response.rows.item(i).name);
+            angular.extend(thisCharacter, response.rows.item(i));
+            self.characters.push(thisCharacter);
+        }
+        self.setActiveCharacter();
+        $rootScope.characters = self.characters;
+        $rootScope.$apply(); // Need to use $apply to let ng know something changed in a callback
+    };
+
+    this.loadCharacters = function () {
+        Database.transaction(function (tx) {
+            var sql = "SELECT * FROM " + Character.TABLE_NAME;
+            tx.executeSql(sql, [], processNewCharacters, processNewCharacters);
+        });
     };
 });
 

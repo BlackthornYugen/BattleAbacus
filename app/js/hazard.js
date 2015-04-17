@@ -180,7 +180,7 @@ app.service('Hazard', ["$http", "Database", function ($http, Database) {
     Hazard.GetRecords = function (next, options) {
         var sql = "SELECT * FROM " + Hazard.TABLE_NAME;
         var wheres = [];
-        var DEFAULT_LIMIT = 100;
+        var DEFAULT_LIMIT = 10000;
         var DEFAULT_SKIP = 0;
         if (typeof options !== "object") {
             options = {};

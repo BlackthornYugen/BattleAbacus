@@ -14,7 +14,7 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
     // Configure routes
     $routeProvider.
         when('/', {
-            templateUrl: 'view/menu/menu.html',
+            templateUrl: 'view/character/character_nav.html',
             controller: 'CharacterController'
         }).
         /* CHARACTER ROUTES */

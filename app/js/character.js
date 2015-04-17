@@ -25,7 +25,7 @@ app.controller("CharacterController",
 
         $scope.createCharacter = function (name) {
             if (name && name.length > 1) {
-                $window.setTimeout(loadCharacters, 10);
+                $window.setTimeout(CharacterManager.loadCharacters, 10);
                 $location.path("/");
                 return new Character(name);
             }
@@ -98,7 +98,8 @@ app.service('CharacterManager', function ($rootScope, Database, Character) {
     };
 });
 
-app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill", function (
+app.service('Character', ["$rootScope", "$http", "Database", "Spell", "Hazard", "Feat", "Skill", function (
+    $rootScope,
     $http,
     Database,
     Spell,
@@ -146,6 +147,7 @@ app.service('Character', ["$http", "Database", "Spell", "Hazard", "Feat", "Skill
                     copyAndParseIds(ids.split(','), self[tableName]);
                 }
             }
+            $rootScope.$apply(); // TODO Not this
         }
 
         function afterSql(tx, response) {

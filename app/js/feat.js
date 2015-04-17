@@ -102,7 +102,7 @@ app.service('Feat', ["$http", "Database", function ($http, Database) {
     /**
      * Create table
      * @param {Function} success - Executed when the table is created
-     * @param {Boolean} rebuild - Drop the previous table
+     * @param {Boolean} [rebuild] - Drop the previous table
      */
     Feat.createTable = function (success, rebuild) {
         var createTableFailure, createTableSuccess;

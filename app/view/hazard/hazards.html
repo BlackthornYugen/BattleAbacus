@@ -1,0 +1,12 @@
+<md-content style="height: 600px;">
+    <md-list>
+        <md-list-item class="hazards-my" ng-repeat="hazardId in currentCharacter.hazards | filter:search">
+            <md-card><a ng-href="#/hazard/{{hazardId}}">
+                <section class="md-tile-content">
+                    <h3>{{hazards[hazardId-1].name}}</h3>
+                    <h4>{{hazards[hazardId-1].type}}</h4>
+                </section></a>
+            </md-card>
+        </md-list-item>
+    </md-list>
+</md-content>

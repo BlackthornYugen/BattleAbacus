@@ -1,0 +1,23 @@
+<section ng-include="'view/common/navbar.html'"></section>
+<section>
+    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" class="md-primary">
+        <md-tab label="My Hazards">
+            <md-content class="md-padding">
+                <md-input-container flex>
+                    <label>Search</label>
+                    <input ng-model="search">
+                </md-input-container>
+                <section ng-include="'view/hazard/hazards.html'"></section>
+            </md-content>
+        </md-tab>
+        <md-tab label="All Hazards">
+            <md-content class="md-padding">
+                <md-input-container flex>
+                    <label>Search</label>
+                    <input ng-model="search">
+                </md-input-container>
+                <section ng-include="'view/hazard/hazards_all.html'"></section>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</section>

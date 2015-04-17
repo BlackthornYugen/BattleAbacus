@@ -1,0 +1,18 @@
+<section ng-include="'view/common/navbar.html'"></section>
+<md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" md-no-pagination="true" class="md-primary">
+    <md-tab label="Attr">
+        <md-content>
+            <section ng-include="'view/character/character.html'"></section>
+        </md-content>
+    </md-tab>
+    <md-tab label="Combat">
+        <md-content>
+            <section ng-include="'view/character/combat.html'"></section>
+        </md-content>
+    </md-tab>
+    <md-tab label="Details">
+        <md-content>
+            <section ng-include="'view/character/details.html'"></section>
+        </md-content>
+    </md-tab>
+</md-tabs>

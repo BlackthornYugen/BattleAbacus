@@ -1,0 +1,40 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.activeCharacter {
+    font-weight: 600;
+    outline: dotted thick #660000;
+}
+
+.menu > span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+a:link {
+    text-decoration: none;
+    color: #000000;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #000000;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+a:active {
+    text-decoration: none;
+    color: #000000;
+}
+
+.green {
+    background: #b9f6ca; }
+
+.newChar {
+    background: #84ffff;
+}

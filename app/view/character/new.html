@@ -1,0 +1,31 @@
+<section ng-include="'view/common/navbar.html'" ng-init="title = 'New Character'"></section>
+<section>
+    <div layout="column">
+        <md-content md-theme="docs-dark" layout-padding layout="row" layout-sm="column">
+            <h1 style="color:red;">{{errorMessage}}</h1>
+        </md-content>
+        <md-content layout-padding>
+            <form ng-submit="createCharacter(charName)">
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Name</label>
+                        <input ng-model="charName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Level</label>
+                        <input label="Character Level" ng-model="charLevel">
+                    </md-input-container>
+                </div>
+                <div layout-align="center center" style="min-height: 300px;">
+                    <md-select placeholder="Class" ng-model="charClass">
+                        <md-option ng-repeat="c in classes" ng-value="c.attribute">{{c.name}}</md-option>
+                    </md-select>
+                </div>
+                <section>
+                    <input type="submit" value="Save">
+                    <button type="button" onclick="window.location.hash='#/'">Cancel</button>
+                </section>
+            </form>
+        </md-content>
+    </div>
+</section>

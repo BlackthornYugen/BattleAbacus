@@ -1,0 +1,13 @@
+<md-content style="height: 600px;">
+    <md-list>
+        <md-list-item class="spells-my" ng-repeat="spellId in currentCharacter.spells | filter:search">
+            <md-card><a ng-href="#/spell/{{spellId}}">
+                <section class="md-tile-content">
+                    <h3>{{spells[spellId-1].name}}</h3>
+                    <h4>{{spells[spellId-1].type}}</h4>
+                </section>
+            </a>
+            </md-card>
+        </md-list-item>
+    </md-list>
+</md-content>

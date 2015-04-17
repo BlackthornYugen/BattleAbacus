@@ -1,0 +1,22 @@
+ <!DOCTYPE html>
+<html>
+<section ng-include="'view/common/navbar.html'"></section>
+<body>
+    <section>
+        <section>
+            <label><input type="checkbox" name="armorCheckPenalty" />Apply Armor Check Penalty</label>
+        </section>
+        <section>
+            <label for="skillsList"><h3>Points Availible (0 of 48)</h3></label>
+            <section data-role="content">
+                <section id="hazardsListAll" name="hazardsList">
+                    <ul data-role="listview" data-filter="true" data-inset="true">
+
+                        <li ng-repeat="hazard in hazards"><a href="#/hazard/{{hazard.id}}">{{hazard.name}}</a></li>
+                    </ul>
+                </section>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

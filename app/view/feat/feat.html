@@ -1,0 +1,22 @@
+<section ng-include="'view/common/item_navbar.html'"></section><br>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Description:</h3><br>
+        <h4>{{feat.description}}</h4>
+    </section>
+</md-card>
+<md-card>
+    <section class="md-tile-content">
+        <h3>Benefit:</h3><br>
+        <h4>{{feat.benefit}}</h4>
+    </section>
+</md-card>
+<md-bottom-sheet>
+    <section layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="toggleFeat(feat.id)">
+            {{existsOnChar ? "Remove from" : "Add to"}} Character
+        </md-button>
+        <p>&nbsp</p>
+        <md-button class="md-raised md-primary" onclick="window.location.hash='/feats'">Cancel</md-button>
+    </section>
+</md-bottom-sheet>

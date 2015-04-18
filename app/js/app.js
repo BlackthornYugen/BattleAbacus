@@ -13,7 +13,7 @@ app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Fea
     $rootScope.toggleLeft = function () {
         return $mdSidenav('left').toggle();
     };
-    $rootScope.pageSize = 50;
+    $rootScope.pageSize = 9;
 
     CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });

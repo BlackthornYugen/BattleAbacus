@@ -9,8 +9,20 @@
         </md-list-item>
     </md-list>
 </md-content>
-<button ng-mousedown="setSkip(0)">First</button>
-<button ng-mousedown="setSkip(skip - pageSize)">Prev</button>
-<span>{{(skip / pageSize) + 1}} of {{(spellSet.length / pageSize) + 1 | floor}}</span>
-<button ng-mousedown="setSkip(skip + pageSize)">Next</button>
-<button ng-mousedown="setSkip(spellSet.length - (spellSet.length % pageSize))">Last</button>
+<div layout="row" >
+    <div flex>
+        <md-button class="md-raised" ng-mousedown="setSkip(0)">First</md-button>
+    </div>
+    <div flex>
+        <md-button class="md-raised" ng-mousedown="setSkip(skip - pageSize)">Prev</md-button>
+    </div>
+    <div flex>
+        <span>{{(skip / pageSize) + 1}} of {{(spellSet.length / pageSize) + 1 | floor}}</span>
+    </div>
+    <div flex>
+        <md-button class="md-raised" ng-mousedown="setSkip(skip + pageSize)">Next</md-button>
+    </div>
+    <div flex>
+        <md-button class="md-raised" ng-mousedown="setSkip(spellSet.length - (spellSet.length % pageSize))">Last</md-button>
+    </div>
+</div>

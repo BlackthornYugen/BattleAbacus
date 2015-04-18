@@ -119,16 +119,34 @@ app.filter("limitTo", function() {
     }
 });
 
-/**
- * ref http://stackoverflow.com/a/11878038/2535649
- */
-app.filter('btnRange', function() {
-    return function(input, total, current) {
-        total = parseInt(total);
-        var i = Math.max(0, current-2);
-        var max = Math.min(current+2, total);
-        for (var i=0; i<max; i++)
-            input.push(i);
-        return input;
+app.filter('floor', function() {
+    return function(input) {
+        return Math.floor(input);
     };
+});
+
+/**
+ * http://stackoverflow.com/a/18186947/2535649
+ * http://stackoverflow.com/a/6712058/2535649
+ */
+app.filter('orderObjectBy', function(){
+    return function(input, attribute) {
+        if (!angular.isObject(input)) return input;
+
+        var array = [];
+        for(var objectKey in input) {
+            array.push(input[objectKey]);
+        }
+
+        array.sort(function(a, b){
+            var nameA=a[attribute].toLowerCase(),
+                nameB=b[attribute].toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        });
+        return array;
+    }
 });

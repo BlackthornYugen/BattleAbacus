@@ -199,11 +199,12 @@ app.directive('baClick', function() {
     return function(scope, element, attrs) {
 
         element.bind('touchstart click', function(event) {
-
             event.preventDefault();
             event.stopPropagation();
-
-            scope.$apply(attrs['baClick']);
+            // Only run if disabled is false
+            if(!element.attr("disabled")) {
+                scope.$apply(attrs['baClick']);
+            }
         });
     };
 });

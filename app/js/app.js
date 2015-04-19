@@ -37,8 +37,8 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
     // Configure routes
     $routeProvider.
         when('/', {
-            templateUrl: 'view/character/character_nav.html',
-            controller: 'CharacterController'
+            templateUrl: 'view/spell/spells_nav.html',
+            controller: 'SpellsController'
         }).
         /* CHARACTER ROUTES */
         when('/newcharacter', {

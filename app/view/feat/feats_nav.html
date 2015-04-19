@@ -1,13 +1,16 @@
 <section ng-include="'view/common/navbar.html'"></section>
-<section>
+<section ng-if="currentCharacter">
     <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" class="md-primary">
         <md-tab label="My Feats">
-            <md-content class="md-padding">
+            <md-content class="md-padding" ng-if="currentCharacter.feats.length">
                 <md-input-container flex>
                     <label>Search</label>
                     <input ng-model="search">
                 </md-input-container>
                 <section ng-include="'view/feat/feats.html'"></section>
+            </md-content>
+            <md-content class="md-padding" ng-if="!currentCharacter.feats.length">
+                <p>It looks like you don't have any feats. Click on "All Feats" to add one.</p>
             </md-content>
         </md-tab>
         <md-tab label="All Feats">
@@ -21,3 +24,4 @@
         </md-tab>
     </md-tabs>
 </section>
+<section class="md-padding" ng-if="!currentCharacter" ng-include="'view/common/no_character.html'"></section>

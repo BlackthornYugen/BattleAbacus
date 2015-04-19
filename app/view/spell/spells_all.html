@@ -1,26 +1,6 @@
-<md-content style="height: 600px;">
-    <!--<md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="auto" style="background: white;">
-        <md-tab label="1">
-        </md-tab>
-        <md-tab label="2">
-        </md-tab>
-        <md-tab label="3">
-        </md-tab>
-        <md-tab label="4">
-        </md-tab>
-        <md-tab label="5">
-        </md-tab>
-        <md-tab label="6">
-        </md-tab>
-        <md-tab label="7">
-        </md-tab>
-        <md-tab label="8">
-        </md-tab>
-        <md-tab label="9">
-        </md-tab>
-    </md-tabs> -->
+<md-content flex>
     <md-list>
-        <md-list-item class="spells-my" ng-repeat="spell in spellSet = (spells | filter:search) | limitTo: pageSize : skip">
+        <md-list-item class="spells-my" ng-repeat="spell in resultSet = (spells | filter:search) | orderObjectBy:'name' | limitTo: pageSize : skip">
             <md-card><a ng-href="#/spell/{{spell.id}}">
                 <section class="md-tile-content">
                     <h3>{{spell.name}}</h3>
@@ -29,10 +9,4 @@
         </md-list-item>
     </md-list>
 </md-content>
-<button ng-mousedown="setSkip(0)">First</button>
-<button ng-mousedown="setSkip(skip - pageSize)">Prev</button>
-<!--<span ng-repeat="num in [] | btnRange:(spellSet.length / pageSize):skip">
-    <button ng-disabled="num * pageSize == skip" ng-click="setSkip(num * pageSize)">{{num}}</button>
-</span>-->
-<button ng-mousedown="setSkip(skip + pageSize)">Next</button>
-<button ng-mousedown="setSkip(spellSet.length - (spellSet.length % pageSize))">Last</button>
+<section ng-include="'view/common/page_controls.html'"></section>

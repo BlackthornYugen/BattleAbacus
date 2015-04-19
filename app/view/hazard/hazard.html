@@ -1,23 +1,23 @@
 <section ng-include="'view/common/item_navbar.html'"></section><br>
-<md-card>
+<md-card ng-if="hazard.save">
     <section class="md-tile-content">
         <h3>Save:</h3><br>
         <h4>{{hazard.save}}</h4>
     </section>
 </md-card>
-<md-card>
+<md-card ng-if="hazard.onset">
     <section class="md-tile-content">
         <h3>Onset:</h3><br>
         <h4>{{hazard.onset}}</h4>
     </section>
 </md-card>
-<md-card>
+<md-card ng-if="hazard.type">
     <section class="md-tile-content">
         <h3>Type:</h3><br>
         <h4>{{hazard.type}}</h4>
     </section>
 </md-card>
-<md-card>
+<md-card ng-if="hazard.frequency">
     <section class="md-tile-content">
         <h3>Frequency:</h3><br>
         <h4>{{hazard.frequency}}</h4>

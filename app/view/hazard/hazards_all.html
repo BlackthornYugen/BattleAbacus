@@ -1,6 +1,6 @@
-<md-content style="height: 600px;">
+<md-content flex>
     <md-list>
-        <md-list-item class="hazards-my" ng-repeat="hazard in hazards | filter:search | limitTo: pageSize : skip">
+        <md-list-item class="hazards-my" ng-repeat="hazard in resultSet = (hazards | filter:search) | limitTo: pageSize : skip">
             <md-card><a ng-href="#/hazard/{{hazard.id}}">
                 <section class="md-tile-content">
                     <h3>{{hazard.name}}</h3>
@@ -10,3 +10,4 @@
         </md-list-item>
     </md-list>
 </md-content>
+<section ng-include="'view/common/page_controls.html'"></section>

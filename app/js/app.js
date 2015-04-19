@@ -10,10 +10,20 @@ app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Fea
     Character
 ) {
     "use strict";
+    /* Page Variables & Function */
+    $rootScope.page = 1;
+    $rootScope.skip = 0;
+    $rootScope.pageSize = 9; // Default page size
+    $rootScope.setPage = function (num) {
+        num = Math.max(num, 1); // Minimum 1
+        num = Math.ceil(num); // Round up
+        $rootScope.page = num;
+        $rootScope.skip = (num - 1) * $rootScope.pageSize;
+    };
+
     $rootScope.toggleLeft = function () {
         return $mdSidenav('left').toggle();
     };
-    $rootScope.pageSize = 50;
 
     CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });
@@ -27,8 +37,8 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
     // Configure routes
     $routeProvider.
         when('/', {
-            templateUrl: 'view/character/character_nav.html',
-            controller: 'CharacterController'
+            templateUrl: 'view/spell/spells_nav.html',
+            controller: 'SpellsController'
         }).
         /* CHARACTER ROUTES */
         when('/newcharacter', {
@@ -87,7 +97,7 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
 /**
  * This filter is+ from Angular 4
  */
-app.filter("limitTo", function() {
+app.filter("limitTo", function () {
     return function(input, limit, begin) {
         function toInt(str) { return parseInt(str, 10);}
         function isNumber(value) {return typeof value === 'number';}
@@ -119,16 +129,52 @@ app.filter("limitTo", function() {
     }
 });
 
-/**
- * ref http://stackoverflow.com/a/11878038/2535649
- */
-app.filter('btnRange', function() {
-    return function(input, total, current) {
-        total = parseInt(total);
-        var i = Math.max(0, current-2);
-        var max = Math.min(current+2, total);
-        for (var i=0; i<max; i++)
-            input.push(i);
-        return input;
+app.filter('floor', function() {
+    return function(input) {
+        return Math.floor(input);
     };
+});
+
+app.filter('ceil', function() {
+    return function(input) {
+        return Math.ceil(input);
+    };
+});
+
+app.filter('max', function() {
+    return function(input, max) {
+        return Math.min(input, max);
+    };
+});
+
+app.filter('min', function() {
+    return function(input, min) {
+        return Math.max(input, min);
+    };
+});
+
+/**
+ * http://stackoverflow.com/a/18186947/2535649
+ * http://stackoverflow.com/a/6712058/2535649
+ */
+app.filter('orderObjectBy', function(){
+    return function(input, attribute) {
+        if (!angular.isObject(input)) return input;
+
+        var array = [];
+        for(var objectKey in input) {
+            array.push(input[objectKey]);
+        }
+
+        array.sort(function(a, b){
+            var nameA=a[attribute].toLowerCase(),
+                nameB=b[attribute].toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        });
+        return array;
+    }
 });

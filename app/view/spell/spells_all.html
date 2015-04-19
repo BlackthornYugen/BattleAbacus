@@ -1,6 +1,6 @@
 <md-content style="height: 600px;">
     <md-list>
-        <md-list-item class="spells-my" ng-repeat="spell in spellSet = (spells | filter:search) | orderObjectBy:'name' | limitTo: pageSize : skip">
+        <md-list-item class="spells-my" ng-repeat="spell in resultSet = (spells | filter:search) | orderObjectBy:'name' | limitTo: pageSize : skip">
             <md-card><a ng-href="#/spell/{{spell.id}}">
                 <section class="md-tile-content">
                     <h3>{{spell.name}}</h3>
@@ -9,20 +9,4 @@
         </md-list-item>
     </md-list>
 </md-content>
-<div layout="row" style="text-align: center;">
-    <div flex>
-        <md-button class="md-raised" ng-mousedown="setSkip(0)">First</md-button>
-    </div>
-    <div flex>
-        <md-button class="md-raised" ng-mousedown="setSkip(skip - pageSize)">Prev</md-button>
-    </div>
-    <div flex>
-        <span>{{(skip / pageSize) + 1}} of {{(spellSet.length / pageSize) + 1 | floor}}</span>
-    </div>
-    <div flex>
-        <md-button class="md-raised" ng-mousedown="setSkip(skip + pageSize)">Next</md-button>
-    </div>
-    <div flex>
-        <md-button class="md-raised" ng-mousedown="setSkip(spellSet.length - (spellSet.length % pageSize))">Last</md-button>
-    </div>
-</div>
+<section ng-include="'view/common/page_controls.html'"></section>

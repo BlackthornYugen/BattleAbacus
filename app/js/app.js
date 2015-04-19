@@ -10,10 +10,20 @@ app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Fea
     Character
 ) {
     "use strict";
+    /* Page Variables & Function */
+    $rootScope.page = 1;
+    $rootScope.skip = 0;
+    $rootScope.pageSize = 9; // Default page size
+    $rootScope.setPage = function (num) {
+        num = Math.max(num, 1); // Minimum 1
+        num = Math.ceil(num); // Round up
+        $rootScope.page = num;
+        $rootScope.skip = (num - 1) * $rootScope.pageSize;
+    };
+
     $rootScope.toggleLeft = function () {
         return $mdSidenav('left').toggle();
     };
-    $rootScope.pageSize = 9;
 
     CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });
@@ -87,7 +97,7 @@ app.config(['$routeProvider', '$mdThemingProvider', function ($routeProvider, $m
 /**
  * This filter is+ from Angular 4
  */
-app.filter("limitTo", function() {
+app.filter("limitTo", function () {
     return function(input, limit, begin) {
         function toInt(str) { return parseInt(str, 10);}
         function isNumber(value) {return typeof value === 'number';}
@@ -122,6 +132,24 @@ app.filter("limitTo", function() {
 app.filter('floor', function() {
     return function(input) {
         return Math.floor(input);
+    };
+});
+
+app.filter('ceil', function() {
+    return function(input) {
+        return Math.ceil(input);
+    };
+});
+
+app.filter('max', function() {
+    return function(input, max) {
+        return Math.min(input, max);
+    };
+});
+
+app.filter('min', function() {
+    return function(input, min) {
+        return Math.max(input, min);
     };
 });
 

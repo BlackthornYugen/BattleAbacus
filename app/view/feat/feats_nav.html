@@ -14,7 +14,7 @@
             <md-content class="md-padding">
                 <md-input-container flex>
                     <label>Search</label>
-                    <input ng-model="search">
+                    <input ng-model="search" ng-change="setPage(1)">
                 </md-input-container>
                 <section ng-include="'view/feat/feats_all.html'"></section>
             </md-content>

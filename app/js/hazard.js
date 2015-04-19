@@ -4,7 +4,7 @@ app.controller("HazardsController", ["$scope", "Hazard", function (
     Hazard // The hazard object
 ) {
     "use strict";
-    $scope.skip = 0;
+    $scope.$root.pageSize = 7; // Seven hazards per page
     $scope.title = "Hazards";
     Hazard.GetRecords(function (hazards) {
         $scope.hazards = hazards;

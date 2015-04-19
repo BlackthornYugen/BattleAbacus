@@ -1,7 +1,7 @@
 /*global app*/
 app.controller("FeatsController", ["$scope",  "Feat", "CharacterManager", function ($scope, Feat, CharacterManager) {
     "use strict";
-    $scope.skip = 0;
+    $scope.$root.pageSize = 5; // Five feats per page
     $scope.character = CharacterManager.getActiveCharacter();
     $scope.title = "Feats";
     Feat.GetRecords(function (feats) {

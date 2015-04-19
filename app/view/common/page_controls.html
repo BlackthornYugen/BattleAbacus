@@ -1,17 +1,17 @@
 <div layout="row" style="text-align: center;" ng-init="setPage(1)">
     <div flex>
-        <md-button class="md-raised" ng-mousedown="setPage(1)">First</md-button>
+        <md-button class="md-raised" ba-click="setPage(1)">First</md-button>
     </div>
     <div flex>
-        <md-button class="md-raised" ng-disabled="page < 2" ng-mousedown="setPage(page - 1)">Prev</md-button>
+        <md-button class="md-raised" ng-disabled="page < 2" ba-click="setPage(page - 1)">Prev</md-button>
     </div>
     <div flex>
         <span>{{page}} of {{pageCount = resultSet.length / pageSize | ceil | min:1}}</span>
     </div>
     <div flex>
-        <md-button class="md-raised" ng-disabled="pageCount <= page" ng-mousedown="setPage(page + 1)">Next</md-button>
+        <md-button class="md-raised" ng-disabled="pageCount <= page" ba-click="setPage(page + 1)">Next</md-button>
     </div>
     <div flex>
-        <md-button class="md-raised" ng-mousedown="setPage(pageCount)">Last</md-button>
+        <md-button class="md-raised" ba-click="setPage(pageCount)">Last</md-button>
     </div>
 </div>

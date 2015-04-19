@@ -13,10 +13,10 @@
 </md-card>
 <md-bottom-sheet>
     <section layout="row" layout-align="center">
-        <md-button class="md-raised md-primary" ng-click="toggleFeat(feat.id)">
+        <md-button class="md-raised md-primary" ba-click="toggleFeat(feat.id)">
             {{existsOnChar ? "Remove from" : "Add to"}} Character
         </md-button>
         <p>&nbsp</p>
-        <md-button class="md-raised md-primary" onclick="window.location.hash='/feats'">Cancel</md-button>
+        <md-button class="md-raised md-primary" ba-click="go('/feats')">Cancel</md-button>
     </section>
 </md-bottom-sheet>

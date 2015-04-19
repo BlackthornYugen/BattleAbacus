@@ -1,4 +1,4 @@
-<md-content style="height: 600px;">
+<md-content flex>
     <md-list>
         <md-list-item class="hazards-my" ng-repeat="hazard in resultSet = (hazards | filter:search) | limitTo: pageSize : skip">
             <md-card><a ng-href="#/hazard/{{hazard.id}}">

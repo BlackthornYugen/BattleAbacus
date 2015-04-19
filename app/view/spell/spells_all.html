@@ -1,4 +1,4 @@
-<md-content style="height: 600px;">
+<md-content flex>
     <md-list>
         <md-list-item class="spells-my" ng-repeat="spell in resultSet = (spells | filter:search) | orderObjectBy:'name' | limitTo: pageSize : skip">
             <md-card><a ng-href="#/spell/{{spell.id}}">

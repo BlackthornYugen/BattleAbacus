@@ -1,5 +1,5 @@
 <section>
-    <md-content style="height: 600px;">
+    <md-content flex>
         <md-list>
             <md-list-item class="feats-all" ng-repeat="feat in resultSet = (feats | filter:search) | limitTo: pageSize : skip">
                 <md-card><a ng-href="#/feats/{{feat.id}}">

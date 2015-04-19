@@ -5,7 +5,10 @@ app.controller("SpellsController", ["$scope", "Spell", "CharacterManager", funct
     CharacterManager
 ) {
     "use strict";
-    $scope.$root.pageSize = 9; // Seven spells per page
+    //sets seven nine spells per page
+    $scope.$root.pageSize = 9;
+    //sets page title
+    $scope.title = "Spells and Abilities";
     //sets current character
     $scope.character = CharacterManager.getActiveCharacter();
     //gets all spells from the websql db

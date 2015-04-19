@@ -4,7 +4,7 @@
                 md-cols-sm="3" md-cols-md="3" md-cols-gt-md="3"
                 md-row-height-gt-md="1:1" md-row-height="1:1"
                 md-gutter="12px" md-gutter-gt-sm="8px">
-            <md-grid-tile class="green" ng-repeat="character in characters" ng-click="activate(character.id);"
+            <md-grid-tile class="green" ng-repeat="character in characters" ba-click="activate(character.id);"
                           ng-class="character.id === currentCharacter.id ? 'activeCharacter' : ''">
                 <md-grid-tile-footer>
                     <h3>{{character.name}}</h3>

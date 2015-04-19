@@ -1,7 +1,8 @@
 var app = angular.module('battleAbacus', ['ngRoute', 'ngMaterial', 'ngSanitize']);
 
-app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Feat", "Character", function (
+app.run(["$rootScope", "$location", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Feat", "Character", function (
     $rootScope,
+    $location,
     $mdSidenav,
     CharacterManager,
     Spell,
@@ -21,10 +22,21 @@ app.run(["$rootScope", "$mdSidenav", "CharacterManager", "Spell", "Hazard", "Fea
         $rootScope.skip = (num - 1) * $rootScope.pageSize;
     };
 
+    /**
+     * Toggle the navigation bar
+     * @returns {*}
+     */
     $rootScope.toggleLeft = function () {
         return $mdSidenav('left').toggle();
     };
 
+    /**
+     * Navigate to the specified path
+     * @param path
+     */
+    $rootScope.go = function ( path ) {
+        $location.path( path );
+    };
     CharacterManager.loadCharacters(); // Set default character
     Spell.createTable(function () { Spell.loadData(); });
     Hazard.createTable(function () { Hazard.loadData(); });
@@ -177,4 +189,22 @@ app.filter('orderObjectBy', function(){
         });
         return array;
     }
+});
+
+/**
+ * Battle Abacus click event fixed clickthrough issue with touch events
+ */
+app.directive('baClick', function() {
+
+    return function(scope, element, attrs) {
+
+        element.bind('touchstart click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            // Only run if disabled is false
+            if(!element.attr("disabled")) {
+                scope.$apply(attrs['baClick']);
+            }
+        });
+    };
 });

@@ -7,10 +7,10 @@
 </md-card>
 <md-bottom-sheet>
     <section layout="row" layout-align="center">
-        <md-button class="md-raised md-primary" ng-click="toggleSpell(spell.id)">
+        <md-button class="md-raised md-primary" ba-click="toggleSpell(spell.id)">
             {{existsOnChar ? "Remove from" : "Add to"}} Character
         </md-button>
         <p>&nbsp</p>
-        <md-button class="md-raised md-primary" onclick="window.location.hash='/spells'">Cancel</md-button>
+        <md-button class="md-raised md-primary" ba-click="go('/spells')">Cancel</md-button>
     </section>
 </md-bottom-sheet>

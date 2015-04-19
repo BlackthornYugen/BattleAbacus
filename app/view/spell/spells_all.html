@@ -1,7 +1,7 @@
 <md-content flex>
     <md-list>
         <md-list-item class="spells-my" ng-repeat="spell in resultSet = (spells | filter:search) | orderObjectBy:'name' | limitTo: pageSize : skip">
-            <md-card><a ng-href="#/spell/{{spell.id}}">
+            <md-card><a ba-click="go('/spell/' + spell.id)">
                 <section class="md-tile-content">
                     <h3>{{spell.name}}</h3>
                 </section></a>

@@ -5,13 +5,13 @@
                         md-cols-sm="3" md-cols-md="3" md-cols-gt-md="3"
                         md-row-height-gt-md="1:1" md-row-height="1:1"
                         md-gutter="12px" md-gutter-gt-sm="8px">
-                    <md-grid-tile class="green" ng-repeat="character in characters" ng-mousedown="toggleLeft();activate(character.id);"
+                    <md-grid-tile class="green" ng-repeat="character in characters" ba-click="toggleLeft();activate(character.id);"
                                   ng-class="character.id === currentCharacter.id ? 'activeCharacter' : ''">
                         <md-grid-tile-footer>
                             <h3>{{character.name}}</h3>
                         </md-grid-tile-footer>
                     </md-grid-tile>
-                    <a href="#/newcharacter">
+                    <a ba-click="go('/newcharacter')">
                         <md-grid-tile class="newChar">
                             <md-grid-tile-footer>New Character</md-grid-tile-footer>
                         </md-grid-tile>
@@ -20,22 +20,22 @@
                 <br>
                 <md-divider>
                     <br>
-                <md-button disabled ng-href="#/" class="md-primary">
+                <md-button ng-disabled="true" class="md-primary">
                     Character
                 </md-button><br><br>
-                <md-button ng-href="#/spells" class="md-primary">
+                <md-button ba-click="go('/spells')" class="md-primary">
                     Spells / Abilities
                 </md-button><br><br>
-                <md-button disabled ng-href="#/" class="md-primary">
+                <md-button ng-disabled="true" class="md-primary">
                     Skills
                 </md-button><br><br>
-                <md-button ng-href="#/feats" class="md-primary">
+                <md-button ba-click="go('/feats')" class="md-primary">
                     Feats
                 </md-button><br><br>
-                <md-button disabled ng-href="#/" class="md-primary">
+                <md-button ng-disabled="true" class="md-primary">
                     Gear
                 </md-button><br><br>
-                <md-button ng-href="#/hazards" class="md-primary">
+                <md-button ba-click="go('/hazards')" class="md-primary">
                     Hazards
                 </md-button><br>
                 </md-divider>
@@ -44,7 +44,7 @@
         <md-toolbar>
             <section class="md-toolbar-tools">
                 <md-button class="md-icon-button" aria-label="Menu">
-                    <md-icon md-svg-icon="images/menu.svg" ng-mousedown="toggleLeft()"></md-icon>
+                    <md-icon md-svg-icon="images/menu.svg" ba-click="toggleLeft()"></md-icon>
                 </md-button>
                 <h2>
                     <span>{{title}}</span>
